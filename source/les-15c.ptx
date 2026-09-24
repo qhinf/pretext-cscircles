@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-15c">
+  <title>15C: Caesar's JVTIVK JRCRU IVTZGV</title>
+  <introduction>
+    <p><em>Oefeningen 15A, 15B, en 15C kunnen in een willekeurige volgorde worden gemaakt.</em></p>
+    <p>Cryptografie is de kunst en de wetenschap van het verbergen van de betekenis van informatie, zodat alleen sommige mensen die informatie krijgen. In deze les zullen we één van de eenvoudigste cryptografische methoden introduceren, de <alert> <url href="http://nl.wikipedia.org/wiki/Caesarcijfer" visual="nl.wikipedia.org/wiki/Caesarcijfer"> Caesarcijfer </url> </alert> (ook bekend als de <alert>caesarrotatie </alert> of kortweg <alert>Rot</alert>), en je zult een programma leren schrijven om de code te breken. Je doet dat in één keer (in tegenstelling tot les 15A, waar we de oplossing in sub-onderdelen opsplitsten).</p>
+    <p>Cryptografie  Bij Caesarcijfer wordt elke letter uit het alfabet vervangen door een andere letter. Nauwkeuriger, wanneer je een tekst wilt coderen, moet je een <alert>verschuivingsgetal</alert> <em>S</em> kiezen, een getal tussen 0 and 25. Dan vervang je elke letter in de tekst door de letter die <em>S</em> posities later in het alfabet staat en waarbij je teruggaat naar het begin van het alfabet wanneer je Z, het einde van het alfabet, hebt bereikt.</p>
+  </introduction>
+  <section xml:id="les-15c-s1">
+    <title>Voorbeeld</title>
+    <p>Stel dat we de geheime boodschap</p>
+    <p><c>JOIN ME AT EIGHT BY THE ZOO</c></p>
+    <p>willen coderen door middel van de verschuivingswaarde <em>S</em>=2. De encryptieregel zegt dat elke letter zal worden vervangen door degene die twee posities verder in het alfabet voor komt. Bijvoorbeeld, omdat het alfabet is ABCDEFGHI<alert>J</alert>K<alert>L</alert>..., zal de eerste letter <c>J</c> vervangen worden door de letter <c>L</c>. Verder zal de <c>O</c> vervangen worden door <c>Q</c>, de <c>I</c> door <c>K</c>, enz. Om de letter te coderen, dienen we terug te gaan naar het begin: na de Y komt de Z, dan de A, dus <c>Y</c>wordt vervangen door <c>A</c>. Evenzo wordt de <c>Z</c> vervangen door de <c>B</c>. De gecodeerde versie van onze geheime boodschap wordt aldus:</p>
+    <p><c>LQKP OG CV GKIJV DA VJG BQQ</c></p>
+    <p>Wanneer de een of andere spion deze boodschap ziet, zal hij niet onmiddellijk begrijpen waar het over gaat.</p>
+    <exercise label="oef-15c-encode">
+      <title>Spy Coder</title>
+      <statement>
+        <p>Wat is het resultaat van het versleutelen van <c> SPY CODER </c> met de verschuivingswaarde <em> S </em> = 5? (Gebruik hoofdletters.) Wanneer je wilt, kun je een programma schrijven in de  console  om dit uit rekenen. Het kan later van pas komen.</p>
+        <p>Jouw antwoord: <fillin mode="string" answer="XUD HTIJW" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <strcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct!</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+  </section>
+  <section xml:id="les-15c-s2">
+    <title>Coderen</title>
+    <p>Wanneer je vrienden de boodschap hebben gekregen en zij het geheime verschuivingsgetal <em>S</em> kennen, is het voor hen gemakkelijk om de boodschap te ontcijferen: elke letter moet worden vervangen door degene die <em>S</em> plaatsen <em>eerder</em> in het alfabet voor komt. Bijvoorbeeld, wanneer <c>L</c> moet worden gedecodeerd, ga je twee stappen terug in het alfanet en je vindt <c>J</c>, waarvan ze dan weten dat dat de eerste letter is van de geheime boodschap. Opnieuw moeten ze het alfabet zien als een cirkel, waarbij de <c>Z</c> voor de <c>A</c> komt.</p>
+    <exercise label="oef-15c-decode">
+      <title>Spy Decoder</title>
+      <statement>
+        <p>Wanneer de gecodeerde boodschap <c>HUD</c> is, en de verschuivingswaarde <em>S</em>=6, wat is dan de origineel boodschap? (Gebruik hoofdletters.)</p>
+        <p>Jouw antwoord: <fillin mode="string" answer="BOX" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <strcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct!</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+  </section>
+  <section xml:id="les-15c-s3">
+    <title>Voor de Bad Guys werken</title>
+    <p>Je bent ingehuurd door een spion om te helpen bij het ontcijferen van een gecodeerde boodschap waarbij een verschuivingswaarde is gebruikt. Jammer genoeg weet de spion de waarde van <em>S</em> niet. Je gaat statistisch onderzoek gebruiken om een programma te schrijven dat een goede kans geeft de juiste waarde van <em>S</em> op te sporen.</p>
+    <p>Bij onze methode maken we gebruik van <alert>letter frequentie analyse</alert>. In het Engels komen sommige letters (zoals de E) vaak voor en sommige heel weinig (zoals de J). Hier volgt een frequentietabel, gebaseerd op het tellen van letters in een grote hoeveelheid tekst.</p>
+    <tabular>
+      <row header="yes">
+        <cell>A</cell>
+        <cell>B</cell>
+        <cell>C</cell>
+        <cell>D</cell>
+        <cell>E</cell>
+        <cell>F</cell>
+        <cell>G</cell>
+        <cell>H</cell>
+        <cell>I</cell>
+      </row>
+      <row>
+        <cell>.0817</cell>
+        <cell>.0149</cell>
+        <cell>.0278</cell>
+        <cell>.0425</cell>
+        <cell>.1270</cell>
+        <cell>.0223</cell>
+        <cell>.0202</cell>
+        <cell>.0609</cell>
+        <cell>.0697</cell>
+      </row>
+      <row header="yes">
+        <cell>J</cell>
+        <cell>K</cell>
+        <cell>L</cell>
+        <cell>M</cell>
+        <cell>N</cell>
+        <cell>O</cell>
+        <cell>P</cell>
+        <cell>Q</cell>
+        <cell>R</cell>
+      </row>
+      <row>
+        <cell>.0015</cell>
+        <cell>.0077</cell>
+        <cell>.0402</cell>
+        <cell>.0241</cell>
+        <cell>.0675</cell>
+        <cell>.0751</cell>
+        <cell>.0193</cell>
+        <cell>.0009</cell>
+        <cell>.0599</cell>
+      </row>
+      <row header="yes">
+        <cell>S</cell>
+        <cell>T</cell>
+        <cell>U</cell>
+        <cell>V</cell>
+        <cell>W</cell>
+        <cell>X</cell>
+        <cell>Y</cell>
+        <cell>Z</cell>
+        <cell/>
+      </row>
+      <row>
+        <cell>.0633</cell>
+        <cell>.0906</cell>
+        <cell>.0276</cell>
+        <cell>.0098</cell>
+        <cell>.0236</cell>
+        <cell>.0015</cell>
+        <cell>.0197</cell>
+        <cell>.0007</cell>
+        <cell/>
+      </row>
+    </tabular>
+    <p>Zo is, bijvoorbeeld, de frequentie van L .0402=4.02%, en dat betekent dat in een doorsnee engelse tekst 4.02% van de letters L zijn.</p>
+    <p>Noem de <alert>juist-waarde</alert> van een letter de waarde ervan in de tabel hierboven. Definieer dan in onze statistische methode de <alert>juist-waarde</alert> van een zin als de som van de juist-waarde van elk van de letters. Zo is bijvoorbeeld de juist-waarde van de string <c>GOOD</c></p>
+    <p>juist-waarde("<c>GOOD</c>") = .0202 + .0751 + .0751 + .0425 = .2129</p>
+    <p>Nu is het idee van frequentie analyse dat strings met een hogere juist-waarde waarschijnlijker een engelse tekst weergeven. Wanneer bijvoorbeeld, de spion de gecodeerde boodschap "<c>JRRG</c>" ziet, dan is het zowel mogelijk dat de originele tekst "<c>GOOD</c>" is met verschuivingswaarde <em>S</em>=3, als "<c>IQQF</c>" met <em>S</em>=1. Maar de juist-waarde van "<c>IQQF</c>" is</p>
+    <p>juist-waarde("<c>IQQF</c>") = .0697 + .0009 + .0009 + .0223 = .0938</p>
+    <p>en omdat .0938 &lt; .2129, dient je programma de conclusie te trekken dat het meer waarschijnlijk is dat <c>GOOD</c> de juiste boodschap is dan <c>IQQF</c>.</p>
+    <assemblage>
+      <p>Strings meten met behulp van zijn <em>juist-waarde</em> is niet perfect. Stel dat de geheime boodschap <c>JAZZ</c> was en de geheime verschuivingswaarde <em>S</em>=10, zodat de gecodeerde tekst <c>TKJJ</c> was. Wanneer je <c>TKJJ</c> in je programma invoert dan zal ook <em>S</em>=10 aan bod komen, met <c>JAZZ</c> als een mogelijkheid met juist-zijn van .0846, maar de beste is <em>S</em>=5, waarbij hoort <c>OFEE</c> met een juist-zijn van .3514 als de beste gok voor de geheime boodschap. Je programma geeft dus het niet engelse woord <c>OFEE</c>. (Frequentie analyse van dit type werkt beter naarmate de geheime boodschap langer is.)</p>
+    </assemblage>
+    <exercise label="oef-15c-autodecrypt">
+      <title>Auto-Decryption</title>
+      <statement>
+        <p>Schrijf een programma met de volgende specificaties. Eerst moet het één regel tekst, de gecodeerde boodschap, invoeren. Deze bestaat uit hoofdletters en spaties. Je programma moet proberen de boodschap te decoderen door alle mogelijke 26 waarden van de verschuiving <em>S</em> toe te passen. Uit deze 26 mogelijkheden moet je degene printen met de hoogste juist-waarde.</p>
+        <p>Om het je gemakkelijker te maken zullen we de variabele <c>letterGoodness</c> voor je definieren. Het is een lijst van lengte 26 met daarin de waarden van de frequentietabel hierboven,</p>
+        <pre>
+letterGoodness = [.0817,.0149,.0278,.0425,.1270,.0223,.0202,...
+</pre>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-15c-autodecrypt-code">
+        <preamble visible="no">
+letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]
+</preamble>
+        <code>
+print(letterGoodness) #testing... it's predefined
+</code>
+        <tests>
+# Verborgen tests voor 15c.autodecrypt (gegenereerd door tools/harnas.py)
+_OPLOSSING = "def verschuif(letter, S):\n    if letter == ' ':\n        return letter\n    return chr((ord(letter) - ord('A') + S) % 26 + ord('A'))\n\ntekst = input()\nbeste = ''\nbesteWaarde = -1\nfor S in range(0, 26):\n    kandidaat = ''\n    waarde = 0\n    for letter in tekst:\n        nieuw = verschuif(letter, S)\n        kandidaat = kandidaat + nieuw\n        if nieuw != ' ':\n            waarde = waarde + letterGoodness[ord(nieuw) - ord('A')]\n    if waarde &gt; besteWaarde:\n        beste = kandidaat\n        besteWaarde = waarde\nprint(beste)"
+_GEVALLEN = [{'invoer': ['LQKP OG CV GKIJV DA VJG BQQ'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}, {'invoer': ['JRRG'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}, {'invoer': ['TKJJ'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}, {'invoer': ['HUD'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}, {'invoer': ['QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}, {'invoer': ['ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM'], 'voorcode': 'letterGoodness = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, .0015, .0077, .0402, .0241, .0675, .0751, .0193, .0009, .0599, .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007]'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Bedenk zelf hoe je het probleem in subtasks kunt splitsen. Zo zal bijvoooreeld één subtask een functie zijn die een letter verschuift over een gegeven waarde. Schrijf een kort programma die deze eerste subtask realiseert, en test het om te kijken of het werkt — wacht niet tot ht eind om het gehele programmma te testen, grotere programma's zijn een stuk moeilijker te debuggen. Het gebruik van de console kan behulpzaam zijn. En ook om Python thuis te gebruiken.</p>
+      </hint>
+    </exercise>
+  </section>
+</chapter>

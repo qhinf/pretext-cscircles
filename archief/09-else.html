@@ -1,0 +1,821 @@
+<!DOCTYPE html> 
+<!--[if IE 6]>
+<html id="ie6" lang="nl-NL">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="nl-NL">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="nl-NL">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="nl-NL">
+<!--<![endif]-->
+<head> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>09: Else, And, Or, Not | Computer Science Circles</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/pybox2011childTheme/style.css" />
+<!--[if lt IE 9]>
+<script src="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cscircles.cemc.uwaterloo.ca\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='dashicons-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/dashicons.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-jquery-ui-dialog-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/jquery-ui-dialog.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='admin-bar-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/admin-bar.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code>code{font-family:Menlo,Consolas,monaco,monospace;color:#1e1e1e;padding:.8em 1em;border:1px solid #ddd;border-radius:4px}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-group:where(.has-background){padding:1.25em 2.375em}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto;opacity:.4}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue: #1982d1;--wp--preset--color--dark-gray: #373737;--wp--preset--color--medium-gray: #666;--wp--preset--color--light-gray: #e2e2e2;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.6' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyeleven-block-style-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-content/themes/twentyeleven/blocks.css?ver=20190102' type='text/css' media='all' />
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://cscircles.cemc.uwaterloo.ca/wp-json/" /><link rel="alternate" type="application/json" href="https://cscircles.cemc.uwaterloo.ca/wp-json/wp/v2/pages/6159" /><meta name="generator" content="WordPress 5.9.3" />
+<link rel="canonical" href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not-nl/" />
+<link rel='shortlink' href='https://cscircles.cemc.uwaterloo.ca/?p=6159' />
+<link rel="alternate" type="application/json+oembed" href="https://cscircles.cemc.uwaterloo.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcscircles.cemc.uwaterloo.ca%2F9-else-and-or-not-nl%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://cscircles.cemc.uwaterloo.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcscircles.cemc.uwaterloo.ca%2F9-else-and-or-not-nl%2F&#038;format=xml" />
+<script type='text/javascript'>
+var translationArray = {"Click to try again.":"Klik om het nog eens te proberen.","Could not grade program because communication to the server was not possible. Ajax information: ":"Je programma kon niet beoordeeld worden omdat communicatie met de server niet mogelijk was. Ajax-informatie: ","Displaying {from} to {to} of {total} items":"In beeld: {from} tot en met {to} van {total} items","Enter input":"Tik invoer in","Enter test input":"Voer testinvoer in","Enter test statements":"Voer testopdrachten in ","Error: could not connect to database.":"Fout: kan geen verbinding maken met de database.","Go back to grading":"Ga terug naar nakijkprogramma","Hide history":"Geschiedenis verbergen","Hide input box":"Verberg het invoer-veld","History":"Geschiedenis","Incorrect, try again.":"Niet correct, probeer het nog een keer.","Marking all messages from this student about this problem as answered.":"Alle berichten van deze student over dit probleem worden gemarkeerd als beantwoord.","More actions...":"Meer acties...","Page":"Pagina","Please enter a non-empty message.":"Tik een bericht in.","Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page).":"Selecteer een geldige ontvanger voor het bericht. Als een leerkracht of vriend je bijstaat, selecteer hen dan als goeroe op je Profielpagina, die je vindt via het gebruikersmenu in de rechterbovenhoek van elke pagina.","Rich editor":"Uitgebreide editor","Run program":"Uitvoeren","Run test":"Test uitvoeren","Running...":"Bezig met uitvoeren...","Simple editor":"Eenvoudige editor","The code box is empty. It should instead contain your best partial solution so far.":"De code-invoer is leeg. Deze zou je beste deeloplossing tot nu toe moeten bevatten.","The database connected but found no data.":"Verbonden met database maar geen data gevonden","Unable to process 'send message' request. You might have lost your internet connection.":"Het verzoek 'stuur bericht' kan niet uitgevoerd worden. Wellicht is de internetverbinding verbroken.","Warning: unable to talk to server. Could not set 'completed' status for this problem.":"Let op: niet in staat om met de server te communiceren. De opgave kan nu niet op 'afgehandeld' gezet worden.","You have completed this problem at least once.":"Je hebt deze opgave tenminste \u00e9\u00e9n keer afgerond.","Your message was sent.":"Je bericht is verzonden","end of main program":"einde van het hoofdprogramma","out of":"van","start of tests":"begin van het testen","timed out!":"duurde te lang!"};var SUBMITURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-submit-code.php';
+var SETCOMPLETEDURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-notify-complete.php';
+var CONSOLEURL = 'https://cscircles.cemc.uwaterloo.ca/console-nl/';
+var FILESURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/';
+var HISTORYURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/db-problem-history.php';
+var VISUALIZEURL = 'https://cscircles.cemc.uwaterloo.ca/visualize/';
+var MESSAGEURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-send-message.php';
+var MAILURL = 'https://cscircles.cemc.uwaterloo.ca/mail-nl/';
+var DEFAULTTIMEOUTMS = '6000';
+var PB_LANG4 = 'nl_NL';
+</script>
+<link type="text/css" rel="stylesheet" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/pybox.css?24" />
+<script type="text/javascript" src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/pybox.js?49"></script>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/codemirror-specific.css'>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/codemirror-extras.css'>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/textmate.css'>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/lib/codemirror.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/mode/python/python.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/addon/display/autorefresh.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/flexigrid/js/flexigrid.js'></script>
+<link type="text/css" rel="stylesheet" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/flexigrid/css/flexigrid.css" />
+<link rel="shortcut icon" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/favicon.ico"/><style type="text/css">
+/* <![CDATA[ */
+img.latex { vertical-align: middle; border: none; }
+/* ]]> */
+</style>
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not/" hreflang="en" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-fr/" hreflang="fr" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-de/" hreflang="de" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-lt/" hreflang="lt" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-tr-else-and-or-not/" hreflang="tr" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not-nl/" hreflang="nl" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/zh-9/" hreflang="zh" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/9-pl/" hreflang="pl" />
+<style type="text/css" media="print">#wpadminbar { display:none; }</style>
+					<style type="text/css" id="c4wp-checkout-css">
+					.woocommerce-checkout .c4wp_captcha_field {
+						margin-bottom: 10px;
+						margin-top: 15px;
+						position: relative;
+						display: inline-block;
+					}
+				</style>
+								<style type="text/css" id="c4wp-v3-lp-form-css">
+					.login #login, .login #lostpasswordform {
+						min-width: 350px !important;
+					}
+					.wpforms-field-c4wp iframe {
+						width: 100% !important;
+					}
+				</style>
+							<style type="text/css" id="c4wp-v3-lp-form-css">
+				.login #login, .login #lostpasswordform {
+					min-width: 350px !important;
+				}
+				.wpforms-field-c4wp iframe {
+					width: 100% !important;
+				}
+			</style>
+			</head>
+
+<body class="page-template-default page page-id-6159 admin-bar no-customize-support wp-embed-responsive singular one-column content">
+<div id="page" class="hfeed">
+	  <div id="bumper"><span>[Python eBook]</span></div>
+
+	<div style="width: 100%; background: black;  height:40px;">
+  <a href="http://www.uwaterloo.ca"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/wordmark-uw.gif" style="margin: 0px;"/></a>
+<a href="http://cemc.uwaterloo.ca"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/wordmark-cemc.png" style="margin: 0px; position: absolute; right: 0px;"></a>
+	  </div>
+<!--<div style='background-color: yellow'><center><b>This site was recently migrated. Email any questions to <tt><a href="mailto:daveagp@gmail.com">daveagp@gmail.com</a></tt>.</b></center></div>-->
+<header id="branding" role="banner">
+<div class="toppictureholder"><a href="https://cscircles.cemc.uwaterloo.ca/ack/"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/pybox2011childTheme/images/header.jpg" width="1000" height="150" /></a>
+</div>
+
+							  			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Hoofdmenu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content" title="Spring naar de primaire inhoud">Spring naar de primaire inhoud</a></div>
+				<div class="skip-link"><a class="assistive-text" href="#secondary" title="Spring naar de secundaire inhoud">Spring naar de secundaire inhoud</a></div>
+								<div class="menu-dutch-menu-container"><ul id="menu-dutch-menu" class="menu"><li id="menu-item-8369" class="menu-item-for-my-progress menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8369"><a href="https://cscircles.cemc.uwaterloo.ca/my-progress-nl/">Mijn voortgang</a>
+<ul class="sub-menu">
+	<li id="menu-item-8368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8368"><a href="https://cscircles.cemc.uwaterloo.ca/mail-nl/">Mail</a></li>
+</ul>
+</li>
+<li id="menu-item-8367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8367"><a href="https://cscircles.cemc.uwaterloo.ca/using-this-website-nl/">Deze website</a></li>
+<li id="menu-item-8364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8364"><a href="https://cscircles.cemc.uwaterloo.ca/console-nl/">Console</a></li>
+<li id="menu-item-8372" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8372"><a href="http://cscircles.cemc.uwaterloo.ca/visualize">Visualiseren</a></li>
+<li id="menu-item-8370" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8370"><a href="https://cscircles.cemc.uwaterloo.ca/run-at-home-nl/">Python thuis</a></li>
+<li id="menu-item-8363" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8363"><a href="https://cscircles.cemc.uwaterloo.ca/resources-nl/">Bronnen</a></li>
+<li id="menu-item-8371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8371"><a href="https://cscircles.cemc.uwaterloo.ca/cheatsheet-nl/">Spiekbriefje</a></li>
+<li id="menu-item-8365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8365"><a href="https://cscircles.cemc.uwaterloo.ca/contact-nl/">Contact-nl</a></li>
+<li id="menu-item-8366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8366"><a href="https://cscircles.cemc.uwaterloo.ca/thanks-nl/">Dank</a></li>
+<li id="menu-item-8475" class="menu-item-for-lesson-zero menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-8475"><a href="https://cscircles.cemc.uwaterloo.ca/nl/">0: Hallo!</a></li>
+<li id="menu-item-8335" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8335"><a href="https://cscircles.cemc.uwaterloo.ca/1-variables-nl/">01: Variabelen</a>
+<ul class="sub-menu">
+	<li id="menu-item-8336" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8336"><a href="https://cscircles.cemc.uwaterloo.ca/1e-errors-nl/">01E: Errors</a></li>
+</ul>
+</li>
+<li id="menu-item-8337" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8337"><a href="https://cscircles.cemc.uwaterloo.ca/2-functions-nl/">02: Functies</a>
+<ul class="sub-menu">
+	<li id="menu-item-8338" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8338"><a href="https://cscircles.cemc.uwaterloo.ca/2x-extra-practice-nl/">02X: Extra Oefening</a></li>
+</ul>
+</li>
+<li id="menu-item-8339" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8339"><a href="https://cscircles.cemc.uwaterloo.ca/3-comments-and-quotes-nl/">03: Commentaar en aanhalingstekens</a></li>
+<li id="menu-item-8340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8340"><a href="https://cscircles.cemc.uwaterloo.ca/4-types-nl/">04: Types</a></li>
+<li id="menu-item-8341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8341"><a href="https://cscircles.cemc.uwaterloo.ca/5-input-nl/">05: Invoer</a></li>
+<li id="menu-item-8342" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8342"><a href="https://cscircles.cemc.uwaterloo.ca/06-if/">06: If</a>
+<ul class="sub-menu">
+	<li id="menu-item-8343" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8343"><a href="https://cscircles.cemc.uwaterloo.ca/6d-nl/">06D: Design, Debugging en Donuts</a></li>
+</ul>
+</li>
+<li id="menu-item-8344" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8344"><a href="https://cscircles.cemc.uwaterloo.ca/7-rich-editor-nl/">07: Editor met veel extra's (rich editor)</a>
+<ul class="sub-menu">
+	<li id="menu-item-8345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8345"><a href="https://cscircles.cemc.uwaterloo.ca/7a-strings-nl/">07A: Strings</a></li>
+	<li id="menu-item-8346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8346"><a href="https://cscircles.cemc.uwaterloo.ca/7b-math-nl/">07B: Wiskunde</a></li>
+	<li id="menu-item-8347" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8347"><a href="https://cscircles.cemc.uwaterloo.ca/7c-loops-nl/">07C: Lussen</a></li>
+</ul>
+</li>
+<li id="menu-item-8348" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8348"><a href="https://cscircles.cemc.uwaterloo.ca/8-remix-nl/">08: Van alles wat</a></li>
+<li id="menu-item-8349" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-6159 current_page_item menu-item-8349"><a href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not-nl/" aria-current="page">09: Else, And, Or, Not</a></li>
+<li id="menu-item-8350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8350"><a href="https://cscircles.cemc.uwaterloo.ca/10-def-nl/">10: Functies</a></li>
+<li id="menu-item-8373" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8373"><a>11</a>
+<ul class="sub-menu">
+	<li id="menu-item-8351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8351"><a href="https://cscircles.cemc.uwaterloo.ca/11a-lower-case-nl/">11A: Kleine letters</a></li>
+	<li id="menu-item-8352" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8352"><a href="https://cscircles.cemc.uwaterloo.ca/11b-variable-scope-nl/">11B: De scope van een variabele</a></li>
+	<li id="menu-item-8353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8353"><a href="https://cscircles.cemc.uwaterloo.ca/11c-geometry-nl/">11C: Meetkunde</a></li>
+</ul>
+</li>
+<li id="menu-item-8354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8354"><a href="https://cscircles.cemc.uwaterloo.ca/12-tips-nl/">12: Tips</a></li>
+<li id="menu-item-8355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8355"><a href="https://cscircles.cemc.uwaterloo.ca/13-lists-arrays-nl/">13: Lijsten (Arrays)</a></li>
+<li id="menu-item-8356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8356"><a href="https://cscircles.cemc.uwaterloo.ca/14-methods-nl/">14: Methoden</a></li>
+<li id="menu-item-8374" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8374"><a>15</a>
+<ul class="sub-menu">
+	<li id="menu-item-8357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8357"><a href="https://cscircles.cemc.uwaterloo.ca/15a-termination-determination-nl/">15A: Komt er een einde aan?</a></li>
+	<li id="menu-item-8358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8358"><a href="https://cscircles.cemc.uwaterloo.ca/15b-python-pushups-nl/">15B: Python push ups</a></li>
+	<li id="menu-item-8359" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8359"><a href="https://cscircles.cemc.uwaterloo.ca/15c-nl/">15C: Caesar's JVTIVK JRCRU IVTZGV (NL)</a></li>
+</ul>
+</li>
+<li id="menu-item-8360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8360"><a href="https://cscircles.cemc.uwaterloo.ca/16-recursion-nl/">16: Recursie</a></li>
+<li id="menu-item-8361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8361"><a href="https://cscircles.cemc.uwaterloo.ca/17-is-nl/">17: Is</a></li>
+<li id="menu-item-8362" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8362"><a href="https://cscircles.cemc.uwaterloo.ca/18-efficiency-nl/">18: Efficiëntie</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					
+<article id="post-6159" class="post-6159 page type-page status-publish hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">09: Else, And, Or, Not</h1>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>In deze les leer je om complexe opgaven, waarin een voorwaarde getest wordt, elegant uit te voeren. Daarbij komen twee nieuwe aspecten van Python aan de orde.</p>
+<ul>
+<li>Bij een <code>if</code>-opdracht kan je optioneel een <code>else</code>-blok opgeven; dat wordt uitgevoerd als de voorwaarde van de <code>if</code>-opdracht onwaar is.</li>
+</ul>
+<ul>
+<li>Je kunt Booleaanse voorwaarden <code>A</code> en <code>B</code> combineren tot <code>A and B</code>, <code>A or B</code>, en <code>not A</code>.</li>
+</ul>
+<h1><code>else</code>-blokken</h1>
+<p>Het komt vrij vaak voor dat je bij het schrijven van een programma een voorwaarde wilt testen, en afhankelijk van of de voorwaarde waar of niet waar is de ene dan wel de andere actie wilt uitvoeren. We zagen daar eerder een <a href="/6-if/">voorbeeld</a> van, toen we wilden bepalen welke van de twee getallen <code>x</code> en <code>y</code> het grootst was, waarbij we twee <code>if</code>-opdrachten gebruikten. Laten we het programma herschrijven en een <code>if</code>-opdracht met een <code>else</code>-blok gebruiken:</p>
+<p><form class="pbform" action="#" id="pbform0" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox0'>
+<div class="heading"><span class="title">Voorbeeld</span></div>Berekening van het maximum en illustratie van <code><code>else</code></code><div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 266px;'><textarea wrap='off' name='usercode0' id='usercode0'  cols=10 rows=10 readonly='readonly'  style = 'height : 266px;'  class='pyboxCode RO'>
+x = int(input())
+y = int(input())
+print('In this test case x =', x, 'and y =', y)
+if x >= y:
+    print('(The maximum is x)')
+    theMax = x
+else:
+    print('(The maximum is y)')
+    theMax = y
+print('The maximum is', theMax)</textarea></div>
+<div id='pbhistory0' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput0">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit0' value=' '/></td>
+<td><input type='button' name='switch' id="switch0" value="Input Switch" onclick="pbInputSwitch(0,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(0)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(0,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse0" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="0"/>
+<input type="hidden" name="hash" value="30eaa9582858819f57224b6eba53054f"/>
+<div id='pbresults0' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>pbInputSwitch(0,"N");</script>
+</p>
+<p>Je gebruikt <code>else</code> als volgt:</p>
+<pre>if «voorwaarde»:
+   «waar-gedeelte»        # een inspringend blok
+else:
+   «onwaar-gedeelte»       # nog een inspringende blok</pre>Python evalueert de voorwaarde. Als ze waar is wordt het waar-gedeelte uitgevoerd, en als ze niet waar is wordt het onwaar-gedeelte uitgevoerd.</p>
+<h2>De filosofie van <code>else</code></h2>
+<p>Het is niet zo dat we iets extra's kunnen door het gebruik van <code>else</code>, maar het programma is wel gemakkelijker te lezen, fouten zijn makkelijker te vinden, en het programma is gemakkelijker te onderhouden. Hier volgen twee programmafragmenten die hetzelfde doen:</p>
+<table id="AB">
+<tbody>
+<tr>
+<td>
+<div>Versie A</div>
+<pre>if lengte &lt; 256:
+   print('Te klein voor deze rit')
+else:
+   print('Welkom aan boord!')</pre>
+</td>
+<td>
+<div>Versie B</div>
+<pre>if lengte &lt; 256:
+   print('Te klein voor deze rit')
+if lengte &gt;= 256:
+   print('Welkom aan boord!')</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Beide versies doen hetzelfde, en <strong>versie B</strong> gebruikt niet eens een <code>else</code>-blok. Maar de meeste programmeurs zijn het erover eens dat <strong>versie A</strong> beter is. Bijvoorbeeld: als bij <strong>versie B</strong> de voorwaarde veranderd moet worden (bijv., wanneer er met 200 in plaats van 256 vergeleken dient te worden) dan is er maar één verandering nodig bij de code van <strong>versie A</strong> in plaats van twee veranderingen bij de code van <strong>versie B</strong>. Ook kan <strong>versie A</strong> onmiddellijk begrepen worden, terwijl je in <strong>B</strong> dient te checken of misschien geen van beide voorwaarden waar zijn, of beide voorwaarden allebei waar zijn.</p>
+<p><form class="pbform" action="#" id="pbform1" method="POST">
+<div class='pybox modeNeutral ' id='pybox1'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Absolute waarde</span></div>De <em>absolute waarde</em> van een getal is als volgt gedefinieerd. Voor een getal <em>x</em> dat positief of 0 is, is de absolute waarde van <em>x</em> gelijk aan <em>x</em>. Wanneer <em>x</em> een negatief getal is, dan is de absolute waarde van <em>x</em> gelijk aan <em>-x</em>, of in andere woorden hetzelfde als <em>x</em> maar zonder het minteken. Zo is de absolute waarde van <code>5</code> gelijk aan <code>5</code>, en is de absolute waarde van <code>-10</code> gelijk aan <code>--10</code> oftewel <code>10</code>. Schrijf een programma dat een geheel getal als invoer inleest en dat de abolute waarde ervan afdrukt en gebruik daarbij <code>if</code> en <code>else</code>.<div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode1' id='usercode1'  cols=10 rows=20   class='pyboxCode RW'>
+x=int(input())
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory1' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput1">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<input type='hidden' id='defaultCode1' value='x=int(input())\n'></input>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit1' value=' '/></td>
+<td><input type='button' name='switch' id="switch1" value="Input Switch" onclick="pbInputSwitch(1,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(1)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(1,'N')" ></td>
+</tr></table><select id='pbSelect1' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(1,'9.abs')" >Geschiedenis</option>
+<option name='default' data-pbonclick="pbSetText(1,descape($('#defaultCode1').val()))" >Reset code to default</option>
+<option name='help' data-pbonclick="helpClick(1);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse1" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="1"/>
+<input type="hidden" name="hash" value="150f9ed1e20dbfba58a51ab1ca1379b8"/>
+<div id='pbresults1' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(1);});pbInputSwitch(1,"N");</script>
+</p>
+<p><table class='pywarn'><tr><td class='pywarnleft'><img src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/warning.png'/></td><td class='pywarnright'><span> Python heeft een ingebouwde functie <code>abs(x)</code> die de absolute waarde van <code>x</code> levert. De grader hierboven verhindert het gebruik ervan hier, maar elders kun je <code>abs(x)</code> gewoon gebruiken. </span></td></table></p>
+<h2><code>elif</code>-blokken</h2>
+<p>In Python bestaat ook <code>elif</code>, waarmee het gemakkelijker gemaakt wordt om meerdere voorwaarden na elkaar te checken. Het normale gebruik van <code>elif</code> is het volgende:</p>
+<pre>if «voorwaarde1»:
+   «gedeelte1»        # wordt uitgevoerd wanneer voorwaarde1 waar is
+elif «voorwaarde2»:
+   «gedeelte2»        # wordt uitgevoerd wanneer voorwaarde1 niet waar is, en voorwaarde2 waar is</pre>Zoals je wel begrepen zult hebben is <code>elif</code> de afkorting van <em>else if</em>, omdat het hetzelfde is als het opnemen van een <code>if</code>-opdracht binnen een <code>else</code>-blok. <code>elif</code> leidt echter tot kortere code en minder inspringing. En dat maakt dat je programma makkelijker te lezen is, en dat je er makkelijker fouten uit kunt halen en ook dat het makkelijker te schrijven is. Sterker nog: je kunt een <em>willekeurig aantal</em> <code>elif</code>-blokken na elkaar in de <code>if</code>-opdracht opnemen en al of niet een <code>else</code>-blok op het eind toevoegen:</p>
+<pre>if «voorwaarde1»:
+   «gedeelte1»      # wordt uitgevoerd wanneer voorwaarde1 waar is 
+elif «voorwaarde2»:
+   «gedeelte2»      # wordt uitgevoerd wanneer voorwaarde1 niet waar is en voorwaarde2 waar is
+elif «voorwaarde3»:
+   «gedeelte3»      # wordt uitgevoerd wanneer voorwaarde1 en voorwaarde 2 beiden niet waar zijn en voorwaarde3 waar is
+else:               # de laatste twee regels kunnen voorkomen maar dat hoeft niet
+   «else-gedeelte»  # wordt uitgevoerd wanneer ALLE voorwaarden onwaar zijn</pre><form class="pbform" action="#" id="pbform2" method="POST">
+<div class='pybox modeNeutral ' id='pybox2'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>First, Second, Third</span></div>De Engelstalige woorden 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th worden <em>rangtelwoorden</em> genoemd. Schrijf een programma dat een geheel getal <em>x</em> tussen 1 en 9 als invoer inleest. Het programma dient het bij <em>x</em> behorende (Engelse) rangtelwoord af te drukken. <br/> <strong>Hint</strong>: je hoeft geen 9 aparte gevallen te onderscheiden; 4 is genoeg.<div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode2' id='usercode2'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory2' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput2">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit2' value=' '/></td>
+<td><input type='button' name='switch' id="switch2" value="Input Switch" onclick="pbInputSwitch(2,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(2)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(2,'N')" ></td>
+</tr></table><select id='pbSelect2' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(2,'9.ordinal')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(2);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse2" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="2"/>
+<input type="hidden" name="hash" value="c4b3f10cc0deac89d5354ed7137f3680"/>
+<div id='pbresults2' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(2);});pbInputSwitch(2,"N");</script>
+</p>
+<h2>Booleaanse operatoren: <code>and</code>, <code>or</code>, <code>not</code></h2>
+<p>Je kunt "<code>and</code>", "<code>or</code>", en "<code>not</code>" combineren.</p>
+<ul>
+<li>De expressie <code>A and B</code> is waar indien zowel <code>A</code> als <code>B</code> waar zijn, en is niet waar wanneer één van beiden niet waar is. (Bijvoorbeeld, je wordt nat wanneer het regent <code>and</code> je hebt je paraplu vergeten.)</li>
+<li>De expressie <code>A or B</code> is waar wanneer ofwel <code>A</code> waar is of <code>B</code> waar is, en is niet waar wanneer beiden niet waar zijn. (Bijvoorbeeld, de school is dicht wanneer het vakantie is <code>or</code> wanneer het weekend is.)</li>
+<li>De expressie <code>not A</code> is waar wanneer <code>A</code> niet waar is, en is niet waar wanneer <code>A</code> waar is. (Bijvoorbeeld, je hebt trek wanneer je <code>not</code> een lunch hebt gehad.)</li>
+</ul>
+<p>Hier volgt een programma dat alle mogelijkheden laat zien. Precies zoals de 'tafels van vermenigvuldiging' die je je herinnert van de basisschool. Dit wordt een <em>waarheidstabel</em> genoemd.</p>
+<p><form class="pbform" action="#" id="pbform3" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox3'>
+<div class="heading"><span class="title">Voorbeeld</span></div>Waarheidstabel<div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 136px;'><textarea wrap='off' name='usercode3' id='usercode3'  cols=10 rows=5 readonly='readonly'  style = 'height : 136px;'  class='pyboxCode RO'>
+print("  A      B       not A  not B  A and B  A or B")
+print("----------------------------------------------")
+for A in [False, True]:               # "for" loop with list	
+    for B in [False, True]:           # will be taught in lesson 13
+        print(A, " ", B, "   ", not A, " ", not B, " ", A and B, " ", A or B)</textarea></div>
+<div id='pbhistory3' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit3' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(3)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(3,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse3" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="3"/>
+<input type="hidden" name="hash" value="23fac91eb493ba893eb781d9128bd39c"/>
+<div id='pbresults3' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit3").value = "Uitvoeren";document.getElementById("inputInUse3").value = "N";</script>
+</p>
+<p>Een voorbeeld waarbij <code>and</code> wordt gebruikt. Hier is een programma dat getallen in letters vertaalt, waarbij gelet wordt op niet-correcte invoer.<br />
+<form class="pbform" action="#" id="pbform4" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox4'>
+<div class="heading"><span class="title">Voorbeeld</span></div>Een voorbeeld met <code>and</code>: Vertalen van getallen in letters, met 1=A, 2=B, etc.<div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 136px;'><textarea wrap='off' name='usercode4' id='usercode4'  cols=10 rows=5 readonly='readonly'  style = 'height : 136px;'  class='pyboxCode RO'>
+x = int(input())
+if x>=1 and x<=26:
+    print('letter', x, 'in the alphabet:', chr(ord('A')+(x-1)))
+else:
+    print('invalid input:', x)</textarea></div>
+<div id='pbhistory4' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput4">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit4' value=' '/></td>
+<td><input type='button' name='switch' id="switch4" value="Input Switch" onclick="pbInputSwitch(4,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(4)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(4,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse4" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="4"/>
+<input type="hidden" name="hash" value="4b610da4b77d47e08a914c94baf24596"/>
+<div id='pbresults4' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>pbInputSwitch(4,"N");</script>
+</p>
+<p><form class="pbform" action="#" id="pbform5" method="POST">
+<div class='pybox modeNeutral ' id='pybox5'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>26 Letters</span></div>Schrijf een programma dat het tegenovergestelde doet van het voorbeeld hierboven: het krijgt als invoer een letter en geeft als uitvoer het corresponderende getal (tussen 1 en 26). Je programma mag alleen maar <em>hoofdletters</em> accepteren. Als foutmelding moet je programma <code>niet toegestaan</code> afdrukken wanneer de invoer geen hoofdletter is. <a class="hintlink"  id="hintlink6">Hint</a><a class="hintlink"  id="hintlink7">Alternatieve stringvergelijkingsmethode</a><div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode5' id='usercode5'  cols=10 rows=20   class='pyboxCode RW'>
+letter = input()
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory5' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput5">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<input type='hidden' id='defaultCode5' value='letter = input()\n'></input>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit5' value=' '/></td>
+<td><input type='button' name='switch' id="switch5" value="Input Switch" onclick="pbInputSwitch(5,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(5)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(5,'N')" ></td>
+</tr></table><select id='pbSelect5' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(5,'9.numberify')" >Geschiedenis</option>
+<option name='default' data-pbonclick="pbSetText(5,descape($('#defaultCode5').val()))" >Reset code to default</option>
+<option name='help' data-pbonclick="helpClick(5);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse5" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="5"/>
+<input type="hidden" name="hash" value="0ba7383036f48526151d2640bdf040b2"/>
+<div id='pbresults5' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(5);});pbInputSwitch(5,"N");</script>
+</p>
+<div class='pybox modeNeutral' id='pybox8'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Meerkeuze-opgave: </span><span class='title'>De wet van De Morgan</span></div><div>Welke van de volgende expressies is equivalent aan <code>A or B</code>?</div><label>Jouw keuze </label><select id="pyselect8"><option value="d" selected>Selecteer iets</option><option value="r">not ((not A) and (not B))</option><option value="w">not (A and B)</option><option value="w">(not A) and (not B)</option></select><div class='pyboxbuttons'><input type="hidden" name="lang" value="nl_NL"/><input type="hidden" name="slug" value="9.demorgan"/><input type='submit' style='margin:5px;' value='Controleer het antwoord' onClick='pbMultiCheck(8)'/></div><div class="pbresults" id="pyMultiResults8"></div><div class="epilogue">Correct! Here is one way to arrive at this answer. First, <code>not (A or B)</code> is only true when both <code>A</code> and <code>B</code> are false. Also, note that <code>(not A) and (not B)</code> is only true if both <code>not A</code> and <code>not B</code> are true, i.e. if both <code>A</code> and <code>B</code> are false. So we have the following equality:<pre>(not A) and (not B) = not (A or B)</pre>Put a <code>not</code> around both sides, so we deduce<pre>not ((not A) and (not B)) = not (not (A or B))</pre>and observe that <code>not(not X))</code> always equals <code>X</code>, so<pre>not ((not A) and (not B)) = not (not (A or B)) = A or B</pre>This way of rewriting a boolean expression is one of <a href='http://en.wikipedia.org/wiki/De_Morgan%27s_laws'>De Morgan&#39;s laws</a>.</div></div>
+<h3>Volgorde van de operaties</h3>
+<p>Booleaanse operatoren hebben een "volgorde" net zoals rekenkundige operatoren. De volgorde is</p>
+<p><strong>NAO</strong>: not (hoogste voorkeur), and, or (laagste voorkeur)</p>
+<p>zo geldt,</p>
+<p><code>not x or y and z</code> betekent <code>(not x) or (y and z)</code></p>
+<p>We sluiten deze les af met een korte vraag over deze feiten.<br />
+<div class='pybox modeNeutral' id='pybox9'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Meerkeuze-opgave: </span><span class='title'>Volgorde van de operaties</span></div><div>Wat is de waarde van </p>
+<pre>A or not B and C</pre> wanneer (A, B, C) = (False, True, True)? <a class="hintlink"  id="hintlink10">Hint</a></div><label>Jouw keuze </label><select id="pyselect9"><option value="d" selected>Selecteer iets</option><option value="r">False</option><option value="w">True</option></select><div class='pyboxbuttons'><input type="hidden" name="lang" value="nl_NL"/><input type="hidden" name="slug" value="9.multi"/><input type='submit' style='margin:5px;' value='Controleer het antwoord' onClick='pbMultiCheck(9)'/></div><div class="pbresults" id="pyMultiResults9"></div><div class="epilogue">Correct! The order of operations makes this equivalent to<pre>A or ((not B) and C)</pre>substituting the values, we have<pre>False or ((not True) and True)</pre>and now simplifying one step at a time gives<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre></div></div>Wanneer je dit hebt doorgewerkt, ben je klaar voor de volgende les.</p>
+			</div><!-- .entry-content -->
+	<footer class="entry-meta">
+			</footer><!-- .entry-meta -->
+</article><!-- #post-6159 -->
+
+					
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+   
+</div><!-- #main -->
+<footer id="colophon" role="contentinfo">
+
+    
+<div class="locator"><table class="locator"><tr><td class="locator"><a style="font-size:90%" class="open-same-window locator locator-l"  title="08: Van alles wat" href="https://cscircles.cemc.uwaterloo.ca/8-remix-nl/"><span class='buttn'>08: Van alles wat</span></a><a style="font-size:100%" class="open-same-window locator locator-c"  title="09: Else, And, Or, Not (ga naar de top van de huidge pagina)" onclick="scrollToTop()"><span class='buttn'>09: Else, And, Or, Not</span></a><a style="font-size:100%" class="open-same-window locator locator-r"  title="10: Functies" href="https://cscircles.cemc.uwaterloo.ca/10-def-nl/"><span class='buttn'><span class='nextlesson'>Volgende</span> 10: Functies</span></a><a style="font-size:90%" class="open-same-window locator locator-r"  title="11A: Kleine letters" href="https://cscircles.cemc.uwaterloo.ca/11a-lower-case-nl/"><span class='buttn'>11A: Kleine letters</span></a></td></tr></table></div>
+  <div id="site-generator">
+  <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
+  <a href='http://cemc.uwaterloo.ca/copyright.html'>
+<img src='/wp-content/plugins/pybox/files/cc.png' style='height:0.8em; vertical-align: baseline; top: 0px' />
+  2010&ndash;2026.</a> Computer Science Circles is a free service of the <a href="http://www.cemc.uwaterloo.ca/">Centre for Education in Mathematics and Computing</a> at the <a href="http://www.uwaterloo.ca">University of Waterloo</a>. <br> Total number of exercises completed by all users: <b>3869750</b>
+   <div id="departmentaddress">
+  CEMC |
+  Nederlandse Informatica Olympiade |
+  Winthontlaan 200 |
+  3526 KV  UTRECHT |
+  E-mail: <a href="mailto:info@informaticaolympiade.nl">info@informaticaolympiade.nl</a> |
+  <a href="https://cscircles.cemc.uwaterloo.ca/contact-nl/">contact</a>
+   </div>
+
+  </div> 
+
+ </footer><!-- #colophon -->
+</div><!-- #page -->
+
+
+<div id="hintbox6" class="hintbox "><div id="hintboxlink6" class="hintboxlink"></div>Om na te gaan of <code>L</code> een hoofdletter is, mak je gebruik van <code>ord(letter)&gt;=ord('A')</code> en daarna nog een test met Z.</div><div id="hintbox7" class="hintbox "><div id="hintboxlink7" class="hintboxlink"></div>Je kunt <code>letter &gt;= 'A'</code> schrijven in plaats van <code>ord(letter)&gt;=ord('A')</code> omdat Python <a href="https://cscircles.cemc.uwaterloo.ca/console-nl/?consolecode=%23%20if%20first%20letter%20is%20different%2C%20string%20starting%20closer%20to%20A%20is%20smaller%0Aprint%28%27apple%27%20%3C%20%27banana%27%29%20%23%23%20gives%20True%0A%23%20but%20capital%20letters%20are%20smaller%20than%20non-capital%20ones.%20%28because%20of%20ord%28%29%29%0Aprint%28%27Zebra%27%20%3C%20%27abacus%27%29%20%23%23%20gives%20True%0A%23%20if%20first%20letters%20are%20identical%2C%20we%20compare%20the%20second%20letters%2C%20etc%0Aprint%28%27apple%27%20%3C%20%27aquarium%27%29%20%23%23%20gives%20True%0Aprint%28%27aquarium%27%20%3C%20%27aquarius%27%29%20%23%23%20gives%20True%0A%23%20if%20all%20letters%20are%20the%20same%20but%20one%20string%20is%20shorter%2C%20shorter%20is%20smaller%0Aprint%28%27aqua%27%20%3C%20%27aquarium%27%29%20%23%23%20gives%20True%0A" target="_blank">strings vergelijkt</a>.</div><div id="hintbox10" class="hintbox "><div id="hintboxlink10" class="hintboxlink"></div>Gebruik de volgorde waarin de operaties dienen te worden uitgevoerd, merk op dat dit hetzelfde is als <code>A or ((not B) and C)</code></div><span id="pylangswitcher"><li><a href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not/">en</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/9-fr/">fr</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/9-de/">de</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/9-lt/">lt</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/zh-9/">zh</a></li></span><script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/mouse.min.js?ver=1.13.1' id='jquery-ui-mouse-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/resizable.min.js?ver=1.13.1' id='jquery-ui-resizable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/draggable.min.js?ver=1.13.1' id='jquery-ui-draggable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/controlgroup.min.js?ver=1.13.1' id='jquery-ui-controlgroup-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/checkboxradio.min.js?ver=1.13.1' id='jquery-ui-checkboxradio-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/button.min.js?ver=1.13.1' id='jquery-ui-button-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/dialog.min.js?ver=1.13.1' id='jquery-ui-dialog-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/sortable.min.js?ver=1.13.1' id='jquery-ui-sortable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery.ui.touch-punch.js?ver=0.2.2' id='jquery-touch-punch-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/hoverintent-js.min.js?ver=2.2.1' id='hoverintent-js-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/admin-bar.min.js?ver=5.9.3' id='admin-bar-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.9' id='regenerator-runtime-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/cscircles.cemc.uwaterloo.ca\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.5.6' id='contact-form-7-js'></script>
+		<div id="wpadminbar" class="nojq nojs">
+							<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1">Spring naar toolbar</a>
+						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
+				<ul id='wp-admin-bar-root-default' class="ab-top-menu"><li id='wp-admin-bar-site-name'><a class='ab-item' href='https://cscircles.cemc.uwaterloo.ca/nl/'>Computer Science Circles</a></li></ul><ul id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li id='wp-admin-bar-new-or-login' class="new-or-login"><a class='ab-item' href='https://cscircles.cemc.uwaterloo.ca/wp-login.php?redirect_to=%2F9-else-and-or-not-nl%2F'><p>Account aanmaken / aanmelden</p><p>om je voortgang op te slaan</p></a></li><li id='wp-admin-bar-search' class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="https://cscircles.cemc.uwaterloo.ca/" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">Zoeken</label><input type="submit" class="adminbar-button" value="Zoeken" /></form></div></li><li id='wp-admin-bar-totop'><div class="ab-item ab-empty-item"><img onclick="scrollToTop()" title="scroll naar de top" class="icon" src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/up.png"/></div></li></ul>			</div>
+					</div>
+
+		<!-- CAPTCHA added with CAPTCHA 4WP plugin. More information: https://captcha4wp.com -->			<script  id="c4wp-recaptcha-js" src="https://www.google.com/recaptcha/api.js?render=6Ld_bFosAAAAAJQY8QukAse-PE9QTmg4XanWP2MU&#038;hl=en"></script>
+			<script id="c4wp-inline-js" type="text/javascript">
+				/* @v3-js:start */
+					let c4wp_onloadCallback = function() {
+						for ( var i = 0; i < document.forms.length; i++ ) {
+							let form 		   = document.forms[i];
+							let captcha_div    = form.querySelector( '.c4wp_captcha_field_div:not(.rendered)' );
+							let jetpack_sso    = form.querySelector( '#jetpack-sso-wrap' );
+							var wcblock_submit = form.querySelector( '.wc-block-components-checkout-place-order-button' );
+							var has_wc_submit  = null !== wcblock_submit;
+							
+							if ( null === captcha_div && ! has_wc_submit || form.id == 'create-group-form' ) {	
+								if ( ! form.parentElement.classList.contains( 'nf-form-layout' ) ) {
+									continue;
+								}
+							
+							}
+							if ( ! has_wc_submit ) {
+								if ( !( captcha_div.offsetWidth || captcha_div.offsetHeight || captcha_div.getClientRects().length ) ) {					    	
+									if ( jetpack_sso == null && ! form.classList.contains( 'woocommerce-form-login' ) ) {
+										continue;
+									}
+								}
+							}
+
+							let alreadyCloned = form.querySelector( '.c4wp-submit' );
+							if ( null != alreadyCloned ) {
+								continue;
+							}
+
+							let foundSubmitBtn = form.querySelector( '#signup-form [type=submit], [type=submit]:not(#group-creation-create):not([name="signup_submit"]):not([name="ac_form_submit"]):not(.verify-captcha)' );
+							let cloned = false;
+							let clone  = false;
+
+							// Submit button found, clone it.
+							if ( foundSubmitBtn ) {
+								clone = foundSubmitBtn.cloneNode(true);
+								clone.classList.add( 'c4wp-submit' );
+								clone.removeAttribute( 'onclick' );
+								clone.removeAttribute( 'onkeypress' );
+								if ( foundSubmitBtn.parentElement.form === null ) {
+									foundSubmitBtn.parentElement.prepend(clone);
+								} else {
+									foundSubmitBtn.parentElement.insertBefore( clone, foundSubmitBtn );
+								}
+								foundSubmitBtn.style.display = "none";
+								captcha_div                  = form.querySelector( '.c4wp_captcha_field_div' );
+								cloned = true;
+							}
+
+							// WC block checkout clone btn.
+							if ( has_wc_submit && ! form.classList.contains( 'c4wp-primed' ) ) {
+								clone = wcblock_submit.cloneNode(true);
+								clone.classList.add( 'c4wp-submit' );
+								clone.classList.add( 'c4wp-clone' );
+								clone.removeAttribute( 'onclick' );
+								clone.removeAttribute( 'onkeypress' );
+								if ( wcblock_submit.parentElement.form === null ) {
+									wcblock_submit.parentElement.prepend(clone);
+								} else {
+									wcblock_submit.parentElement.insertBefore( clone, wcblock_submit );
+								}
+								wcblock_submit.style.display = "none";
+
+								clone.addEventListener('click', function( e ){
+									if ( form.classList.contains( 'c4wp_v2_fallback_active' ) ) {
+										jQuery( form ).find( '.wc-block-components-checkout-place-order-button:not(.c4wp-submit)' ).click(); 
+										return true;
+									} else {
+										grecaptcha.execute( '6Ld_bFosAAAAAJQY8QukAse-PE9QTmg4XanWP2MU', ).then( function( data ) {
+											form.classList.add( 'c4wp-primed' );
+										});	
+									}
+
+								});
+								foundSubmitBtn = wcblock_submit;
+								cloned = true;
+							}
+							
+							// Clone created, listen to its click.
+							if ( cloned ) {
+								clone.addEventListener( 'click', function ( event ) {
+									logSubmit( event, 'cloned', form, foundSubmitBtn );
+								});
+							// No clone, execute and watch for form submission.
+							} else {
+								grecaptcha.execute(
+									'6Ld_bFosAAAAAJQY8QukAse-PE9QTmg4XanWP2MU',
+								).then( function( data ) {
+									var responseElem = form.querySelector( '.c4wp_response' );
+									if ( responseElem == null ) {
+										var responseElem = document.querySelector( '.c4wp_response' );
+									}
+									if ( responseElem != null ) {
+										responseElem.setAttribute( 'value', data );	
+									}									
+								});
+
+								// Anything else.
+								form.addEventListener( 'submit', function ( event ) {
+									logSubmit( event, 'other', form );
+								});	
+							}
+
+							function logSubmit( event, form_type = '', form, foundSubmitBtn ) {
+								// Standard v3 check.
+								if ( ! form.classList.contains( 'c4wp_v2_fallback_active' ) && ! form.classList.contains( 'c4wp_verified' ) ) {
+									event.preventDefault();
+									try {
+										grecaptcha.execute(
+											'6Ld_bFosAAAAAJQY8QukAse-PE9QTmg4XanWP2MU',
+										).then( function( data ) {	
+											var responseElem = form.querySelector( '.c4wp_response' );
+											if ( responseElem == null ) {
+												var responseElem = document.querySelector( '.c4wp_response' );
+											}
+											
+											responseElem.setAttribute( 'value', data );	
+
+											if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+												// WC block checkout.
+												let input = document.querySelector('input[id*="c4wp-wc-checkout"]'); 
+												let lastValue = input.value;
+												var token = data;
+												input.value = token;
+												let event = new Event('input', { bubbles: true });
+												event.simulated = true;
+												let tracker = input._valueTracker;
+												if (tracker) {
+													tracker.setValue( lastValue );
+												}
+												input.dispatchEvent(event)												
+											}
+
+														
+			/* @v3-fallback-js:start */
+			if ( typeof captcha_div == 'undefined' && form.classList.contains( 'wc-block-checkout__form' ) ) {
+				var captcha_div = form.querySelector( '#additional-information-c4wp-c4wp-wc-checkout' );
+			}
+
+			if ( ! captcha_div && form.classList.contains( 'wc-block-checkout__form' ) ) {
+				var captcha_div = form.querySelector( '#order-c4wp-c4wp-wc-checkout' );
+			}
+
+			if ( typeof captcha_div == 'undefined' ) {
+				var captcha_div = form.querySelector( '.c4wp_captcha_field_div' );
+			}
+
+			var parentElem = captcha_div.parentElement;
+
+			if ( ( form.classList.contains( 'c4wp-primed' ) ) || ( ! form.classList.contains( 'c4wp_verify_underway' ) && captcha_div.parentElement.getAttribute( 'data-c4wp-use-ajax' ) == 'true' ) ) {
+
+				form.classList.add('c4wp_verify_underway' );
+				const flagMarkup =  '<input id="c4wp_ajax_flag" type="hidden" name="c4wp_ajax_flag" value="c4wp_ajax_flag">';
+				var flagMarkupDiv = document.createElement('div');
+				flagMarkupDiv.innerHTML = flagMarkup.trim();
+
+				form.appendChild( flagMarkupDiv );
+	
+				var nonce = captcha_div.parentElement.getAttribute( 'data-nonce' );
+
+				var formData = new FormData();
+
+				formData.append( 'action', 'c4wp_ajax_verify' );
+				formData.append( 'nonce', nonce );
+				formData.append( 'response', data );
+				
+				fetch( 'https://cscircles.cemc.uwaterloo.ca/wp-admin/admin-ajax.php', {
+					method: 'POST',
+					body: formData,
+				} ) // wrapped
+					.then( 
+						res => res.json()
+					)
+					.then( data => {
+						if ( data['success'] ) {
+							form.classList.add( 'c4wp_verified' );
+							// Submit as usual.
+							if ( foundSubmitBtn ) {
+								foundSubmitBtn.click();
+							} else if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+								jQuery( form ).find( '.wc-block-components-checkout-place-order-button:not(.c4wp-submit)' ).click(); 
+							} else {								
+								if ( typeof form.submit === 'function' ) {
+									form.submit();
+								} else {
+									HTMLFormElement.prototype.submit.call(form);
+								}
+							}
+
+						} else {
+							//jQuery( '.nf-form-cont' ).trigger( 'nfFormReady' );
+
+							if ( 'redirect' === 'v2_checkbox' ) {
+								window.location.href = '';
+							}
+
+							if ( 'v2_checkbox' === 'v2_checkbox' ) {
+								if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+									captcha_div = captcha_div.parentElement;
+								}
+
+								captcha_div.innerHTML = '';
+								form.classList.add( 'c4wp_v2_fallback_active' );
+								flagMarkupDiv.firstChild.setAttribute( 'name', 'c4wp_v2_fallback' );
+
+								var c4wp_captcha = grecaptcha.render( captcha_div,{
+									'sitekey' : '6LeQuF4sAAAAAO-Zl4dtyj0ailbg2wiAQWpe_Mbh',		
+									'size'  : 'normal',
+									'theme' : 'light',				
+									'expired-callback' : function(){
+										grecaptcha.reset( c4wp_captcha );
+									}
+								}); 
+								jQuery( '.ninja-forms-field.c4wp-submit' ).prop( 'disabled', false );
+							}
+
+							if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+								return true;
+							}
+
+							if ( form.parentElement.classList.contains( 'nf-form-layout' ) ) {
+								jQuery( '.ninja-forms-field.c4wp-submit' ).prop( 'disabled', false );
+								return false;
+							}
+
+							// Prevent further submission
+							event.preventDefault();
+							return false;
+						}
+					} )
+					.catch( err => console.error( err ) );
+
+				// Prevent further submission
+				event.preventDefault();
+				return false;
+			}
+			/* @v3-fallback-js:end */
+			
+			
+											// Submit as usual.
+											if ( foundSubmitBtn ) {
+												foundSubmitBtn.click();
+											} else if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+												jQuery( form ).find( '.wc-block-components-checkout-place-order-button:not(.c4wp-submit)' ).click(); 
+											} else {
+												
+												if ( typeof form.submit === 'function' ) {
+													form.submit();
+												} else {
+													HTMLFormElement.prototype.submit.call(form);
+												}
+											}
+
+											return true;
+										});
+									} catch (e) {
+										// Silence.
+									}
+								// V2 fallback.
+								} else {
+									if ( form.classList.contains( 'wpforms-form' ) || form.classList.contains( 'frm-fluent-form' ) || form.classList.contains( 'woocommerce-checkout' ) ) {
+										return true;
+									}
+
+									if ( form.parentElement.classList.contains( 'nf-form-layout' ) ) {
+										return false;
+									}
+									
+									if ( form.classList.contains( 'wc-block-checkout__form' ) ) {
+										return;
+									}
+									
+									// Submit as usual.
+									if ( typeof form.submit === 'function' ) {
+										form.submit();
+									} else {
+										HTMLFormElement.prototype.submit.call(form);
+									}
+
+									return true;
+								}
+							};
+						}
+					};
+
+					grecaptcha.ready( c4wp_onloadCallback );
+
+					if ( typeof jQuery !== 'undefined' ) {
+						jQuery( 'body' ).on( 'click', '.acomment-reply.bp-primary-action', function ( e ) {
+							c4wp_onloadCallback();
+						});	
+					}
+
+					//token is valid for 2 minutes, So get new token every after 1 minutes 50 seconds
+					setInterval(c4wp_onloadCallback, 110000);
+
+					
+					window.addEventListener("load", (event) => {
+						if ( typeof jQuery !== 'undefined' && jQuery( 'input[id*="c4wp-wc-checkout"]' ).length ) {
+							var element = document.createElement('div');
+							var html = '<div class="c4wp_captcha_field" style="margin-bottom: 10px" data-nonce="ec89bdd057" data-c4wp-use-ajax="true" data-c4wp-v2-site-key="6LeQuF4sAAAAAO-Zl4dtyj0ailbg2wiAQWpe_Mbh"><div id="c4wp_captcha_field_0" class="c4wp_captcha_field_div"><input type="hidden" name="g-recaptcha-response" class="c4wp_response" aria-label="do not use" aria-readonly="true" value="" /></div></div>';
+							element.innerHTML = html;
+							jQuery( '[class*="c4wp-wc-checkout"]' ).append( element );
+							jQuery( '[class*="c4wp-wc-checkout"]' ).find('*').off();
+							c4wp_onloadCallback();
+						}
+					});
+				/* @v3-js:end */
+			</script>
+			<!-- / CAPTCHA by CAPTCHA 4WP plugin -->
+</body>
+</html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<appendix xml:id="bijlage-python-thuis">
+  <title>Python thuis</title>
+  <introduction>
+    <p>De code die je submit naar de CS Circles website wordt nagekeken door een kopie van <em>Python</em> die op onze webserver wordt uitgevoerd. Dat stelt ons in staat een opgave automatisch na te kijken. De normale manier om in Python te programmeren is dat je begint met het installeren van een Python interpreter op je eigen computer. Python op je eigen computer thuis uitvoeren heeft meerdere voordelen: (i) je wordt niet beperkt door het feit dat je de Python omgeving op onze webserver moet delen met anderen; (ii) je kunt interactieve programma's schrijven (zie beneden); (iii) wanneer de software eenmaal is geïnstalleerd heb je geen verbinding met internet nodig om een programma uit te voeren; (iv) je kunt gebruik maken van debug tools , geluid en grafische toepassingen.</p>
+  </introduction>
+  <section xml:id="bijlage-python-thuis-s1">
+    <title><alert>Gratis Python tools</alert></title>
+    <p>Een voor de hand liggende bron, om Python op je computer uit te voeren, of het nu gaat om Windows, Mac, of Linux, is de officiële Python.org website. <url href="http://www.python.org/getit/" visual="www.python.org/getit">Klik hier om naar de Download Python pagina te gaan</url>. Kies de meest recente 3.x versie en kies de installer die overeenkomt met jouw computer (bijvoorbeeld, voor 32-bit Windows, "Windows x86 MSI Installer"), download de installer en voer deze uit. Zodra alles geïnstalleerd is, kun je het programma <alert>IDLE</alert> uitvoeren waarna een interactieve Python prompt te zien is.</p>
+    <p>Opmerking: op school, mag je wellicht, afhankelijk van de rechten die de school een gebruiker geeft, niet zelf Python installeren; het kan zijn dat je de toestemming en hulp van de netwerkbeheerder nodig hebt. Maar mocht dat het geval zijn dan is het toch mogelijk Python te installeren en uit te voeren met behulp van een usb-stick, kijk bijvoorbeeld op <url href="http://portablepython.com" visual="portablepython.com">portablepython.com</url>.</p>
+    <p>IDLE ontbeert een aantal nuttige debug tools. <url href="http://wingide.com/" visual="wingide.com">Wing IDE</url> kent wel debugging eigenschappen waaronder het maken van <url href="http://wingide.com/psupport/wingide-1.1/node7.html#SECTION00740000000000000000" visual="wingide.com/psupport/wingide-1.1/node7.html#SECTION00740000000000000000">breakpoints</url>, het <url href="http://wingide.com/psupport/wingide-1.1/node7.html#SECTION00760000000000000000" visual="wingide.com/psupport/wingide-1.1/node7.html#SECTION00760000000000000000">stap voor stap kunnen uitvoeren</url> van een programma, het kunnen bekijken van variabelen en de stack. Andere opties, die we moeilijker konden installeren, zijn <url href="http://pydev.org/" visual="pydev.org">PyDev</url> of <url href="http://www.jetbrains.com/pycharm/" visual="www.jetbrains.com/pycharm">PyCharm</url>. <em>Voor het overige van deze pagina hebben we alleen over <alert>IDLE</alert>.</em></p>
+  </section>
+  <section xml:id="bijlage-python-thuis-s2">
+    <title>De interactieve prompt gebruiken</title>
+    <p>Wanneer je <alert>IDLE</alert> opent zie een <em>interactieve prompt</em> (ook wel <em>shell </em>genaamd). Hier, kun je meteen een opdracht intypen en onmiddellijk laten uitvoeren. Het teken</p>
+    <pre>
+&gt;&gt;&gt;
+</pre>
+    <p>geeft aan dat Python wacht op invoer. Als je bijvoorbeeld <c>print(2+3)</c> intypt en dan op de Enter toets drukt, krijg je te zien</p>
+    <pre>
+&gt;&gt;&gt; print(2+3)
+5
+</pre>
+    <p>De eerste regel is wat je aan Python vroeg om te doen, en de tweede regel is de uitvoer van Python: het resultaat van het uitvoeren van de opdracht was dat Python het getal heeft uitgerekend en afgedrukt. In feite kun je, als je dat wilt, <c>print</c> weglaten.</p>
+    <pre>
+&gt;&gt;&gt; 2+3
+5
+</pre>
+    <p>Met andere woorden, standaard zal Python de waarde van de opdrachten, die je vraagt om uit voeren, afdrukken. Het is nuttig om te weten welke versie van Python je gebruikt. Wanneer je de volgende twee regels laat uitvoeren kun je zien welke versie we hier bij CS Circles gebruiken.</p>
+    <example>
+      <p>Ga na welke versie van Python we gebruiken. Wanneer je deze twee regels thuis uitvoert krijg je de versie te zien die <em>jij</em> gebruikt.</p>
+      <program interactive="activecode" language="python" label="bijlage-python-thuis-vb-1">
+        <code>
+import sys
+print(sys.version_info)
+</code>
+      </program>
+    </example>
+    <p>(We leren je versie 3 omdat dat voor beginners gemakkelijker is. Versie 2 wordt nog veel gebruikt in de industrie, maar ook daar wordt versie 3 meer en meer gebruikt.)</p>
+  </section>
+  <section xml:id="bijlage-python-thuis-s3">
+    <title>Nuttige feiten</title>
+    <p><ul><li><p>De interactieve prompt kan je helpen documentatie te verkrijgen over ingebouwde functies door middel van de <c>help</c> functie. Type bijvoorbeeld in <c>help(print)</c> waarna je informatie krijgt over hoe de <c>print()</c> functie werkt.</p></li><li><p>Om een oneindige loop of een berekening die te lang duurt te stoppen, kun je het programma <em>onderbreken</em> door op Ctrl-C te drukken. Probeer de volgende opdracht uit te voeren</p><pre>
+while (1 &gt; 0): purpose = "Wasting Time"
+</pre><p>en onderbreek het dan met Ctrl-C.</p></li><li><p>Wanneer je Python als rekenmachine gebruikt of je doet wat kleine experimenten, dan hebben we een shortcut voor je. De underscore <c>_</c> refereert aan het resultaat van voorgaande opdracht die is uitgevoerd bij de interactieve prompt. Als je bijvoorbeeld <c>2+3</c> op een regel typt en dan <c>_*2</c> op de volgende regel dan zie je:</p><pre>
+&gt;&gt;&gt; 2+3
+5
+&gt;&gt;&gt; _*2
+10
+</pre></li></ul></p>
+  </section>
+  <section xml:id="bijlage-python-thuis-s4">
+    <title>Bestanden/scripts bewerken</title>
+    <p>Wanneer je werkt aan een complex probleem dan is het nodig om een groot bestand met vele regels te schrijven en aan te passen, vergelijkbaar met het schrijven van de CS Circles website. Om dit met in <alert>IDLE</alert> te doen, ga je naar het File menu en kies daar New Window (of gebruik Ctrl-N). Daarmee wordt een nieuw venster geopend waarin een basis tekstverwerker actief is (niet een interactieve prompt). Schrijf wat code in dit venster (bijvoorbeeld <c>print("Hello, World")</c>); merk op dat deze regel niet wordt uitgevoerd wanneer je de Enter toets indrukt. Bewaar dit bestand op je computer (in het File menu kies je Save, of druk op Ctrl-S). Daarna kun je het uitvoeren: ga naar het Run menu en kies Run Module (of gebruik de sneltoets F5). Je zult de uitvoer van je programma zien in het venster met de interactieve prompt!</p>
+    <p><alert>Interactieve invoer</alert></p>
+    <p>Een belangrijke eigenschap dat je kunt toepassen wanneer je Python op je eigen computer thuis uitvoert, anders dan op de CS Circles website, is dat je n<em>u interactieve invoer</em> kunt gebruiken in het zogenaamde interpreter venster. De <c>input()</c> opdracht zorgt ervoor dat er regel invoer vanuit de interactieve interpreter, en dat de string de return waarde van de <c>input()</c> functie wordt. Daar komt nog bij dat wanneer je een input gebruikt het mogelijk is om een <em>prompt string</em> als argument mee te geven, waarmee de gebruiker geholpen kan worden wat te doen. We zulle dat illustreren met een voorbeeld... kopieer het in je IDLE editor, bewaar het en voer het uit.</p>
+    <pre>
+print("Good day!")
+username = input("What is your name? ")
+print("Nice to meet you,", username)
+</pre>
+  </section>
+  <section xml:id="bijlage-python-thuis-s5">
+    <title>Een voorbeeld met interactiviteit: een raadspel</title>
+    <p>Hier volgt een voorbeeld waarbij interactieve invoer een groot verschil maakt. Het betreft een raadspel waarbij je tegen de computer speelt. We zullen gebruik maken van een functie uit de <c>random</c> module: de functie <c>random.randint(A, B)</c> genereert een willekeurig geheel getal tussen <c>A</c> en <c>B</c> (inclusief). Gebruik makende van deze functies, volgt hier een spelletje: kopieer-en-plak het in je Idle-editor, bewaar het en voer het uit!</p>
+    <pre>
+import random
+secretNumber = random.randint(1, 100)
+print("I'm thinking of a secret number between 1 and 100...")
+while True:
+    guess = int(input("What is your guess? "))
+    if (guess == secretNumber):
+        break
+    if (guess &gt; secretNumber):
+        print("Sorry, your guess is too high.")
+    if (guess &lt; secretNumber):
+        print("Sorry, your guess is too low.")
+print("Dang, you got it!")
+</pre>
+  </section>
+  <section xml:id="bijlage-python-thuis-s6">
+    <title>En daarna...</title>
+    <p>Wanneer je programma's thuis schrijven en uitvoeren interessant vindt schrijf dan meer ingewikkelde programma's zoals een interactief programma dat meeteenheden omzet. Hier volgen nog een paar dingen die je kunt doen wanneer je Python op de eigen computer uitvoert:<ul><li><p>de <url href="http://docs.python.org/py3k/library/turtle.html#module-turtle" visual="docs.python.org/py3k/library/turtle.html#module-turtle">Python <alert>turtle (schildpad) </alert> module</url> waarmee je lijngrafieken en meetkundige animaties kunt realiseren!</p></li><li><p>je kunt Python programma's schrijven waarmee je <url href="http://docs.python.org/tutorial/inputoutput.html#reading-and-writing-files" visual="docs.python.org/tutorial/inputoutput.html#reading-and-writing-files">bestanden kunt lezen en schrijven</url>;</p></li><li><p>je kunt Python gebruiken om <url href="http://stackoverflow.com/questions/1967040/how-can-i-create-a-melody-is-there-any-sound-module" visual="stackoverflow.com/questions/1967040/how-can-i-create-a-melody-is-there-any-sound-module">muzikale toontjes </url>te produceren!</p></li></ul></p>
+    <p>We bevelen het gratis <url href="http://inventwithpython.com/" visual="inventwithpython.com">Invent Your Own Computer Games With Python</url> aan wanneer je opzoek bent naar iets dat op een levendige en gedetailleerde manier grappige en interessante ideeën uitlegt over interactieve Python.</p>
+    <assemblage>
+      <p>Je kunt Pygame in Python 3 in Windows implementeren door gebruik te maken van <url href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame" visual="www.lfd.uci.edu/~gohlke/pythonlibs/#pygame">extra bibliotheken die je hier vindt</url>.</p>
+    </assemblage>
+  </section>
+</appendix>

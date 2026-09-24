@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-07b">
+  <title>7B: Wiskunde</title>
+  <introduction>
+    <p><em>Les 7 heeft drie delen A, B, C die in een willekurige volgorde kunnen worden doorgenomen.</em>  Tot zover hebben we in Python gerekend met de operatoren <c>+</c>, <c>-</c>, <c>*</c>, <c>/</c> en de functies <c>max</c> en <c>min</c>. In deze les zullen we kennis maken met meer operatoren en functies en zullen we leren hoe we meer complexe berekeningen kunnen uitvoeren.</p>
+  </introduction>
+  <section xml:id="les-07b-s1">
+    <title>Operatoren uit de wiskunde</title>
+    <p>We heben reeds kenis gemaakt met de operatoren voor optellen (<c>a + b</c>), aftrekken (<c>a - b</c>), vermenigvuldigen (<c>a * b</c>) en delen (<c>a / b</c>). We zullen nu drie extra operatoren leren kennen.</p>
+    <p><ul><li><p>De <alert>tot-de-macht</alert>-operator <c>a ** b</c> berekent <c>ab</c> (<c>a</c> vermenigvuldigd met zichzelf <c>b</c> keer). Bijvoorbeeld, <c>2 ** 3</c> is <c>8</c> (2×2×2).</p></li><li><p>De <alert>geheeltallige deling</alert>-operator <c>a // b</c> berekent het "quotiënt" van <c>a</c> gedeeld door <c>b</c> waarbij de rest wordt weggelaten. Bijvoorbeeld, <c>14 // 3</c> heeft als uitkomst <c>4</c>, waarbij dus 2 wordt weggelaten.</p></li><li><p>De <alert>modulus</alert>-operator <c>a % b</c> berekent de rest bij <c>a</c> gedeeld door <c>b</c>. Bijvoorbeeld, <c>14 % 3</c> heeft als uitkomst <c>2</c>.</p></li></ul></p>
+    <example>
+      <p>De tot-de-macht-, geheeltallige deling-, en modulus-operatoren</p>
+      <program interactive="activecode" language="python" label="les-07b-vb-1">
+        <code>
+print(2 ** 3)
+print(14 // 3)
+print(14 % 3)
+</code>
+      </program>
+    </example>
+    <exercise label="oef-7b-eggs">
+      <title>Rekenen met eieren</title>
+      <statement>
+        <p>Eierdoosjes bevatten elk precies 12 eieren. Schrijf een programma dat een geheel aantal eieren inleest van<c>input()</c>, en dan twee getallen afdrukt: hoeveel eierdoosjes er kunnen worden gevuld, en hoeveel eieren er over blijven. Bijvoorbeeld: bij <c>27</c> eieren wordt afgedrukt</p>
+        <pre>
+2
+3
+</pre>
+        <p>want met <c>27</c> eieren kun je <c>2</c> doosjes vullen en blijven er <c>3</c> eieren over.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-eggs-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.eggs (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'eieren = int(input())\nprint(eieren // 12)\nprint(eieren % 12)'
+_GEVALLEN = [{'invoer': ['27']}, {'invoer': ['12']}, {'invoer': ['5']}, {'invoer': ['0']}, {'invoer': ['1000']}, {'invoer': ['11']}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Gebruik de geheeltalige deling en de modulus-operator.</p>
+      </hint>
+    </exercise>
+    <p>De modulus-operator wordt voor een reeks van taken gebruikt. Het kan gebruikt worden om vragen te beantwoorden zoals deze:<ul><li><p>Als het nu 10 uur is, wat is de tijd over 100 uur? (vraagt om modulus 12)</p></li><li><p>Is het jaar 2032 een schrikkeljaar? (<url href="http://nl.wikipedia.org/wiki/Schrikkeljaar" visual="nl.wikipedia.org/wiki/Schrikkeljaar">Dit vraagt om modulus 4, 100, en 400</url>)</p></li></ul></p>
+    <p>De check of een jaar een schrikkeljaar is komt neer op het testen van deelbaarheid; in de volgende oefening vragen we je een programma te schrijven dat gaat over deelbaarheid in het algemeen.</p>
+    <exercise label="oef-7b-divisible">
+      <title>Deelbaarheid</title>
+      <statement>
+        <p>Schrijf een programma dat twee positieve getallen <c>a</c> en <c>b</c> inleest op gescheiden regels. Wanneer <c>a</c> deelbaar is door <c>b</c>, druk dan de boodschap "deelbaar" af. Druk anders de boodschap, "niet deelbaar" af. Een voorbeeld: wanneer de invoer is</p>
+        <pre>
+14
+3
+</pre>
+        <p>dan dient het programma af te drukken "niet deelbaar".</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-divisible-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.divisible (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'a = int(input())\nb = int(input())\nif a % b == 0:\n    print("deelbaar")\nif a % b != 0:\n    print("niet deelbaar")'
+_GEVALLEN = [{'invoer': ['14', '3']}, {'invoer': ['15', '3']}, {'invoer': ['1', '1']}, {'invoer': ['7', '14']}, {'invoer': ['100', '25']}, {'invoer': ['99', '2']}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Indien <c>a</c> deelbaar is door <c>b</c>, dan genereert de modulus-operator een welbepaald getal.</p>
+      </hint>
+    </exercise>
+  </section>
+  <section xml:id="les-07b-s2">
+    <title>Functies uit de wiskunde</title>
+    <p>Python kent vrijwel alle wiskundige functies die op een wetenschappelijke rekenmachine te vinden zijn.</p>
+    <p><ul><li><p><c>sqrt(x)</c> berekent de wortel van een getal <c>x</c>.</p></li><li><p><c>exp(x)</c> en<c>log(x)</c> zijn de exponentiële functie en die van de natuurlijke logaritme.</p></li><li><p><c>sin(x)</c>, <c>cos(x)</c>, <c>tan(x)</c> maar ook andere trigonometrische functies zijn aanwezig.</p></li><li><p><c>pi</c>, de bekende constante uit de wiskunde <c>3.1415...</c>, is ook aanwezig.</p></li></ul></p>
+    <assemblage>
+      <p>Wanneer je trigonometrische functies uit Python gebruikt, dan moet de hoek <c>x</c> in <url href="https://nl.wikipedia.org/wiki/Radiaal_(wiskunde)" visual="nl.wikipedia.org/wiki/Radiaal_(wiskunde)">radialen</url> worden weergegeven, niet in graden.</p>
+    </assemblage>
+    <p>Python kent zoveel functies dat ze zijn ondergebracht in groepen die <em>modules</em> worden genoemd. Bovenstaande functies behoren tot de module <c>math</c> (wiskunde). Voordat je een functie uit een module kunt gebruiken, moet je eerst de module <em>importeren</em> zoals in onderstaand voorbeeld te zien is. Om een functie uit een reeds geïmporteerde module te gebruiken moet je de naam van een module intypen, gevolgd door een punt en dan gevolgd door de naam van de functie.</p>
+    <example>
+      <p>Functies gebruiken uit de module math (wiskunde)</p>
+      <program interactive="activecode" language="python" label="les-07b-vb-2">
+        <code>
+import math
+print(math.pi)
+e = math.exp(1)
+print(e)
+print(math.sqrt(3), math.tan(math.pi / 3))
+</code>
+      </program>
+    </example>
+    <exercise label="oef-7b-pizza">
+      <title>Pizza Cirkels</title>
+      <statement>
+        <p>Je vrienden hebben hun vierkante pizza's opgegeten en bestellen nu een ronde pizza. Schrijf een programma dat de oppervlakte berekent van deze ronde pizza. De invoer is een kommagetal, laten we het <em>r</em> noemen, dat de straal in cm weergeeft. De uitvoer moet de oppervlakte weergeven in cm<m>^{\text{2}}</m>, berekend door gebruik te maken van de formule <em>A=pi*r<m>^{\text{2}}</m></em>. Gebruik daarbij <c>pi</c> uit de module <c>math</c> in plaats van <c>3.1415...</c></p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-pizza-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.pizza (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'import math\nr = float(input())\nprint(math.pi * r * r)'
+_GEVALLEN = [{'invoer': ['1']}, {'invoer': ['10']}, {'invoer': ['2.5']}, {'invoer': ['0.5']}, {'invoer': ['33.3']}]
+_VERGELIJK = 'getallen'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <exercise label="oef-7b-geometricmean">
+      <title>Meetkundig gemiddelde</title>
+      <statement>
+        <p>Het <em>meetkundig gemiddelde</em> van twee getallen <c>a</c> en <c>b</c> is het getal <m>\sqrt{ab}</m> Schrijf een programma dat twee positieve kommagetallen inleest, en als uitvoer het meetkundig gemiddelde ervan produceert.   <em>Bijvoorbeeld: Wanneer de invoer is:</em></p>
+        <pre>
+5.0
+20.0
+</pre>
+        <p>dan dient de uitvoer <c>10.0</c> te zijn.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-geometricmean-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.geometricmean (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'import math\na = float(input())\nb = float(input())\nprint(math.sqrt(a * b))'
+_GEVALLEN = [{'invoer': ['5.0', '20.0']}, {'invoer': ['2', '8']}, {'invoer': ['1.5', '6']}, {'invoer': ['3', '3']}, {'invoer': ['0.1', '1000']}]
+_VERGELIJK = 'getallen'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+  </section>
+  <section xml:id="les-07b-s3">
+    <title>Een expressie uitrekenen</title>
+    <p>Zoals je kon zien in de vorige oefening, kun je wiskundige expressies samenstellen door bewerkingen te combineren. Python evalueert de bewerkingen in dezelfde volgorde als in de wiskunde:</p>
+    <p><alert>H</alert>aakjes eerst, dan de <alert>E</alert>xponenten, gevolgd door <alert>D</alert>elen en <alert>V</alert>ermenigvuldigen en tenslotte <alert>O</alert>ptellen en <alert>A</alert>ftrekken,</p>
+    <p>die we kunnen onthouden door de afkorting "HEDVOA". Geheeltallig delen en modulus behoren tot de categorie "Delen en Vermenigvuldigen". Bijvoorbeeld, de expressie</p>
+    <pre>
+3 * (1 + 2) ** 2 % 4
+</pre>
+    <p>wordt als volgt berekend: eerst (1+2 = 3), dan de exponent (3 ** 2 = 9) , dan de vermenigvuldiging (3 * 9 = 27), en tenslotte de modulus (rest bij deling door) waarmee het eindresultaat wordt: 27 % 4 = <c>3</c>.</p>
+    <exercise label="oef-7b-bedmas">
+      <title>Volgorde van de bewerkingen</title>
+      <statement>
+        <p>Bereken de uitkomst van de volgende Python-expressie. Denk hierbij aan de volgorde van bewerkingen.</p>
+        <pre>
+6 - 52 // 5 ** 2
+</pre>
+        <p>Jouw antwoord: <fillin mode="number" answer="4" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <numcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct!</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+    <p><em>Geheeltallig delen met negatieve getallen</em>: De uitdrukkingen <c>a // b</c> en <c>int(a / b)</c> zijn gelijk wanneer <c>a</c> en <c>b</c> positief zijn. Maar wanneer <c>a</c> negatief is zal <c>a // b</c> "afgerond worden in meer negatieve richting" terwijl <c>int(a / b)</c> "afgerond zal worden richting 0" (voor negatieve getallen is dat dus in positieve richting).</p>
+    <example>
+      <p>Geheeltallig delen met negatieve getallen</p>
+      <program interactive="activecode" language="python" label="les-07b-vb-3">
+        <code>
+print((-10) // 3, int((-10) / 3)) # verschillend
+print((-12) // 2, int((-12) / 2)) # gelijk, omdat -12 deelbaar is door 2
+</code>
+      </program>
+    </example>
+  </section>
+  <section xml:id="les-07b-s4">
+    <title>Gehele getallen en kommagetallen</title>
+    <p>Het resultaat van een wiskundige expressie is een getal. Zoals we <xref ref="les-04" text="custom">eerder</xref> zagen, is elk getal opgeslagen als één van de twee mogelijke types: <c>int</c> of <c>float</c>. Het type <c>int</c> stelt gehele getallen voor, zowel positieve als negatieve, die willekeurig groot kunnen zijn.</p>
+    <assemblage>
+      <p>Python accepteert geen getallen die geschreven zijn in de vorm <c>1 000 000</c> of <c>1.000.000</c> of <c>1,000,000.</c> Tik in plaats daarvan <c>1000000</c>.</p>
+    </assemblage>
+    <p>Het type <c>float</c> stelt kommagetallen voor. Zoals een rekenmachine <c>1/3</c> opslaat als de benadering <c>0.33333333</c>, zal ook Python kommagetallen benaderend opslaan.</p>
+    <assemblage>
+      <p>Omdat Python benaderingen van kommagetallen gebruikt, zullen bepaalde vergelijkingen die wiskundig juist zijn, niet waar blijken te zijn in Python.</p>
+      <program interactive="activecode" language="python" label="les-07b-vb-4">
+        <code>
+import math
+s = math.sqrt(2) * math.sqrt(2)
+print(s == 2)
+print(s)
+</code>
+      </program>
+      <program interactive="activecode" language="python" label="les-07b-vb-5">
+        <code>
+s = 0.1 + 0.1 + 0.1
+print('s equals 0.3?', s == 0.3)
+print('s =', s)
+</code>
+      </program>
+      <p>Daarom is het belangrijk om enige tolerantie toe te staan voor deze benaderingen wanneer we getallen van het type <c>float</c> vergelijken. In de interne grader die bij deze website gebruikt wordt, bijvoorbeeld, wordt een <c>float</c>-uitvoer als correct beschouwd wanneer ze <em>bij benadering</em> gelijk is aan het verwachte antwoord.</p>
+    </assemblage>
+    <p>We beëindigen deze les met een paar oefeningen.</p>
+    <exercise label="oef-7b-skill">
+      <title>Overhoring</title>
+      <statement>
+        <p>Als "overhoring" krijg je drie gehele getallen en je wordt gevraagd om de eerste twee getallen bij elkaar op te tellen en het resultaat met het derde getal te vermenigvuldigen. Schrijf een programma dat de drie getallen inleest en het juiste antwoord afdrukt.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-skill-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.skill (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'a = int(input())\nb = int(input())\nc = int(input())\nprint((a + b) * c)'
+_GEVALLEN = [{'invoer': ['1', '2', '3']}, {'invoer': ['10', '-4', '7']}, {'invoer': ['0', '0', '5']}, {'invoer': ['123', '456', '789']}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Zet haakjes <c>()</c> rond dat deel van de expressie dat als eerste moet worden uitgerekend</p>
+      </hint>
+    </exercise>
+    <exercise label="oef-7b-convert">
+      <title>Voet vertalen in cm</title>
+      <statement>
+        <p>Voor dit programma is de invoer een kommagetal dat een hoogte weergeeft in voet. Schrijf een programma dat het equivalent in centimeters weergeeft. Gebruik daarbij dat 1 voet = 30,48 cm. Zo is bijvoorbeeld bij een invoer van <c>0.5</c>, de gewenste uitvoer gelijk aan <c>15.24</c>.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-convert-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.convert (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'print(float(input()) * 30.48)'
+_GEVALLEN = [{'invoer': ['0.5']}, {'invoer': ['1']}, {'invoer': ['6.2']}, {'invoer': ['0']}, {'invoer': ['1000']}]
+_VERGELIJK = 'getallen'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <exercise label="oef-7b-gravity">
+      <title>Zwaartekracht</title>
+      <statement>
+        <p>Een pakje wordt vanuit een vliegtuig op een hoogte van 11000 meter naar beneden gegooid met een snelheid van <em>v</em> m/s. Terwijl het valt wordt de afstand naar de grond gegeven door de formule -4.9<em>t</em><m>^{\text{2}}</m> - <em>vt</em> + 11000, waarbij <em>t</em> de tijd is in seconden vanaf het moment van vallen. Schrijf een programma dat als uitvoer de tijd geeft die nodig is om de grond te bereiken. De invoer bij je programma is het positieve kommagetal <em>v</em>. De gevraagde tijd wordt gegeven door de formule: <m>\displaystyle{t=\frac{v-\sqrt{v^2-4(-4.9)(11000)}}{2(-4.9)}}</m></p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-7b-gravity-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 7b.gravity (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'import math\nv = float(input())\nt = (v - math.sqrt(v * v - 4 * (-4.9) * 11000)) / (2 * (-4.9))\nprint(t)'
+_GEVALLEN = [{'invoer': ['0']}, {'invoer': ['10']}, {'invoer': ['100.5']}, {'invoer': ['250']}, {'invoer': ['1']}]
+_VERGELIJK = 'getallen'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <p>Gefeliciteerd! Nadat je deze oefeningen hebt afgerond kun je verder met een volgende les.</p>
+    <remark>
+      <title>bij benadering</title>
+      <p>Preciezer, als het correcte antwoord <em>A</em> is, accepteren we elk antwoord in het volgende bereik (0.1% absolute of relatieve fout): <em>A</em> ± 0.001 <em>A</em> ± abs(<em>A</em>) * 0.001</p>
+    </remark>
+  </section>
+</chapter>

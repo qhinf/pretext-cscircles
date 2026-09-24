@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-04">
+  <title>4: Types</title>
+  <p><em>Vanaf deze les, hebben voorbeelden en programma-invoervensters extra knoppen: <alert>Open in the console </alert> <em>en</em> <alert><alert>Visualiseer</alert>. </alert>Gebruik ze om het programma te verbeteren en te onderzoeken.</em></p>
+  <p>In het Hello, World!-programma zagen we dat Python in staat is om een tekenreeks (een stuk tekst) voor ons te herhalen. We hebben ook meerdere rekenvoorbeelden met getallen gezien. Getallen en tekenreeksen zijn fundamenteel verschillende soorten <em>waarden</em>, en wanneer je ze op de verkeerde manier in Python door elkaar gebruikt kan dat een foutmelding tot gevolg hebben:</p>
+  <example>
+    <p>Dit programma probeert een tekenreeks met een getal te vergelijken.</p>
+    <program interactive="activecode" language="python" label="les-04-vb-1">
+      <code>
+x = "Hello, World!"
+y = 35
+z = max(x, y)
+</code>
+    </program>
+  </example>
+  <p>Zoals je kunt zien, krijgen we een foutmelding waarin wordt aangegeven dat de twee argumenten van <c>max</c> van verschillende <em>types</em> zijn. De foutmelding is een goede inleiding tot de rest van de les:<ul><li><p><c>"Hello, World!"</c> is een <alert>tekenreeks</alert> (Eng.: <alert><em>string</em></alert>), die door Python als <c>str</c> wordt aangemerkt. Een tekenreeks is een willekeurige rij van letters, cijfers, spaties, en leestekens; we zullen er meer over leren in les 7A.</p></li><li><p><c>35</c> is een <alert>geheel getal</alert> (Eng.: <alert><em>integer</em></alert>). Gehele getallen worden door Python als <c>int</c> aangemerkt.</p></li></ul></p>
+  <p>Een waarde van de verkeerde soort willen gebruiken is een veel voorkomende oorzaak van een fout in een computerprogramma. Het is als het drinken van een boterham: dat kan niet want je kunt alleen maar vloeibare dingen drinken, en een boterham is niet vloeibaar maar vast.</p>
+  <p>Je kunt het type van een waarde achterhalen door de functie <c>type</c> aan te roepen:</p>
+  <example>
+    <p>Een paar voorbeelden van het gebruik van de functie <c>type</c>.</p>
+    <program interactive="activecode" language="python" label="les-04-vb-2">
+      <code>
+print(type("Hello, World!"))
+print(type(34))
+print(type(1.234))
+</code>
+    </program>
+  </example>
+  <p>(Alle Python-types zijn ook <em>klassen</em> (Eng.: <em>classes</em>).) Bovenstaand voorbeeld laat zien dat er twee verschillende types van getallen zijn in Python: het type <c>int</c> van gehele getallen en het type <c>float</c> van <em>vlottende-kommagetallen</em> (Eng.: <em>floating-point numbers</em>). Het type <c>float</c> laat toe te rekenen met kommagetallen in Python. (Merk op dat kommagetallen in Python genoteerd worden met een punt in plaats van een komma.) Let wel: niet alle kommagetallen kunnen exact voorgesteld worden als een <c>float</c>-waarde. Bij berekeningen met <c>float</c>-waarden zullen er dan ook doorgaans <em>afrondingen</em> optreden; meer hierover in les 7B.</p>
+  <p>Je kunt <c>float</c>-waarden mixen met <c>int</c>-waarden; het resultaat is een <c>float</c>.</p>
+  <example>
+    <p>Een <c>int</c> en een <c>float mixen</c>.</p>
+    <program interactive="activecode" language="python" label="les-04-vb-3">
+      <code>
+x = 1.2
+y = 2
+z = x * y
+print(x, y, z)
+print(type(x), type(y), type(z))
+</code>
+    </program>
+  </example>
+  <p>Wat Python in feite doet wanneer je een <c>float</c> met een <c>int</c> mixt is dat het de <c>int</c> omzet naar een <c>float</c> en dan verder gaat met twee <c>float</c>s.</p>
+  <exercise label="oef-4-mixing">
+    <title>Float</title>
+    <statement>
+      <p>Wanneer we <c>1.2</c> veranderen in <c>1.5</c> in bovenstaand programma, wat is dan de eerste regel in de uitvoer?</p>
+    </statement>
+    <choices randomize="yes">
+      <choice correct="yes">
+        <statement>
+          <p>1.5 2 3.0</p>
+        </statement>
+        <feedback>
+          <p>Correct! We moeten twee dingen nader toelichten, om te laten zien waarom <c>z</c> als <c>3.0</c> wordt afgedrukt.</p>
+          <p><ul><li><p>Wanneer we <c>x * y</c> berekenen dan mixen we een <c>int</c> en een <c>float</c>, maar Python behandelt die als twee <c>float</c>s, waardoor <c>z</c> een <c>float</c> wordt.</p></li><li><p>Om duidelijk te maken dat het om een <c>float</c> gaat, drukt Python de waarde van <c>z</c> af als <c>3.0</c> in plaats van <c>3</c>.</p></li></ul></p>
+          <p>Merk op dat de waarde en het type van <c>y</c> niet veranderd zijn.</p>
+        </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>1.5 2 3</p>
+        </statement>
+      </choice>
+      <choice>
+        <statement>
+          <p>1.5 2.0 3.0</p>
+        </statement>
+      </choice>
+      <choice>
+        <statement>
+          <p>Er treedt een fout op</p>
+        </statement>
+      </choice>
+    </choices>
+  </exercise>
+  <p>Het is vaak noodzakelijk een waarde van het ene type om te zetten in een ander type. Zoals je aardbeien met een blender kunt omzetten van vast naar vloeibaar, kun je ook een waarde van het ene type soms omzetten naar een ander type daarbij gebruik makend van een <alert>typeconversiefunctie</alert> (Eng.: <alert><em>typecast function</em></alert>). Je schrijft de naam van het gewenste nieuwe type op dezelfde manier als bij de aanroep van een functie, bijvoorbeeld</p>
+  <pre>
+x = float("3.4")
+print(x-1)
+</pre>
+  <p>zet de tekenreeks <c>"3.4"</c> om naar het kommagetal 3,4 en drukt dan af <c>2.4</c>. Zonder de typecast, zou het programma crashen, omdat het niet mogelijk is een getal van een tekenreeks af te trekken.</p>
+  <program interactive="activecode" language="python" label="les-04-console-4">
+    <code>
+x="3.4"
+print(x-1)
+</code>
+  </program>
+  <assemblage>
+    <p>Soms staat Python toe dat je tekenreeksen en getallen combineert waarbij rekenkundige operatoren worden gebruikt. De opdracht <c>print("hots" * 2) </c>drukt <c>hotshots</c> af. Daarbij is het een Python-regel dat wanneer je een tekenreeks <em>s</em> vermenigvuldigt met een geheel getal <em>n</em> dit betekent dat je <em>n</em> kopieën van <em>s</em> na elkaar plaatst. We zullen later zien dat de "optelling van twee tekenreeksen" ook gedefinieerd is in Python.</p>
+  </assemblage>
+  <p>Verschillende typeconversies gedragen zich verschillend:<ul><li><p>wanneer een <c>float</c> in een <c>int</c> wordt omgezet dan gaat het gedeelte na de komma verloren, bijvoorbeeld <c>int(1.234)</c> is <c>1</c>, en <c>int(-34.7)</c> is <c>-34</c>.</p></li><li><p>wanneer een <c>str</c> in een <c>int</c> wordt omgezet dan veroorzaakt dat een foutmelding wanneer de tekenreeks niet de precieze vorm heeft van een geheel getal. Bijvoorbeeld: <c>int("1.234")</c> veroorzaakt een foutmelding.</p><program interactive="activecode" language="python" label="les-04-console-5"><code>
+x = int("1.234")
+</code></program></li><li><p>wanneer een <c>str</c> in een <c>float</c> wordt omgezet dan veroorzaakt dat een foutmelding wanneer de tekenreeks geen getal voorstelt. Bijvoorbeeld: <c>float("boterham")</c> veroorzaakt een foutmelding.</p><program interactive="activecode" language="python" label="les-04-console-6"><code>
+x = float("boterham")
+</code></program></li></ul></p>
+  <p>Een typisch gebruik van type-omzetting dat we weldra zullen zien is het omzetten van invoer door de gebruiker, wat altijd een tekenreeks is, in een numerike vorm. Hier volgt een voorbeeld.</p>
+  <example>
+    <p>Voorbeeld van een type-omzetting.</p>
+    <program interactive="activecode" language="python" label="les-04-vb-7">
+      <code>
+inputStr = "12"                          # a piece of user input
+print("The input type is", type(inputStr))
+x = int(inputStr)
+print(x, "is of type", type(x), "and its square is", x*x)
+print(inputStr * inputStr)               # this line should cause an error
+</code>
+    </program>
+  </example>
+  <p>Hier volgt nog een voorbeeld om deze les af te sluiten.</p>
+  <assemblage>
+    <p>Omdat er nu veel mogelijke editor-opdrachten zijn, zijn sommige verplaatst naar een knop <alert>Meer acties...</alert></p>
+  </assemblage>
+  <exercise label="oef-4-pizza">
+    <title>Smakelijke type-omzetting</title>
+    <statement>
+      <p>Schrijf een programma dat door wat rekenwerk helpt om je vrienden van voedsel te voorzien bij een feestje met <em>vierkante pizza's</em>. Neem aan dat het nakijkprogramma een tekenreeks <c>inputStr</c> definieert, met een decimale tekenreeks die de lengte van de zijde <em>L</em> van de pizza weergeeft in cm. Bereken de oppervlakte van de pizza met de formule O<em> = L*L</em>. Bereken dan, aangenomen dat elke persoon 100 cm<m>^{\text{2}}</m> pizza eet, het aantal mensen die kunnen mee-eten; <em>rond daarbij af naar beneden naar het dichtstbijzijnde gehele getal.</em></p>
+      <p><em>Voorbeeld</em>: wanneer <c>inputStr</c> is <c>"17.5"</c>, zal de oppervlakte 306,25 cm<m>^{\text{2}}</m>zijn, dus is <c>3</c> de correcte uitvoer.</p>
+    </statement>
+    <program interactive="activecode" language="python" label="oef-4-pizza-code">
+      <preamble visible="no">
+inputStr = "17.5"
+</preamble>
+      <code>
+
+</code>
+      <tests>
+# Verborgen tests voor 4.pizza (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'L = float(inputStr)\nprint(int(L * L / 100))'
+_GEVALLEN = [{'voorcode': 'inputStr = "17.5"'}, {'voorcode': 'inputStr = "10"'}, {'voorcode': 'inputStr = "9.99"'}, {'voorcode': 'inputStr = "31.7"'}, {'voorcode': 'inputStr = "100.0"'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+    </program>
+    <hint>
+      <p>Je hebt twee verschillende type-omzettingen nodig, één bij de start van het programma van <c>str</c> naar <c>float</c>, en één aan het eind van <c>float</c> naar <c>int</c>.</p>
+    </hint>
+  </exercise>
+  <p>Zodra je dit gedaan hebt, kun je doorgaan met de volgende les.</p>
+</chapter>

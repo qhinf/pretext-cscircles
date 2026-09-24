@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-06d">
+  <title>6D: Design, debuggen en donuts</title>
+  <introduction>
+    <p>In deze les geven we je suggesties hoe je het ontwerpen van programma's en het corrigeren van fouten gemakkelijker kunt maken. Hoe langer je programmeert, des te vaardiger je zult worden in het vermijden en verbeteren van fouten. Maar nu willen we je wat algemene nuttige adviezen geven. We zullen de volgende technieken bespreken:<ul><li><p>splits de opgave op en schrijf je programma in delen</p></li><li><p>los enkele voorbeelden op met pen en papier</p></li><li><p>maak een plan voordat je het programma begint te schrijven</p></li><li><p>schrijf het programma</p></li><li><p>test het programma met de voorbeelden die je op papier hebt uitgewerkt</p></li><li><p>test met extra voorbeelden inclusief "grensgevallen" en willekeurig gekozen gevallen</p></li></ul></p>
+    <p>Deze magische formule zal niet alle moeilijkheden automatisch oplossen, maar het kan je hoofdpijn besparen en je behoeden voor een aantal problemen die je anders later moet oplossen.</p>
+    <assemblage>
+      <p>Wanneer je programma niet correct werkt, dan kun je om het probleem te analyseren <em><c>print</c>-opdrachten gebruiken om erachter te komen waar de fout zit</em> (we zullen dat verderop in deze les toepassen), <em>de visualizer gebruiken</em>, <em>het geschreven programma nauwkeurig nalezen</em>, en <em>goede tests schrijven.</em> Wanneer je <xref ref="bijlage-python-thuis" text="custom">Python thuis uitvoert</xref>, kun je breakpoints en step tools gebruiken om meer inzicht te krijgen in wat er misloopt.</p>
+    </assemblage>
+    <p>Een <alert><url href="https://nl.wikipedia.org/wiki/Algoritme" visual="nl.wikipedia.org/wiki/Algoritme">algoritme</url></alert> bestaat uit een rij opdrachten. Terwijl een computerprogramma geschreven moet worden in een speciale taal zoals Python of JavaScript, geeft een <alert>algoritme</alert> de stap-voor-stap instructies weer op een meer conceptueel niveau. Een algoritme kan je dus ook in het Nederlands schrijven of in een diagramma tot uiting brengen. Zo is een recept voor donuts een algoritme, waarbij "neem drie kopjes bloem" een stap is, en "laat het deeg twee uur rijzen" een andere stap is. We zullen in deze les een eenvoudig algoritme ontwikkelen. Daarna zullen we het algoritme <em>implementeren</em>, dat wil zeggen omzetten in een werkend computerprogramma.</p>
+  </introduction>
+  <section xml:id="les-06d-s1">
+    <title>Opgave: Donutkosten berekenen</title>
+    <p>Tim Horton, die een keten van cafés bezit in Canada, verkoopt <alert>timbits</alert>, zeer smakelijke donuts:</p>
+    <figure>
+      <caption>Foto: looking_and_learning, flickr (<url href="http://www.flickr.com/photos/looking_and_learning/5358233785/" visual="www.flickr.com/photos/looking_and_learning/5358233785">bron</url>)</caption>
+      <image source="images/5358233785_13e36e1d76.jpg" width="71%"/>
+    </figure>
+    <p>Je moet de komende week meerdere feestjes organiseren, en je wilt verschillende aantallen timbits bestellen voor elk feestje. Je wilt daarom een programma schrijven dat in staat is de prijs van een willekeurig aantal timbits te bepalen, zodat je de kosten kunt berekenen. De prijzen zijn als volgt:</p>
+    <tabular>
+      <row header="yes">
+        <cell>Aantal</cell>
+        <cell>Prijs</cell>
+      </row>
+      <row>
+        <cell>1</cell>
+        <cell>$0.20</cell>
+      </row>
+      <row>
+        <cell>10 (kleine doos)</cell>
+        <cell>$1.99</cell>
+      </row>
+      <row>
+        <cell>20 (medium doos</cell>
+        <cell>$3.39</cell>
+      </row>
+      <row>
+        <cell>40 (grote doos)</cell>
+        <cell>$6.19</cell>
+      </row>
+    </tabular>
+  </section>
+  <section xml:id="les-06d-s2">
+    <title>Schrijf een programma, het ene deel na het andere</title>
+    <p>Naar we aannemen, wil je een programma schrijven waarbij de invoer bestaat uit <alert>het aantal mensen P aanwezig op het feestje</alert> en de uitvoer is <alert>wat het feestje kost inclusief BTW</alert>. Op het hoogste niveau, zijn er drie deelprogramma's:<ol><li><p>bereken voor <alert>P</alert> mensen, wat het aantal timbits <alert>T</alert> is dat je moet kopen</p></li><li><p>bereken de prijs van precies <alert>T</alert> timbits</p></li><li><p>bereken de BTW en daarna de totale kosten.</p></li></ol></p>
+    <p>Je kunt echter elk van de drie delen één voor één schrijven. We bevelen ten zeerste aan dat je één deel schrijft, het test en verbetert voordat je aan het volgende deel begint, omdat <em>hoe groter je programma is, des te moeilijker het zal zijn om een fout te vinden en die te herstellen</em>. Het is gemakkelijker om de drie delen van het programma apart te testen, voor dat je ze combineert tot één geheel. Voor de rest van deze les zullen we ons focussen op stap 2: <alert>de prijs bepalen van precies T timbits.</alert></p>
+  </section>
+  <section xml:id="les-06d-s3">
+    <title>Een paar voorbeelden handmatig oplossen</title>
+    <p>Om een computer te kunnen vertellen om iets te doen, moet je in staat zijn het zelf te doen. Laten we zelf een voorbeeld doorwerken: wat is de prijs van precies <alert>45</alert> timbits? Kijken we naar de grootte van de dozen, dan kunnen we één grote doos kopen met 40 timbits, met een prijs van $6.19. Daarna is het nodig om <alert>45 – 40 = 5</alert> losse timbits te kopen die dan 5 * $0.20 = $1.00 kosten. De totale prijs is dan $6.19 + $1.00 = $7.19.</p>
+  </section>
+  <section xml:id="les-06d-s4">
+    <title>Maak een plan voor je programma voordat je het gaat schrijven</title>
+    <p>Maar wat wanneer we 4 timbits willen kopen of 456 in plaats van 45? In het algemeen dienen we zoveel mogelijk grote dozen te kopen als maar mogelijk is, en daarna zonodig een medium doos en/of een kleine doos en/of losse timbits om het juiste aantal te krijgen.</p>
+    <assemblage>
+      <p>Is dit algoritme echt het beste? Ja! Je kunt zien dat het kopen van twee medium dozen (2*$3.39 = $6.78) geen goed idee is omdat 2*20=40 timbits in één grote doos goedkoper is. Zo maakt een vergelijking van losse timbits tegenover een kleine doos en een kleine doos tegenover een medium doos duidelijk dat het algoritme de laagste prijs oplevert om welk aantal timbits dan ook te kopen. <em>Wanneer de prijzen anders waren, zouden we wellicht voorzichtiger moeten zijn.</em></p>
+    </assemblage>
+    <p>We gaven aan dat je je programma moet structureren voor dat je het schrijft. Je kunt</p>
+    <p><ul><li><p>een korte stap-voor-stap-beschrijving geven van het algoritme in gewoon Nederlands in plaats van in Python.</p></li><li><p>een diagram gebruiken of stroomschema om de stappen te laten zien.</p></li><li><p>focus op de algemene lijnen in plaats van op de details, althans in het begin.</p></li></ul></p>
+    <p>In het volgende voorbeeld geven we je een stap-voor-stap-beschrijving in het Nederlands. <em>We zullen geen stroomschema geven voor dit programma omdat voor dit programma dat zou bestaan uit een stroomschema met stappen onder elkaar van stap 1 naar stap 2 enz. Alles in een rechte lijn. Bij programma's met een lus, zoals we die later zullen tegenkomen, hebben we meer aan een stroomschema.</em></p>
+    <p><alert>Algoritme om de prijs te berekenen van een willekeurig aantal timbits</alert></p>
+    <p><ol><li><p>leg het aantal timbits vast via invoer</p></li><li><p>houd de totale kosten bij, beginnend met nul</p></li><li><p>koop zoveel grote dozen als je kunt</p><p><ol><li><p>bereken het aantal timbits dat je nog steeds nodig hebt</p></li><li><p>update de totale kosten</p></li></ol></p></li><li><p>koop een medium doos wanneer dat mogelijk is en herhaal de stappen A en B.</p></li><li><p>koop een kleine doos wanneer dat mogelijk is en herhaal de stappen A en B.</p></li><li><p>koop losse timbits en herhaal stap B.</p></li><li><p>voer de totale kosten uit</p></li></ol></p>
+    <p>We noemen dit een beschrijving van het algoritme in <alert>pseudocode</alert>, omdat het uit een rij instructies bestaat, stap voor stap weergegeven, maar niet in een echte programmeertaal.</p>
+  </section>
+  <section xml:id="les-06d-s5">
+    <title>Schrijf het programma</title>
+    <p>We roepen het eerste advies in herinnering, <em>schrijf je programma deel voor deel. </em>Je kunt daarbij denken aan het schrijven van een apart stukje code voor elk van de stappen 1 tot en met 7. Verder moeten wij bij elk van de stappen nagaan welke variabelen we zullen gebruiken. Welke namen krijgen ze en wat is hun beginwaarde?</p>
+    <p>Laten we <c>timbitsLeft</c> gebruiken om het aantal timbits vast te leggen die we nog moeten kopen, en laten we <c>totalCost</c> gebruiken om de totale kosten tot dusver vast te leggen. We hoeven in Python niet vooraf het type vast te leggen, maar we kunnen inzien dat <c>timbitsLeft</c> een <c>int</c> zal zijn, terwijl <c>totalCost</c> een <c>float</c>-variabele zal zijn waarmee de totale kosten in dollars is vastgelegd. (Dus is een dollarcent <c>0.01</c>.) We zullen nog enkele extra tijdelijke variabelen bij elke stap nodig hebben, maar dat zullen we bekijken op het moment dat we ze nodig hebben.</p>
+    <p>Stap 1 en 2 kunnen geschreven worden door middel van een regel per stap:</p>
+    <pre>
+timbitsLeft = int(input()) # stap 1: leg de invoer vast
+totalCost = 0              # stap 2: initialiseer de totale kosten
+</pre>
+    <p>In Stap 3 dienen we het maximaal aantal grote dozen te berekenen dat we kunnen kopen. Hoe kunnen we dat doen? Omdat een grote doos 40 timbits bevat, zal het aantal <c>bigBoxes</c> gelijk zijn aan het gehele quotiënt van <c>timbitsLeft</c> gedeeld door <c>40</c>. Door de deling, de kosten en het verschil bij te houden krijgen we het volgende programmadeel:</p>
+    <pre>
+# stap 3: koop zoveel mogelijke grote dozen
+bigBoxes = timbitsLeft / 40
+totalCost = totalCost + bigBoxes * 6.19    # pas de totale prijs aan
+timbitsLeft = timbitsLeft - 40 * bigBoxes  # bereken het aantal timbits dat we nog nodig hebben
+</pre>
+    <p>Eigenlijk, zo blijkt, hebben we al een fout gemaakt. De beste manier om een fout te ontdekken is je programma zo vroeg mogelijk (en ook vaak) te testen! Laten we daarom dit deel van het programma testen. We zullen een paar <c>print</c>-opdrachten toevoegen om de werking tot hier te kunnen bekijken. (<em>In plaats van <c>print</c>-opdrachten te gebruiken, kun je ook de visualizer gebruiken om elke stap te checken.</em>)</p>
+    <example>
+      <p>Test het programma tot dusver met als invoer <alert>45, </alert>en gebruik daarbij een <c>print</c>-opdracht om het verbeteren te vergemakkelijken.</p>
+      <program interactive="activecode" language="python" label="les-06d-vb-1">
+        <code>
+timbitsLeft = int(input()) # step 1: get the input
+
+print('the input is', timbitsLeft)
+
+totalCost = 0              # step 2: initialize the total cost
+
+# step 3: buy as many large boxes as you can
+bigBoxes = timbitsLeft / 40
+totalCost = totalCost + bigBoxes * 6.19    # update the total price
+timbitsLeft = timbitsLeft - 40 * bigBoxes  # calculate timbits still needed
+
+print('bigBoxes equals', bigBoxes)
+print('totalCost equals', totalCost)
+print('now timbitsLeft equals', timbitsLeft)
+</code>
+      </program>
+    </example>
+    <p>Dat werkt niet zoals we dat willen! Wat is het probleem? <alert>Waar staat de eerste regel, waarin iets gebeurt, dat we zo niet bedoeld hebben? </alert>Probeer die te vinden voordat je naar de volgende paragraaf gaat. Denk eraan dat we dit voorbeeld eerder met de hand hebben opgelost.</p>
+    <remark>
+      <title>Klik om de uitleg te openen</title>
+      <p>De oorzaak van het probleem zit in de regel met <c>bigBoxes = timbitsLeft / 40</c>, omdat <c>bigBoxes</c> gelijk is aan <c>1.125</c>, terwijl we de waarde <c>1</c> wensten. Je kunt immers geen deel van een doos kopen. Een mogelijke uitweg, die je in hoofdstuk 7A zult zien, is het gebruik van <c>//</c> (quotiënt als geheel getal) in plaats van <c>/</c> (quotiënt als kommagetal). Een andere oplossing, gebaseerd op wat we in Les 4 zagen, is <c>timbitsLeft / 40</c> te vertalen naar een geheel getal via <c>int</c> waardoor we de cijfers na de komma weghalen. We zullen deze aanpak gebruiken: de regel wordt <c>bigBoxes = int(timbitsLeft / 40)</c>.</p>
+    </remark>
+    <p>Stappen 4 en 5 lijken op stap 3. Als alternatief, omdat je hoogstens één medium doos en hoogstens één kleine doos koopt, kunnen we een <c>if</c>-opdracht gebruiken:</p>
+    <pre>
+if timbitsLeft &gt;= 20: # stap 4, kunnen we een medium doos kopen?
+  totalCost = totalCost + 3.39
+  timbitsLeft = timbitsLeft - 20
+if timbitsLeft &gt;= 10: # stap 5, kunnen we een kleine doos kopen?
+  totalCost = totalCost + 1.99
+  timbitsLeft = timbitsLeft - 20
+</pre>
+    <p>Tot slot, moeten we 20 centen betalen voor elk van de overgebleven timbits en het antwoord weergeven.</p>
+    <pre>
+totalCost = totalCost + timbitsLeft * 20 # stap 6
+print(totalCost)                         # stap 7
+</pre>
+  </section>
+  <section xml:id="les-06d-s6">
+    <title>Test met de voorbeelden die je met de hand hebt opgelost</title>
+    <p>Hier is het volledige programma. Het eerste wat we zullen doen, is de test of het werkt met invoer <alert>45</alert>, het geval dat we met pen en papier hebben opgelost.</p>
+    <example>
+      <p>Wat kosten 45 timbits?</p>
+      <program interactive="activecode" language="python" label="les-06d-vb-2">
+        <code>
+timbitsLeft = int(input()) # step 1: get the input
+totalCost = 0              # step 2: initialize the total cost
+
+# step 3: buy as many large boxes as you can
+bigBoxes = int(timbitsLeft / 40)
+totalCost = totalCost + bigBoxes * 6.19    # update the total price
+timbitsLeft = timbitsLeft - 40 * bigBoxes  # calculate timbits still needed
+
+if timbitsLeft &gt;= 20:                # step 4, can we buy a medium box?
+    totalCost = totalCost + 3.39
+    timbitsLeft = timbitsLeft - 20
+if timbitsLeft &gt;= 10:                # step 5, can we buy a small box?
+    totalCost = totalCost + 1.99
+    timbitsLeft = timbitsLeft - 20
+
+totalCost = totalCost + timbitsLeft * 20 # step 6
+print(totalCost)                         # step 7
+</code>
+      </program>
+    </example>
+    <p>Er moet ergens iets fout zijn omdat we meer dan 100 dollar betalen voor maar 45 timbits! Je laatste opdracht is om deze fout te vinden en te verbeteren, en ook nog een andere fout die in het programma zit. Het zal worden getest in de volgende les.</p>
+    <assemblage>
+      <p>Je dient nog te weten dat er iets bijzonders is met de prijzen van Tim Horton, maar dat is geen fout: het kan goedkoper door <alert>T+1</alert> timbits te kopen in plaats van precies <alert>T</alert> timbits. Bijvoorbeeld, 19 timbits kosten $3.79, terwijl 20 timbits maar $3.39 kosten. Niettemin zullen we vasthouden aan de opdracht om <em>precies</em> <alert>T</alert> timbits te kopen en wel zo goedkoop mogelijk. Hiervoor is het algoritme, zoals eerder uitgelegd, correct. Dus dient je programma <c>3.79</c> als uitvoer te geven bij een invoer van <c>19</c>.</p>
+    </assemblage>
+  </section>
+  <section xml:id="les-06d-s7">
+    <title>Test met nog meer voorbeelden</title>
+    <p>In Computer Science Circles proberen we je programma intelligent en geautomatiseerd te testen om er zeker van te zijn dat je het probleem correct hebt opgelost. Maar in een echte programmeersituatie, is het aan jou om je programma zorgvuldig te testen. Hier volgen een paar nuttige tips om je programma te testen.</p>
+    <p><ul><li><p>Je kunt nagaan of <em>iedere regel van je programma</em> correct werkt. In het timbitprobleem zal bij gebruik van de invoer <c>10</c> worden getest of we goed omgaan met kleine dozen. Op dezelfde manier zullen we met invoer <c>20</c> en <c>40</c> testen of medium en grote dozen correct worden afgehandeld. Tot slot dien je na te gaan of enkelvoudige timbits juist worden afgehandeld (bv. met een invoer van <c>1</c>).</p><p><ul><li><p>Dit kan helpen om na te gaan of waarden zoals $3.39 en $1.99 correct zijn ingevoerd.</p></li></ul></p></li><li><p>Ga in ieder geval "grensgevallen" na, die je programma tot het uiterste dwingen. Zo is bijvoorbeeld de kleinste invoer bij dit programma <c>0</c>, omdat je niet een negatief aantal timbits kunt hebben. Ons programma heeft geen grootste invoer, maar je zou waarden kunnen proberen zoals <c>39</c> en <c>41</c> die dicht bij de grens liggen om slechts één grote doos te kopen.</p><p><ul><li><p>Dit kan helpen om na te gaan dat je niet per ongeluk <c>&gt;</c> hebt ingetypt in plaats van <c>&gt;=</c>.</p></li></ul></p></li><li><p>In sommige gevallen kun je automatisch <em>elke</em> invoer testen, of een groot aantal <em>willekeurige</em> invoerwaarden om na te gaan of je programma correct werkt. We gebruiken bij CS Circles vaak willekeurig gekozen invoer bij het testen. Gebruik je <c>import random</c> bij het begin van je programma, dan zal met <c>random.randint(10, 100)</c> een willekeurig geheel getal tussen <c>10</c> en <c>100</c> worden gegenereerd.</p></li></ul></p>
+    <p>Kun je beide fouten opsporen en alle testen doorstaan? Probeer het!</p>
+    <exercise label="oef-6d-timbits">
+      <title>Timbits</title>
+      <statement>
+        <p>Verbeter de fouten en doorsta alle testen!</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-6d-timbits-code">
+        <code>
+timbitsLeft = int(input()) # step 1: get the input
+totalCost = 0              # step 2: initialize the total cost
+
+# step 3: buy as many large boxes as you can
+bigBoxes = int(timbitsLeft / 40)
+totalCost = totalCost + bigBoxes * 6.19    # update the total price
+timbitsLeft = timbitsLeft - 40 * bigBoxes  # calculate timbits still needed
+
+if timbitsLeft &gt;= 20:                # step 4, can we buy a medium box?
+    totalCost = totalCost + 3.39
+    timbitsLeft = timbitsLeft - 20
+if timbitsLeft &gt;= 10:                # step 5, can we buy a small box?
+    totalCost = totalCost + 1.99
+    timbitsLeft = timbitsLeft - 20
+
+totalCost = totalCost + timbitsLeft * 20 # step 6
+print(totalCost)                         # step 7
+</code>
+        <tests>
+# Verborgen tests voor 6d.timbits (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'timbitsLeft = int(input()) # step 1: get the input\ntotalCost = 0              # step 2: initialize the total cost\n\n# step 3: buy as many large boxes as you can\nbigBoxes = int(timbitsLeft / 40)\ntotalCost = totalCost + bigBoxes * 6.19    # update the total price\ntimbitsLeft = timbitsLeft - 40 * bigBoxes  # calculate timbits still needed\n\nif timbitsLeft &gt;= 20:                # step 4, can we buy a medium box?\n    totalCost = totalCost + 3.39\n    timbitsLeft = timbitsLeft - 20\nif timbitsLeft &gt;= 10:                # step 5, can we buy a small box?\n    totalCost = totalCost + 1.99\n    timbitsLeft = timbitsLeft - 10\n\ntotalCost = totalCost + timbitsLeft * 0.20 # step 6\nprint(totalCost)                         # step 7'
+_GEVALLEN = [{'invoer': ['45']}, {'invoer': ['4']}, {'invoer': ['10']}, {'invoer': ['15']}, {'invoer': ['20']}, {'invoer': ['35']}, {'invoer': ['39']}, {'invoer': ['40']}, {'invoer': ['456']}, {'invoer': ['0']}]
+_VERGELIJK = 'getallen'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <p>Nog steeds hongerig? Dan ben je klaar om verder te gaan met de volgende les!</p>
+    <assemblage>
+      <p>Terwijl je met 10 timbits een doos kunt vullen, maken 8 tim<url href="http://en.wikipedia.org/wiki/Bit" visual="en.wikipedia.org/wiki/Bit">bits</url> één tim<url href="http://en.wikipedia.org/wiki/Byte" visual="en.wikipedia.org/wiki/Byte">byte</url>. <url href="http://www.flickr.com/photos/thisisbrianfisher/3460673214/" visual="www.flickr.com/photos/thisisbrianfisher/3460673214"><em>Photo: thisisbrianfisher, flickr</em></url></p>
+      <image source="images/3460673214_0292a66ffa_n.jpg" width="46%"/>
+    </assemblage>
+  </section>
+</chapter>

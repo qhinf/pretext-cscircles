@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-14">
+  <title>14: Methoden</title>
+  <introduction>
+    <p>Tot zover hebben we een tweetal data structuren in Python laten zien: strings en lijsten. Elk ervan kent meerdere <em>methoden</em>, die een variant zijn op functies.</p>
+    <p>Zo is bijvoorbeeld <c>reverse()</c> een methode bij een lijst. Zoals de naam suggereert draait deze methode de lijst om. Zo wordt bijvoorbeeld het eerste element van de lijst de laatste en omgekeerd). Je roept een methode aan door de punt (<c>.</c>) structuur te gebruiken zoals bijvoorbeeld in:</p>
+    <p><c>«objectNaam».«methodeNaam»(«lijst met argumenten, mogelijk leeg»)</c></p>
+    <p>Ter vergelijking, de syntax die we eerder gezien hebben bij functies:</p>
+    <p><c>«functieNaam»(«lijst met argumenten, mogelijk leeg»)</c></p>
+    <p>Hier volgt een voorbeeld van een aanroep van de methode <c>reverse</c> die werkt op een lijst.</p>
+    <example>
+      <p>Een lijst omdraaien.</p>
+      <program interactive="activecode" language="python" label="les-14-vb-1">
+        <code>
+L = [1, 2, 3, 4, 5]
+L.reverse()
+print(L)
+</code>
+      </program>
+    </example>
+    <p>Een voorbeeld van een methode met een argument is <c>str.startswith</c>:</p>
+    <example>
+      <p>Een string methode.</p>
+      <program interactive="activecode" language="python" label="les-14-vb-2">
+        <code>
+print('piece of cake'.startswith('pie'))
+print('red'.startswith('blue'))
+</code>
+      </program>
+    </example>
+  </introduction>
+  <section xml:id="les-14-s1">
+    <title>Veel methoden.</title>
+    <introduction>
+      <p>Hieronder zullen we de meest voorkomende methoden voor strings en lijsten noemen. Het gaat hierbij om taken die je ook zelf wel kunt schrijven, maar het gebruik van standaard methoden heeft het voordeel dat het je programma makkelijker leesbaar maakt om te lezen en ook makkelijker om je programma aan te passen.</p>
+    </introduction>
+    <subsection xml:id="les-14-s1-ss1">
+      <title>Lijsten</title>
+      <p>De volgende methoden veranderen de lijst niet:<ul><li><p><c>list.index(X)</c>: zoekt <c>X</c> in de lijst. In het bijzonder geeft het een <c>i</c> terug zodanig dat <c>list[i]==X</c> terwijl het alle elementen doorzoekt. De kleinst mogelijke <c>i</c> wordt teruggegeven. Wanneer <c>X</c> niet voorkomt in de lijst wordt er een <c>ValueError</c> veroorzaakt.</p><program interactive="activecode" language="python" label="les-14-console-3"><code>
+L=[0, 1, 2]
+print(L.index(3))
+</code></program><p><ul><li><p><c>X in list</c> geeft <c>True</c> terug wanneer <c>X</c> een element van de lijst is, anders <c>False</c>. Door hiervan gebruik te maken wordt een <c>ValueError</c> vermeden. (Merk op dat <c>in</c> een operator is, geen methode.)</p></li></ul></p></li><li><p><c>list.count(X)</c>: geeft terug het aantal keren dat <c>X</c> voorkomt in de lijst</p></li></ul></p>
+      <example>
+        <p>Lijst methoden.</p>
+        <program interactive="activecode" language="python" label="les-14-vb-4">
+          <code>
+L = [3, 1, 4, 1, 5, 9]
+print(L.index(9))
+print(L[L.index(3)])
+print(L.count(1))
+</code>
+        </program>
+      </example>
+      <p>De volgende methoden passen de lijst aan:<ul><li><p><c>list.append(X)</c> voegt <c>X</c> toe aan het van de lijst</p></li><li><p><c>list.insert(i, X)</c> voegt <c>X</c> toe op positie <c>i</c></p></li><li><p><c>list.extend(L)</c> voegt een lijst <c>L</c> toe als elementen aan het eind van de lijst</p></li><li><p><c>list.remove(X)</c> verwijdert het eerste voorkomen van <c>X</c></p></li><li><p><c>list.pop(i)</c> verwijdert &amp; geeft terug <c>list[i]</c>, terwijl <c>list.pop()</c> verwijdert &amp; geeft terug het laatste element</p></li><li><p><c>del list[i]</c> verwijdert het <c>i</c>-de element van <c>list</c> (`merk op dat dit een "<c>del</c> statement" is, geen methode)</p></li><li><p><c>list.reverse()</c> keert de liist om</p></li><li><p><c>list.sort()</c> sorteert de lijst</p></li></ul></p>
+      <p>Alle methoden, behalve <c>pop</c> geven <c>None</c> terug. Sommige van deze functies kunnen ook worden aangeroepen met iets andere argumenten; voor een compleet overzicht bekijk je de sectie <url href="http://docs.python.org/py3k/library/stdtypes.html#mutable-sequence-types" visual="docs.python.org/py3k/library/stdtypes.html#mutable-sequence-types">lijst methoden</url> in de Python documentatie. Bij lijsten kunnen "slices" (sublijsten) worden ingevoegd en verwijderd, vergelijkbaar met de <c>string[x:y:z]</c> notatie die we in <xref ref="les-07a" text="custom">voorgaande lessen</xref> zijn tegengekomen.</p>
+      <exercise label="oef-14-replace">
+        <title>De vervangingen</title>
+        <statement>
+          <p>Gebruik <c>index</c> en andere lijst methoden om een functie <c>replace(list, X, Y)</c> te schrijven die alle <c>X-</c>en die voorkomen in <c>list</c> vervangt door <c>Y</c>. Bijvoorbeeld, wanneer <c>L = [3, 1, 4, 1, 5, 9]</c> dan zal <c>replace(L, 1, 7)</c> bovengenoemde lijst <c>L</c> omzetten in <c>[3, 7, 4, 7, 5, 9]</c>. Om deze oefening uitdagender te maken, <em>mag je <alert>geen</alert></em> <c>[]</c> gebruiken. Merk op dat je geen <c>return</c>. hoeft te gebruiken</p>
+        </statement>
+        <program interactive="activecode" language="python" label="oef-14-replace-code">
+          <preamble visible="no">
+L = [3, 1, 4, 1, 5, 9]
+</preamble>
+          <code>
+def replace(list, X, Y):
+</code>
+          <tests>
+# Verborgen tests voor 14.replace (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'def replace(list, X, Y):\n    while X in list:\n        i = list.index(X)\n        list.pop(i)\n        list.insert(i, Y)'
+_GEVALLEN = [{'voorcode': 'L = [3, 1, 4, 1, 5, 9]', 'aanroep': '(replace(L, 1, 7), L)'}, {'voorcode': 'L = [3, 1, 4, 1, 5, 9]', 'aanroep': '(replace(L, 2, 7), L)'}, {'voorcode': 'L = []', 'aanroep': '(replace(L, 1, 2), L)'}, {'voorcode': "L = ['a', 'b', 'a', 'a']", 'aanroep': "(replace(L, 'a', 'c'), L)"}, {'voorcode': 'L = [1, 1, 1]', 'aanroep': '(replace(L, 1, 0), L)'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = [('[', 'Je mag geen &lt;code&gt;[]&lt;/code&gt; gebruiken.')]
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+        </program>
+        <hint>
+          <p>Begin met</p>
+          <p><c>while list.count(X) &gt; 0:</c></p>
+          <p>of met</p>
+          <p><c>while X in list:</c></p>
+        </hint>
+      </exercise>
+    </subsection>
+  </section>
+  <section xml:id="les-14-s2">
+    <title>Strings</title>
+    <subsection xml:id="les-14-s2-ss0">
+      <title>Inleiding</title>
+      <p>Evenzo als bij lijsten, kun je <c>in</c>, <c>index</c> en <c>count</c> ook gebruiken bij strings. Ze zijn zelfs sterker, omdat ze ook met substrings werken en niet alleen voor individuele karakters werken:<ul><li><p><c>S in T</c> geeft een Boolean (True of False) wanneer string <c>S</c> een substring is van string <c>T</c></p></li><li><p><c>S.index(T)</c> geeft de eerste index van <c>S</c> waar de substring <c>T</c> begint</p></li><li><p><c>S.count(T)</c> geeft het aantal keren dat T niet overlappend voorkomt als substring van <c>S</c></p></li></ul></p>
+      <example>
+        <p><c>index</c> en <c>count</c> gebruiken bij strings.</p>
+        <program interactive="activecode" language="python" label="les-14-vb-5">
+          <code>
+print("marmalade".count("ma"))
+print("find a substring".index("substring"))
+print("key" in "monkey")
+</code>
+        </program>
+      </example>
+      <p>Hier volgen een paar nuttige <c>str</c> methoden:<ul><li><p>Over hoofdletters en kleine letters: <c>capitalize, lower, upper, islower, isupper</c></p></li><li><p>Karakters (letters, cijfers en tekens): <c>isalpha, isdigit</c></p></li><li><p>Uitlijnen: <c>center, ljust, rjust</c>; <c>strip</c> verwijdert het uitlijnen</p></li><li><p>Substrings: <c>endswith, startswith, find, replace</c></p></li><li><p>Parsing: <c>split, splitlines</c></p></li></ul></p>
+      <p>We zullen ze, wanneer nodig, meer in detail introduceren . Een complete gedetailleerde lijst met <url href="http://docs.python.org/py3k/library/stdtypes.html#string-methods" visual="docs.python.org/py3k/library/stdtypes.html#string-methods">string methoden</url> staat in de Python documentatie.</p>
+      <p><alert>Strings zijn onveranderbaar</alert>. We noemden reeds <c>list.reverse()</c> die de volgorde van een lijst verandert door het om te keren, maar er bestaat geen <c>str.reverse()</c> methode. Dat is vanwege het feit dat string objecten niet kunnen worden aangepast zodra ze gemaakt zijn. In les 17 zullen we er meer over vertellen.</p>
+      <p>Hier volgt een voorbeeld van een string methode: <c>S.replace(old, new)</c> dat een veranderde versie van <c>S</c> teruggeeft waarbij iedere substring van <c>old</c> is vervangen door <c>new</c>. Dit heeft een nieuwe string tot gevolg zonder dat de de oude wordt aangepast:</p>
+      <example>
+        <p>Voorbeeld: <c>replace</c> geeft een nieuwe string terug, maar verandert niet de oude.</p>
+        <program interactive="activecode" language="python" label="les-14-vb-6">
+          <code>
+name = 'Bob Jones'
+newName = name.replace('Bob', 'Robert')
+print(name)
+print(newName)
+</code>
+        </program>
+      </example>
+      <p>Bij de volgende oefening zijn de volgende methoden nuttig:<ul><li><p><c>str.replace</c>, die we zojuist hebben besproken</p></li><li><p>de Boolse methode <c>str.isalpha()</c> die <c>True</c> teruggeeft wanneer <c>str</c> een string (of karakter) is die alleen bestaat uit letters</p></li><li><p>de Boolse methode <c>str.isdigit()</c> die <c>True</c> teruggeeft wanneer <c>str</c> een string (of karakter) is die alleen bestaat uit cijfers</p></li><li><p><c>str.upper()</c> die een versie van <c>str</c> teruggeeft in hoofdletters.</p></li></ul></p>
+      <exercise label="oef-14-postal">
+        <title>Postcode in Canada</title>
+        <statement>
+          <p>Definieer een functie <c>postalValidate(S)</c> die eerst nagaat of <c>S</c> een <em>toegestane Canadese</em> postcode is:<ul><li><p>verwijder eerst alle spaties;</p></li><li><p>de rest moet van de vorm <c>L#L#L#</c> zijn waarbij <c>L</c> letters zijn ( kleine letters of hoofdletters) en <c>#</c> cijfers zijn.</p></li></ul></p>
+          <p>Wanneer <c>S</c> geen geen toegestane Canadese postcode is, geef je de Boolean <c>False</c> terug. Wanneer S dat wel is geef dan dezelfde postcode terug maar dan in een fraai format <c>L#L#L#</c> waarbij elke <c>L</c> een hoofdletter is.</p>
+        </statement>
+        <program interactive="activecode" language="python" label="oef-14-postal-code">
+          <code>
+
+</code>
+          <tests>
+# Verborgen tests voor 14.postal (gegenereerd door tools/harnas.py)
+_OPLOSSING = "def postalValidate(S):\n    S = S.replace(' ', '')\n    if len(S) != 6:\n        return False\n    for i in range(0, 6):\n        if i % 2 == 0 and not S[i].isalpha():\n            return False\n        if i % 2 == 1 and not S[i].isdigit():\n            return False\n    return S.upper()"
+_GEVALLEN = [{'aanroep': "postalValidate('N2L 3G1')"}, {'aanroep': "postalValidate('n2l3g1')"}, {'aanroep': "postalValidate(' n 2 l 3 g 1 ')"}, {'aanroep': "postalValidate('N2L 3G')"}, {'aanroep': "postalValidate('N2L 3G12')"}, {'aanroep': "postalValidate('22L 3G1')"}, {'aanroep': "postalValidate('NNL 3G1')"}, {'aanroep': "postalValidate('')"}, {'aanroep': "postalValidate('a1b2c3')"}, {'aanroep': "postalValidate('M5W-1E6')"}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+        </program>
+      </exercise>
+      <assemblage>
+        <p>De rest van deze les is wat technisch van aard en bevat geen vereiste voorkennis voor de rest van de lessen.</p>
+      </assemblage>
+    </subsection>
+    <subsection xml:id="les-14-s2-ss1">
+      <title>Meer over objecten</title>
+      <p>Wanneer je meer over Python leert, zul je nog meer soorten classes (klassen) tegenkomen dan strings en lijsten. Andere die je waarschijnlijk ook nuttig zult vinden zijn <em>file (bestand) objecten </em>, <em>sets (</em><em>verzamelingen)</em>, en <em>dictionaires</em>. Ze kennen allemaal vele nuttige methoden. Je kunt Python vragen naar alle methoden van een gegeven object door de <c>dir</c> functie te gebruiken:</p>
+      <example>
+        <p>De methoden van een <c>str</c>. Merk op dat <c>startswith</c> een van de methoden is.</p>
+        <program interactive="activecode" language="python" label="les-14-vb-7">
+          <code>
+myName = 'Jim'
+print(dir(myName))
+</code>
+        </program>
+      </example>
+      <p>Kijken naar de eigenschappen van een object wordt ook wel <em>introspection</em> (introspectie) genoemd. In Python kunnen allerlei objecten methoden hebben:</p>
+      <example>
+        <p>De members van <c>int</c>.</p>
+        <program interactive="activecode" language="python" label="les-14-vb-8">
+          <code>
+x = 42
+print(dir(x)) # includes 'bit_length' 
+print(x.bit_length()) # a method of int
+</code>
+        </program>
+      </example>
+      <p>Sommige elementen van <c>dir</c> zijn <em>member variabelen </em>in plaats van methoden, zo is bijvoorbeeld <c>int.denominator</c> een getal en geen functie. Technisch gezien, zijn in Python functies objecten, en zijn member functies speciale gevallen van member variabelen.</p>
+      <program interactive="activecode" language="python" label="les-14-console-9">
+        <code>
+def f(): return 42
+g = f
+print(g())
+print(type(f))
+</code>
+      </program>
+      <p>Je kunt ook introspectie toepassen op modules. Wanneer je <c>import math</c> (math importeert) en daarna <c>dir(math)</c> uitvoert, krijg je een lijst met alles uit de <c>math</c> module, inclusief het getal <c>pi</c> en de functie <c>sqrt</c>.</p>
+    </subsection>
+    <subsection xml:id="les-14-s2-ss2">
+      <title>Waarom objecten?</title>
+      <p>Waarom hebben we methoden zoals <c>S.index(T)</c> in plaats van een eenvoudige functieaanroep <c>index(S, T)</c>? Of anders gezegd waarom willen we überhaupt een <em>object</em> <c>S</c> en de <em>methode</em> <c>str.index()</c>?</p>
+      <p>De belangrijkste voordelen van objecten worden duidelijker naar mate je meer complexe en gevarieerde datatypen gebruikt bij het programmeren. Elk type object (bijv. de <c>str</c> <em>class</em>) representeert zowel de onderliggende data die wordt opgeslagen (bijv. een rij karakters en zijn lengte) als het type operaties die er op kunnen worden uitgevoerd (bijv., het omzetten naar hoofdletters of het produceren van een substring). Een meer complex voorbeeld vormen de <em>file objecten</em>: ze representeren de naam van de file die kan worden geopend, de huidige positie in de file, en methoden om er in te schrijven en er uit te lezen. Je kunt zelfs je eigen datatypen definiëren!</p>
+      <p>Deze algemene aanpak wordt ook wel "object-oriented programming" (OOP) genoemd. Enige voordelen zijn:<ul><li><p><alert>organisatie</alert>: Alles uit de <c>math</c> module kan worden gebruikt door middel van de <c>math.«name»</c> syntax, waarmee wordt vermeden dat bestaande variabelen in je programma worden overschreven.</p></li><li><p><alert><alert>encapsulation</alert>:</alert> Zoals een programma tegelijkertijd kan werken met verschillende strings en files, kun je werken met vele verschillende kopieën (<em>instances</em>) van het data type gedefinieerd door een andere element uit een class.</p></li><li><p><alert>hergebruik</alert>: Wanneer je eenmaal een data type (zoals <c>str</c>) of een bibliotheek met methode (zoals <c>math</c>) hebt, kun je het keer op keer gebruiken, of het delen met andere mensen.</p></li><li><p><alert>debugging</alert>: Eerder zagen we dat door een functie te schrijven het hebben van vele kopieën van gelijksoortige code overbodig maakt, waardoor het debuggen gemakkelijker wordt. Functies verzamelen die samenhangen met een data type op een enkele plaats (de class definitie heeft hetzelfde effect.</p></li><li><p><alert>relaties tussen classes</alert>: Python weet dat de <c>index</c> methode het een kan betekenen voor een string maar iets anders voor lijst. Evenzo, kan Python niet alleen files lezen en schrijven op je computer, maar het kan ook data lezen en schrijven van het Internet. In beide gevallen (karakters of lijst elementen, en lokale files of die op afstand) de classes die er mee samenhangen kunnen op dezelfde manier worden gebruikt waarbij het concept <em>overerving (inheritance)</em> optreedt.</p></li></ul></p>
+      <p>In de rest van de CS Circles lessen zulllen we alleen maar objecten en methoden <em>gebruiken</em>; je kunt later meer leren over het zelf maken van classes (kijk op de Resources pagina).</p>
+      <p>De volgende drie lessen kunnen in een willekeurige volgorde worden doorgewerkt. Ze vormen een scala aan uitdagingen waarin onderwerpen uit vroegere lessen gecombineerd aan de orde zullen komen.</p>
+    </subsection>
+  </section>
+</chapter>

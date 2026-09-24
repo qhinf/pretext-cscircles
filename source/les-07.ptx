@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-07">
+  <title>7: De editor</title>
+  <p>In de rest van de lessen kun je een editor met "veel extra's" gebruiken. Je kunt de editor nader bekijken in het schermpje hieronder.</p>
+  <example>
+    <title>Rich Editor Demo</title>
+    <p>Probeer de "rich editor" uit.</p>
+    <program interactive="activecode" language="python" label="les-07-vb-1">
+      <code>
+info = "The rich editor does syntax highlighting"
+# It resizes automatically. Drag the bottom border for manual size.
+cool = True
+for i in range(0, max(3, 1+2*3-4)):
+   print('It also colours matching parentheses as you type')
+</code>
+    </program>
+  </example>
+  <p>Je kunt de editor gebruiken voor versturen, bewaren en inlezen, zoals te doen gebruikelijk.</p>
+  <assemblage>
+    <p>De "editor met veel extra's" wordt in alle volgende lessen gebruikt.</p>
+  </assemblage>
+  <p>Deze les bestaat uit drie sub-lessen, die in elke gewenste volgorde kunnen worden doorgewerkt. Kies er maar één uit:<ol><li><p><xref ref="les-07a" text="custom">Strings (stukjes tekst) en tekens (letters en cijfers).</xref></p></li><li><p><xref ref="les-07b" text="custom">Reken operatoren (*, +, -, /), haakjes en het importeren van methoden uit de <c>math</c> (wiskunde) module.</xref></p></li><li><p><xref ref="les-07c" text="custom">Maken van "<c>while</c>" en "<c>for</c>" lussen en een manier om de voortgang van een programma, door middel van "<c>break</c>" en "<c>continue</c>", te beinvloeden.</xref></p></li></ol></p>
+</chapter>

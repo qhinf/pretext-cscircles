@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-00">
+  <title>0: Hallo!</title>
+  <introduction>
+    <p><em>Ben je hier voor het eerst? Lees dan de instructies over deze website. Je kunt ook hier klikken om een account aan te maken of in te loggen.</em></p>
+    <p>Via de lessen op deze website leer je programmeren. Dat is een erg nuttige vaardigheid: als programmeur kun je processen automatiseren, kunst en muziek maken, enquêtes uitvoeren en analyseren, websites op maat maken, games schrijven, mensen met elkaar in contact brengen, en ga zo maar door...</p>
+    <p>Een <em>computerprogramma</em> is een rij opdrachten, bestaande uit woorden, getallen en symbolen. Net zoals je bij een zin die je uitspreekt, gebruik maakt van een taal, zoals Nederlands, Engels of Frans, zo is ieder computerprogramma geschreven in een <em>programmeertaal</em>. Populaire programmeertalen zijn <alert>Python</alert> (die we in deze lessen leren), C++, JavaScript en PHP. We hebben voor Python gekozen omdat het enerzijds eenvoudig genoeg is voor beginners en anderzijds krachtig genoeg om te worden gebruikt voor moderne toepassingen.</p>
+    <p>In alle programmeertalen komen dezelfde principes aan bod. Dat betekent dat als je één programmeertaal beheerst, je een andere veel sneller zult kunnen leren.</p>
+    <p>Hier komt de eerste regel in <alert>Python</alert> uit onze lessen.</p>
+    <example>
+      <p>Dit is een voorbeeld van een <alert>Python</alert>-programma. Druk op de knop <alert>Uitvoeren</alert> om te zien wat het programma doet.</p>
+      <program interactive="activecode" language="python" label="les-00-vb-1">
+        <code>
+print("Hello, World!")
+</code>
+      </program>
+    </example>
+    <p>Wanneer je een programma uitvoert, krijg je ook de <em>uitvoer</em> (Eng.: <em>output</em>) van het programma te zien. Het voorbeeldprogramma hierboven bestaat maar uit één opdracht, <c>print("Hello, World!")</c> en het genereert één regel uitvoer:</p>
+    <pre>
+Hello, World!
+</pre>
+    <p>Hier volgt een analyse van het programma:<ul><li><p><c>print</c> (Engels voor <em>afdrukken</em>) is de naam van een Python-opdracht, die boodschappen naar de uitvoer stuurt.</p></li><li><p>De haakjes <c>()</c> na de <c>print</c>-opdracht staan om de inhoud heen die je wilt afdrukken.</p></li><li><p>De aanhalingstekens <c>" "</c> worden gebruikt om het begin en einde van de tekst <c>Hello, World!</c> aan te geven. Zonder aanhalingstekens zou Python denken dat <c>Hello</c> als een opdracht bedoeld was. En dat zou als fout worden aangeduid omdat zo’n opdracht niet bestaat in Python.</p></li></ul></p>
+    <p>Je zult doorheen deze lessen meer leren over de verschillende elementen van een Python-programma.</p>
+    <p>Laten we eens kijken wat er precies gebeurt wanneer we de aanhalingstekens weglaten.</p>
+    <example>
+      <p>Dit Python-programma zal een foutmelding opleveren. Druk op de knop <alert>Uitvoeren</alert>.</p>
+      <program interactive="activecode" language="python" label="les-00-vb-2">
+        <code>
+print(Hello, World)
+</code>
+      </program>
+    </example>
+    <p>Hier <em>crasht</em> het programma: het Python-systeem komt een situatie tegen waarin het de uitvoering van het programma niet met succes kan verderzetten (hier komt het de onbekende naam <c>Hello</c> tegen), en beëindigt de uitvoering met een foutmelding.</p>
+  </introduction>
+  <section xml:id="les-00-s1">
+    <title>Oefening</title>
+    <p>Onze eerste oefening staat hieronder. Je wordt gevraagd een soortgelijk programma te schrijven als hierboven. Typ je programma in het vak; wanneer je wilt testen of je programma de taak correct uitvoert, druk dan op de knop <alert>Uitvoeren</alert>. Als je het de eerste keer niet correct krijgt, verbeter dan het programma en probeer het opnieuw uit te voeren.</p>
+    <exercise label="oef-0-hallo">
+      <title>Hallo iedereen!</title>
+      <statement>
+        <p>Schrijf een programma dat als uitvoer heeft:</p>
+        <pre>
+Hallo iedereen!
+</pre>
+        <p>(Hint: als je er niet uit komt, kopieer dan ons eerste programma hierboven en pas het aan.)</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-0-hallo-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 0.hallo (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'print("Hallo iedereen!")'
+_GEVALLEN = [{}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Het eerste programma was</p>
+        <pre>
+print("Hello, World!")
+</pre>
+      </hint>
+    </exercise>
+    <p><em>Tip: je kunt het programmeer-vak vergroten door de onderste rand ervan te verslepen.</em></p>
+    <p>Wanneer je een account hebt aangemaakt en bent ingelogd,</p>
+    <p><ul><li><p>zullen we elke versie van je programma bewaren dat je uitvoert;</p></li><li><p>toont <alert>Geschiedenis</alert> alle versies die je tot nu toe hebt ingestuurd;</p></li><li><p>en wanneer je opnieuw onze website bezoekt verschijnt de meest recente versie in het programmeer-vak.</p></li></ul></p>
+    <p>Zodra je een oefening zoals deze correct hebt zal je een vinkje  zien verschijnen. Wanneer je ingelogd bent, zal de Computer Science Circles-website onthouden welke oefeningen je hebt afgewerkt.</p>
+    <assemblage>
+      <p>In deze lessen leren we <alert>Python version 3</alert>. Hoewel onze lessen geheel op zichzelf staan, zul je, wanneer je online gaat zoeken naar informatie over Python, merken dat ook <alert>Python version 2</alert> vaak wordt gebruikt. Maar let op: <alert>Python version 2</alert> verschilt van <alert>Python version 3</alert>. Je kunt beide versies niet door elkaar gebruiken.</p>
+    </assemblage>
+    <p>Wanneer je naar de volgende les wilt gaan klik je op de knop: <alert>Volgende</alert>.</p>
+  </section>
+</chapter>

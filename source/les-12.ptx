@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-12">
+  <title>12: Tips</title>
+  <introduction>
+    <p>Deze les bevat een aantal weetjes over Python die niet aan bod zijn gekomen in de voorgaande lessen.</p>
+  </introduction>
+  <section xml:id="les-12-s1">
+    <title><c>print</c>-opties</title>
+    <p>De enige manier om uitvoer af te drukken die we tot nu toe gezien hebben is het gebruik van de functie <c>print()</c>, waarmee meerdere waarden kunnen worden afgedrukt, gescheiden door een spatie, en afgesloten met een regeleinde (waardoor verdere uitvoer op een nieuwe regel begint). In feite aanvaardt <c>print</c> een paar <em>sleutelwoordargumenten</em> (Eng.: <em>keyword arguments</em>) die het mogelijk maken dit gedrag aan te passen aan je behoeften.</p>
+    <p><ul><li><p><ul><li><p>Om een string <c>S</c> te gebruiken als scheiding tussen de waarden in plaats van een spatie: voeg het argument <c>sep = «S»</c> toe</p></li><li><p>Om een string <c>S</c> te gebruiken als afsluiting in plaats van een regeleinde: voeg het argument <c>end = «S»</c> toe</p></li></ul></p></li></ul></p>
+    <p>Deze taalvoorziening, <em>sleutelwoordargumenten</em>, is het gemakkelijkst te demonstreren met een paar voorbeelden.</p>
+    <example>
+      <p>Voorbeelden van <c>sep</c> en <c>end</c>. Kijk naar het effect van elke <c>print</c>-opdracht.</p>
+      <program interactive="activecode" language="python" label="les-12-vb-1">
+        <code>
+print('D', 'A', 'S', 'H', sep='-')
+print('De prijs is $', 12*5, sep='')
+print('Deze twee regels', end='')
+print(' zullen op een regel verschijnen.')
+print('Mooi', end='!')
+</code>
+      </program>
+    </example>
+    <p>De sleutelwoordargumenten moeten aan het einde van de lijst met argumenten worden toegevoegd; anders zal een fout optreden. Wanneer je ze beide gebruikt kunnen ze in willekeurige volgorde worden opgegeven.</p>
+    <program interactive="activecode" language="python" label="les-12-console-2">
+      <code>
+print(end='', 5)
+</code>
+    </program>
+    <exercise label="oef-12-alphabet">
+      <title>Alfabet-aerobics</title>
+      <statement>
+        <p>Debug het volgende programma, door gebruik te maken van hetgeen we zojuist geleerd hebben, zodanig dat het alfabet in hoofdletters <em>op één regel</em> wordt afgedrukt.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-12-alphabet-code">
+        <code>
+for c in range(0, 26):
+ print(chr(ord('A')+c))
+</code>
+        <tests>
+# Verborgen tests voor 12.alphabet (gegenereerd door tools/harnas.py)
+_OPLOSSING = "for c in range(0, 26):\n print(chr(ord('A')+c), end='')"
+_GEVALLEN = [{}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+  </section>
+  <section xml:id="les-12-s2">
+    <title>Namen die zijn toegestaan voor variabelen en functies</title>
+    <p><ul><li><p>Namen kunnen bestaan uit letters, getallen en het underscore (<c>_</c>)-teken</p></li><li><p>Het eerste teken van een naam moet een letter zijn.</p></li><li><p>Python maakt onderscheid tussen hoofdletters en kleine letters.</p></li></ul></p>
+    <p>Zo is <c>my_3rd_int</c> een naam die is toegestaan, maar <c>3rd_int</c> is dat niet.</p>
+    <example>
+      <p>Een voorbeeld over onderscheid tussen hoofdletters en kleine letters.</p>
+      <program interactive="activecode" language="python" label="les-12-vb-3">
+        <code>
+greaterOde = "Truth is beauty, beauty truth"
+greatErode = "Wind erosion"
+print(greaterOde) # still poetry
+</code>
+      </program>
+    </example>
+  </section>
+  <section xml:id="les-12-s3">
+    <title>Aflopende <c>for</c>-lussen &amp; andere</title>
+    <p>Herinner je je nog hoe we lieten zien hoe <c>for</c>-lussen getallen kunnen doorlopen in opklimmende volgorde?</p>
+    <example>
+      <p>Een <c>for</c>-lus</p>
+      <program interactive="activecode" language="python" label="les-12-vb-4">
+        <code>
+for i in range(0, 5):
+ print(i)
+</code>
+      </program>
+    </example>
+    <p>Vaak is het nodig om een <c>for</c>-lus te schrijven die getallen doorloopt in <em>dalende</em> volgorde (van het grootste naar het kleinste). Om dat te kunnen doen gebruiken we <c>range</c> met een derde argument met de naam <em>stap</em>:</p>
+    <example>
+      <p>Negatieve stap bij <c>range</c></p>
+      <program interactive="activecode" language="python" label="les-12-vb-5">
+        <code>
+for i in range(5, 1, -1):
+ print(i)
+</code>
+      </program>
+    </example>
+    <p>Wanneer je even nadenkt, zul je kunnen vaststellen dat <c>range(0, 5)</c> hetzelfde is als <c>range(0, 5, 1)</c>: de <em>verstek- ophoging </em>is 1. Denk eraan dat <c>range(start, stop, step)</c> al stopt, een stap vóórdat <c>stop</c> bereikt wordt. Voor nog meer informatie, zie de <url href="http://docs.python.org/py3k/library/functions.html#range" visual="docs.python.org/py3k/library/functions.html#range">Python</url>-handleiding.</p>
+    <exercise label="oef-12-sevens">
+      <title>Lucky Sevens</title>
+      <statement>
+        <p>Schrijf een programma waarbij je een <c>for</c>-lus gebruikt met stapgrootte 10, om alle getallen met 2 cijfers af te drukken die eindigen op een 7, in oplopende volgorde.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-12-sevens-code">
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 12.sevens (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'for getal in range(17, 100, 10):\n    print(getal)'
+_GEVALLEN = [{}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = [('for', 'Gebruik een &lt;code&gt;for&lt;/code&gt;-lus.')]
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <p>Op dezelfde manier kun je <c>string[x:y:-1]</c> gebruiken om een deel van een string om te draaien.</p>
+    <example>
+      <p>Negatieve stap bij substrings</p>
+      <program interactive="activecode" language="python" label="les-12-vb-6">
+        <code>
+stringVoorbeeld='abcdef'
+stringVoorbeeld=stringVoorbeeld[4:1:-1]
+print(stringVoorbeeld)
+</code>
+      </program>
+    </example>
+    <p>Zo geeft <c>string[x:y:2]</c> een substring van <em>string</em> met de tekens op positie <c>x, x+2, x+4, ...</c></p>
+    <p>Bij een <c>for</c>-lus is er een andere manier om een aflopende volgorde te realiseren: <c>reversed(range(x, y))</c>. De lus gaat dan van <c>y-1</c> tot <c>x</c> in afnemende volgorde.</p>
+  </section>
+  <section xml:id="les-12-s4">
+    <title>Minder code schrijven</title>
+    <introduction>
+      <p>Python kent verschillende manieren om de hoeveelheid code te verminderen; we laten er hier een paar zien:</p>
+      <assemblage>
+        <p>Op deze website zullen we er niet altijd gebruik van maken, omdat daardoor het programma soms moeilijker leesbaar wordt.</p>
+      </assemblage>
+    </introduction>
+    <subsection xml:id="les-12-s4-ss1">
+      <title>Toekenningsopdrachten</title>
+      <p>In Python kan je schrijven "<c>x += 1</c>"; dat betekent "voeg 1 toe aan <c>x</c>". Het is een verkorte schrijfwijze voor "<c>x = x + 1</c>" zoals we hieronder zullen laten zien:</p>
+      <example>
+        <p>Voorbeelden van <c>+=</c>, <c>-=</c>, <c>*=</c>, <c>/=</c></p>
+        <program interactive="activecode" language="python" label="les-12-vb-7">
+          <code>
+x = 8
+x += 2
+print(x)
+x -= 1
+print(x)
+x /= 3
+print(x)
+x *= 10
+print(x)
+</code>
+        </program>
+      </example>
+      <p>Op dezelfde manier bestaan er operatoren voor geheeltallige deling (<c>//=</c>), modulo (<c>%=</c>), en machtsverheffen (<c>**=</c>).</p>
+    </subsection>
+    <subsection xml:id="les-12-s4-ss2">
+      <title>Een lichaam op dezelfde regel (Eng.: <em>inline blocks</em>)</title>
+      <p>We hebben een aantal opdrachten gezien die worden gevolgd door een ingesprongen "lichaam" met code: <c>for</c>, <c>if</c>, <c>else</c>, <c>elif</c>, <c>while</c>, en <c>def</c>, bijvoorbeeld:</p>
+      <pre>
+if x==y:
+  «lichaam» #ingesprongen, meerdere regels
+</pre>
+      <p>In het speciale geval dat een <c>«lichaam»</c> maar één regel bevat kun je dat in Python ook als volgt schrijven:</p>
+      <pre>
+if x==y: «lichaam» # enkele regel
+</pre>
+      <p>Hier volgt een voorbeeld:</p>
+      <example>
+        <p>Opdracht met lichaam op één regel</p>
+        <program interactive="activecode" language="python" label="les-12-vb-8">
+          <code>
+def square(x): return x*x
+for i in range(0, 6): print(square(i))
+</code>
+        </program>
+      </example>
+      <p>Dit is echter wel beperkt: een samengesteld lichaam met een dubbele punt erin (<c>if</c>, <c>for</c>, etc.) kan niet worden gebruikt als een <em>inline block</em>. Bijvoorbeeld <c>if 2&gt;1: if 4&gt;3: print()</c> geeft een syntax error.</p>
+      <program interactive="activecode" language="python" label="les-12-console-9">
+        <code>
+if 2&amp;gt;1: if 4&amp;gt;3: print()
+</code>
+      </program>
+    </subsection>
+    <subsection xml:id="les-12-s4-ss3">
+      <title>Gelijktijdige toekenningen</title>
+      <p>Python staat je toe meerdere toekenningen tegelijk te doen op één regel:</p>
+      <example>
+        <p>Gelijktijdige toekenningen</p>
+        <program interactive="activecode" language="python" label="les-12-vb-10">
+          <code>
+x, y = 3, 4
+print('x =', x, 'and y =', y)
+</code>
+        </program>
+      </example>
+      <p>Merk op dat dit je in staat stelt om de <xref ref="les-01" text="custom">verwissel-opgave</xref> met een programma van 1 regel op te lossen!</p>
+    </subsection>
+    <subsection xml:id="les-12-s4-ss4">
+      <title>Vergelijkingen Rijgen</title>
+      <p>Python staat je ook toe om meerdere vergelijkingen te combineren:</p>
+      <example>
+        <p>Vergelijkingen rijgen</p>
+        <program interactive="activecode" language="python" label="les-12-vb-11">
+          <code>
+age = int(input())
+if 12 &lt; age &lt; 20: # hetzelfde als (12 &lt; age) and (age &lt; 20) 
+ print('You are a teenager!')
+</code>
+        </program>
+      </example>
+      <p>Elke keten <c>v1 c1 v2 c2 v3 ...</c> waar alle <c>v</c> waarden zijn en alle <c>c</c> vergelijkinsoperatoren, wordt hetzelfde behandeld als <c>(v1 c1 v2) and (v2 c2 v3) and ...</c></p>
+    </subsection>
+    <subsection xml:id="les-12-s4-ss5">
+      <title>Standaardwaarden voor <c>[:]</c> en <c>range()</c></title>
+      <p>Je kan de start- en/of eindwaarden ook weglaten wanneer je de substring-operator <c>[:]</c> gebruikt. (Dit geldt ook voor lijsten, zoals we in de volgende les zullen zien.) De standaardwaarde van de eerste index is <c>0</c> (het begin van de string) en de standaardwaarde van de laatste index is de lengte van de string. Op dezelfde manier is <c>range(n)</c> een afkorting voor <c>range(0, n)</c>.</p>
+      <example>
+        <p>Gebruik maken van de standaardwaarde van <c>[:]</c> en <c>range()</c></p>
+        <program interactive="activecode" language="python" label="les-12-vb-12">
+          <code>
+S = "Toronto"
+print(S[3:])                  # rechtersubstring, "onto"
+print(S[:2])                  # linker substring, "To"
+for i in range(5): print(i*i) # prints 0, 1, .. 16
+</code>
+        </program>
+      </example>
+      <p><alert><c>None</c></alert></p>
+      <p>Sommige functies geven een waarde terug als hun belangrijkste effect, zoals <c>abs(x)</c>, maar andere functies die belangrijker zijn vanwege hun neveneffecten, zoals <c>print()</c>, geven de verstekwaarde (Eng.: <em>default value</em>) <c>None</c> terug:</p>
+      <example>
+        <p>Het resultaat van <c>print</c></p>
+        <program interactive="activecode" language="python" label="les-12-vb-13">
+          <code>
+result = print('Anything works here')
+print(result)
+def forgotToReturn(x):
+ x*x
+print(forgotToReturn(5))
+</code>
+        </program>
+      </example>
+      <p>We gebruiken <c>None</c> als een speciale waarde in Python wanneer er geen andere waarde geschikt is. Als je type(None) uitvoert zie je dat <c>None</c> zelfs z'n eigen type heeft: <c>NoneType</c>. Laten we ook gelijk even bekijken wat het type van een type is:</p>
+      <program interactive="activecode" language="python" label="les-12-console-14">
+        <code>
+print(type(None))
+</code>
+      </program>
+      <example>
+        <p>Het type van een type</p>
+        <program interactive="activecode" language="python" label="les-12-vb-15">
+          <code>
+x = 23432
+print(x, type(x), type(type(x)), type(type(type(x))))
+</code>
+        </program>
+      </example>
+      <p>In de volgende opgave moet je de tussenresultaten achterhalen van een lange opdracht opgebouwd uit <c>type</c> en <c>print</c>.</p>
+      <exercise label="oef-12-ordering">
+        <title>One None</title>
+        <statement>
+          <p>De uitvoer van <c>print(type(print(type(type(print(print()))))))</c> bestaat uit 4 regels. Zet ze in de goede volgorde.</p>
+        </statement>
+        <blocks>
+          <block>
+            <p><em>«blank line»</em></p>
+          </block>
+          <block>
+            <p>None</p>
+          </block>
+          <block>
+            <p>&lt;class 'type'&gt;</p>
+          </block>
+          <block>
+            <p>&lt;class 'NoneType'&gt;</p>
+          </block>
+        </blocks>
+      </exercise>
+      <p>Laten we het hier maar even bij houden. Je kunt nu door naar de volgende les!</p>
+    </subsection>
+  </section>
+</chapter>

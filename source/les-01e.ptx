@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-01e">
+  <title>1E: Foutmeldingen</title>
+  <introduction>
+    <p>Wanneer je programmeert zul je regelmatig fouten (ook wel <em>errors</em> of <em>bugs</em> genaamd) maken. Het voorkomen, begrijpen, en herstellen van fouten is een belangrijk onderdeel van programmeren. Python zal zijn best doen om alles precies zo uit te voeren als je het vraagt, maar als Python niet begrijpt wat je vraagt, dan zal het programma niet uitgevoerd worden. Python zal dan proberen je enige informatie te geven over wat er mis ging, om je te helpen de fout te herstellen.  Hier volgen twee fouten in een Python-programma.</p>
+    <example>
+      <title>Een fout tegen de grammatica (syntax error)</title>
+      <program interactive="activecode" language="python" label="les-01e-vb-1">
+        <code>
+print "Hallo wereld"
+</code>
+      </program>
+    </example>
+    <p>In dit eerste voorbeeld vergaten we de haakjes te gebruiken die nodig zijn bij <c>print(...)</c>. Python begrijpt niet wat je vraagt te doen.</p>
+    <p>Hier is een tweede voorbeeld van een bug (fout) in Python.</p>
+    <example>
+      <title>Een runtime error</title>
+      <program interactive="activecode" language="python" label="les-01e-vb-2">
+        <code>
+print(test)
+</code>
+      </program>
+    </example>
+    <p>In het tweede voorbeeld zijn we vergeten de variabele <c>test</c> te definiëren. Python begrijpt wat je wilt, maar omdat <c>test</c> niet is gedefinieerd, treedt er een fout op.</p>
+    <p>Een <alert>syntax error</alert> (fout tegen de grammatica) treedt op wanneer Python niet begrijpt wat je wilt zeggen. Een <alert>runtime error</alert> treedt op wanneer Python begrijpt wat je wilt zeggen, maar vervolgens is Python niet in staat de opdracht uit te voeren.</p>
+    <p>In het Nederlands zou een <alert>syntax error (fout tegen de grammatica)</alert> bijvoorbeeld zijn:</p>
+    <p><em>De kachel kat hond aap.</em></p>
+    <p>Deze zin is grammaticaal onjuist. Er ontbreekt een <em>werkwoord </em>(actie). Het is niet te begrijpen wat er bedoeld wordt. <em>Syntax</em> betekent hetzelfde als <em>grammatica</em>.</p>
+    <p>In het Nederlands geeft de volgende zin een <alert>runtime error</alert>:</p>
+    <p><em>Eet de piano.</em></p>
+    <p>Grammaticaal is de zin correct — er is een werkwoord en een zelfstandig naamwoord op de juiste plaats — en het is duidelijk wat je moet doen. Maar, er is een probleem wanneer je zou beginnen met het eten van de piano (tenzij je een termiet bent).</p>
+    <p>Een derde soort fouten zijn de <alert>logische fouten</alert>: dat houdt in dat je programma wordt uitgevoerd zonder vast te lopen, maar niet het goede resultaat oplevert.  Een voorbeeld hiervan in het Nederlands is:  <em>Sluit aub de achterdeur zodat er geen muizen kunnen binnen komen.</em>  Dit zou een fout zijn tegen de logica als bijvoorbeeld de <em>voordeur</em> ook open staat, ook al heeft de opdracht zin en kun je de achterdeur sluiten. Maar het voldoet niet aan het doel de muizen buiten te houden, omdat ze nog steeds door de voordeur naar binnen kunnen komen.</p>
+  </introduction>
+  <section xml:id="les-01e-s1">
+    <title>Vaak voorkomende syntax errors in Python</title>
+    <p>Hier volgen enkele vaak voorkomende fouten tegen de grammatica van Python.</p>
+    <example>
+      <title>Syntax Error</title>
+      <program interactive="activecode" language="python" label="les-01e-vb-3">
+        <code>
+print(Hello, World!)
+</code>
+      </program>
+    </example>
+    <p>Python reageert met <c>SyntaxError: invalid syntax</c> en wijst met <c>^</c> naar het uitroepteken <c>!</c> . Het probleem is dat dit teken daar geen betekenis heeft in Python. De syntax error treedt niet op als we <c>print("Hello, World!")</c> intikken, want dankzij de aanhalingstekens begrijpt Python dat het uitroepteken deel is van de tekst <c>Hello, World!</c>.  Hier volgt een syntax error die nog meer kennis vraagt:</p>
+    <example>
+      <title>Syntax Error</title>
+      <program interactive="activecode" language="python" label="les-01e-vb-4">
+        <code>
+class = "Geavanceerde computerkennis voor beginners"
+</code>
+      </program>
+    </example>
+    <p>Het probleem is dat <c>class</c> een speciaal woord is in Python. Wanneer je <c>course</c> in plaats van class had geschreven zou dat in orde zijn geweest. Klik hier om de lijst met alle gereserveerde "woorden" in Python te bekijken.</p>
+    <p>Wanneer je aanhalingstekens gebruikt en het tweede vergeet, of wanneer je haakjes gebruikt en het tweede vergeet, zul je ook syntax errors krijgen.</p>
+    <example>
+      <title>Syntax Error</title>
+      <p>Het tweede aanhalingsteken ontbreekt</p>
+      <program interactive="activecode" language="python" label="les-01e-vb-5">
+        <code>
+name = "Jim
+</code>
+      </program>
+    </example>
+    <p><alert>EOL</alert> is hier de afkorting van <alert>E</alert>nd <alert>O</alert>f <alert>L</alert>ine: Python verwachtte meer, namelijk een <c>"</c>, voordat het het einde van de regel bereikte.</p>
+    <example>
+      <title>Syntax Error</title>
+      <p>Het haakje sluiten ontbreekt</p>
+      <program interactive="activecode" language="python" label="les-01e-vb-6">
+        <code>
+print(77
+</code>
+      </program>
+    </example>
+    <p><alert>EOF</alert> is de afkorting van <alert>E</alert>nd <alert>O</alert>f <alert>F</alert>ile: Python bleef zoeken naar <c>)</c>, maar het eind van het programma werd bereikt voordat het sluithaakje werd gevonden.</p>
+    <remark>
+      <title>hier</title>
+      <p>De lijst van alle gereserveerde woorden in Python 3 zijn: <c>False, None, True, and, as, assert, break, class, continue, def, del, elif, else, except, for, from, global, if, import, in, lambda, nonlocal, not, or, pass, raise, try, while, with, yield</c></p>
+    </remark>
+  </section>
+  <section xml:id="les-01e-s2">
+    <title>Runtime errors</title>
+    <p>Nu volgen een paar runtime errors. Python is in staat te begrijpen wat het programma zegt, maar komt in de problemen wanneer het de instructies probeert uit te voeren.</p>
+    <p><ul><li><p>gebruik van een ongedefinieerde variabele. Dit kan ook gebeuren wanneer je de hoofdletters of kleine letters niet precies gebruikt:</p><p>Een niet gedefinieerde variabele</p><program interactive="activecode" language="python" label="les-01e-vb-7"><code>
+callMe = "Misschien"
+print(callme)
+</code></program></li><li><p>delen door 0, hetgeen geen betekenis heeft in de wiskunde. (Waarom? Omdat 0 keer elk getal gelijk is aan 0. Er is geen waarde voor <em>X</em> te vinden zodanig dat 1 = <em>X</em> * 0, waaruit volgt dat 1/0 ongedefinieerd is.)</p><p>Delen door 0</p><program interactive="activecode" language="python" label="les-01e-vb-8"><code>
+print(1/0)
+</code></program></li><li><p>operatoren gebruiken met verkeerde types van data</p><p>Optellen van tekst en een getal</p><program interactive="activecode" language="python" label="les-01e-vb-9"><code>
+print("Je kunt niet tekst en een getal optellen" + 12)
+</code></program></li></ul></p>
+    <p>Je zult meer mogelijkheden ontdekken om fouten te produceren wanneer je meer over Python leert.</p>
+    <assemblage>
+      <p>Wat is, in technische zin, het verschil tussen syntax errors and runtime errors? Hier volgt een voorbeeld waarbij een runtime error wordt vergeleken met een syntax error. Kijk naar de uitvoer van elk van de programma's.</p>
+      <p><alert>Runtime error</alert></p>
+      <program interactive="activecode" language="python" label="les-01e-vb-10">
+        <code>
+print("Hier zie je tekst")
+print(1/0)
+</code>
+      </program>
+      <p><alert>Syntax Error</alert></p>
+      <program interactive="activecode" language="python" label="les-01e-vb-11">
+        <code>
+print("Hier zie je tekst")
+print(1*0
+</code>
+      </program>
+      <p>Het program met een runtime error gaf een uitvoer, maar die met een syntax ervoor niet. Dit komt doordat Python een programma in twee stappen uitvoert:<ol><li><p>Python gaat na of je programma de juiste syntax heeft. Dit om de structuur en de delen van het programma na te gaan.</p></li><li><p>Wanneer geen syntax errors worden aangetroffen in stap 1, wordt het programma uitgevoerd.</p></li></ol></p>
+      <p>Dus een programma met een syntax error zal helemaal niet worden uitgevoerd, terwijl een programma met een runtime error uitgevoerd zal worden totdat de fout plaatsvindt.</p>
+    </assemblage>
+  </section>
+  <section xml:id="les-01e-s3">
+    <title>Fouten tegen de logica</title>
+    <p>Je programma kan tot een einde komen zonder te crashen maar helaas niet het gewenste resultaat opleveren. Je wilt bijvoorbeeld het <em>gemiddelde</em> van twee getallen uitrekenen: het gemiddelde van <em>x</em> en <em>y</em> is gedefinieerd als</p>
+    <p><m>\displaystyle{\frac{x+y}{2}}</m></p>
+    <p>Waarom werkt dit programma niet zoals het hoort?</p>
+    <example>
+      <p>Dit berekent <em>niet </em>op correcte wijze het gemiddelde.</p>
+      <program interactive="activecode" language="python" label="les-01e-vb-12">
+        <code>
+x = 3
+y = 4
+gemiddelde = x + y / 2
+print(gemiddelde)
+</code>
+      </program>
+    </example>
+    <p>Het gemiddelde moet zijn</p>
+    <p><m>\displaystyle{\frac{x+y}{2}=\frac{3+4}{2}=\frac{7}{2}=3.5}</m></p>
+    <p>maar het programma drukt af <c>5.0</c>! Deze fout heeft te maken met de "volgorde van de operaties" bij rekenen. Wanneer je schrijft <c>x + y / 2</c>, dan heeft dat dezelfde betekenis als <m>x + (y / 2) = 3 + (4 / 2) = 3 + 2 = 5</m>. Om dit probleem op te lossen, moet de derde regel van je programma worden geschreven als <c>gemiddelde = (x + y) / 2</c>, hetgeen duidelijk maakt aan Python dat we echt de waarde <m>\frac{x+y}{2}</m> willen, waarbij we eerst willen optellen en dan pas delen.</p>
+    <p>Je loopt tegen logische fouten op omdat je het programma niet juist hebt <em>ontworpen</em>, of wanneer je een programma schrijft dat niet het ontwerp volgt (zoals bij het voorbeeld met het <c>gemiddelde</c>). Logische fouten zijn lastig op te sporen, zeker bij een langer programma, maar je zult betere programma's schrijven naarmate je meer ervaring krijgt. In les 6D zullen een aantal tips worden gegeven om logische fouten te voorkomen.</p>
+  </section>
+  <section xml:id="les-01e-s4">
+    <title>Oefeningen</title>
+    <p>Nu de les af is, volgen drie oefeningen waar je moet <em>debuggen</em> (de fouten in een programma verbeteren). Je kunt proberen de fouten te vinden voordat je het programma uitvoert, maar je kunt het programma ook eerst proberen uit te voeren om de reactie die Python geeft te gebruiken om na te gaan wat verbeterd moet worden.</p>
+    <assemblage>
+      <p>Ieder programma is al voor een groot gedeelte ingetypt. Je hoeft maar een paar tekens (letters/symbolen/getallen) te veranderen om het programma in orde te krijgen. <em>Het nakijkprogramma zal een oplossing dat teveel wijzigingen aanbrengt afwijzen.</em> Klik op <alert>Reset code to default</alert> wanneer je terug wilt gaan naar de beginsituatie.</p>
+    </assemblage>
+    <exercise label="oef-1e-product">
+      <title>Zomer</title>
+      <statement>
+        <p>Verbeter de syntax error in het volgende programma, zodanig dat de som van de getallen 1 t/m 10 wordt afgedrukt.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-1e-product-code">
+        <code>
+print(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 +)
+</code>
+        <tests>
+# Verborgen tests voor 1e.product (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'print(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10)'
+_GEVALLEN = [{}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <exercise label="oef-1e-joe">
+      <title>Hello Joe</title>
+      <statement>
+        <p>Verbeter de runtime error in het volgende programma, zodanig dat het <c>Hello</c> op de eerste regel afdrukt en <c>Joe</c> op de tweede regel. Je mag hoogstens twee tekens veranderen.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-1e-joe-code">
+        <code>
+print("Hello")
+username = Joe 
+print(username)
+</code>
+        <tests>
+# Verborgen tests voor 1e.joe (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'print("Hello")\nusername = "Joe"\nprint(username)'
+_GEVALLEN = [{}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 2
+_ORIGINEEL = 'print("Hello")\nusername = Joe \nprint(username)'
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+    </exercise>
+    <p>De laatste opgave is moeilijker dan de twee voorgaande. Wanneer je vast komt te zitten, kun je deze overslaan en naar de volgende les gaan. Je kunt altijd nakijken welke opgaven je hebt afgemaakt of overgeslagen door naar Mijn voortgang te gaan.</p>
+    <exercise label="oef-1e-growth">
+      <title>Groei</title>
+      <statement>
+        <p>Verbeter de logische fout in dit programma: de bedoeling ervan is de hoeveelheid mensen te berekenen van je dorp in de komende drie jaar, ervan uitgaande dat we beginnen met 1000 mensen in 2012, en dat het aantal mensen stijgt met 10% per jaar. Je mag hoogstens drie tekens veranderen.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-1e-growth-code">
+        <code>
+populationIn2012 = 1000
+populationIn2013 = populationIn2012 * 0.1
+populationIn2014 = populationIn2013 * 0.1
+populationIn2015 = populationIn2014 * 0.1
+</code>
+        <tests>
+# Verborgen tests voor 1e.growth (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'populationIn2012 = 1000\npopulationIn2013 = populationIn2012 * 1.1\npopulationIn2014 = populationIn2013 * 1.1\npopulationIn2015 = populationIn2014 * 1.1'
+_GEVALLEN = [{'aanroep': '(populationIn2013, populationIn2014, populationIn2015)'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 3
+_ORIGINEEL = 'populationIn2012 = 1000\npopulationIn2013 = populationIn2012 * 0.1\npopulationIn2014 = populationIn2013 * 0.1\npopulationIn2015 = populationIn2014 * 0.1'
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Dit is een lastige opgave. Denk om te beginnen aan één jaar. Wat is het aantal inwoners na 1 jaar met 10% vermeerdering? Het aantal <em>nieuwe</em> mensen is 10% van 1000 = 0.1 * 1000 = 100. Dus na één jaar zijn er in <alert>totaal</alert> (origineel + <em>nieuw</em>) = 1100. Maar het voorbeeldprogramma is onjuist zelfs al na het eerste jaar:</p>
+        <pre>
+populationIn2012 = 1000 
+populationIn2013 = populationIn2012 * 0.1 
+print(populationIn2013)
+</pre>
+        <p>drukt <c>100.0</c> af in plaats van het correcte <c>1100.0</c>. Zie je hoe je in de tweede regel één teken kunt aanpassen om als uitvoer 1100 (het totaal) in plaats van 100 te krijgen?</p>
+      </hint>
+    </exercise>
+    <p>Ga door met de volgende les, zodra je alle fouten (bugs) hebt verbeterd.</p>
+  </section>
+</chapter>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-11b">
+  <title>11B: De scope van een variabele</title>
+  <introduction>
+    <p><em>Les 11 kent drie delen A, B, C die in een willekeurige volgorde kunnen worden doorgewerkt.</em></p>
+    <p>In deze les leggen we het begrip <em>scope (geldigheidsgebied) van een variabele</em> uit. Het belangrijkste idee is, dat het mogelijk is om twee <em>verschillende</em> variabelen te hebben met <em>dezelfde</em> naam maar verschillende "scopes". Dit maakt het makkelijker om programma's te schrijven en te verbeteren, in het bijzonder grote programma's.</p>
+  </introduction>
+  <section xml:id="les-11b-s1">
+    <title>Een voorbeeld van een "scope" van een variabele</title>
+    <p>In dit voorbeeld is een deel van ons programma de volgende functie:</p>
+    <pre>
+def square(x):
+   value = x * x
+   return value
+</pre>
+    <p>Dit is de functie die het kwadraat van het getal <c>x</c> berekent; bijvoorbeeld: <c>square(5)</c> geeft <c>25</c> als resultaatwaarde. Veronderstel dat we <c>square</c> aanroepen vanuit een ander deel van het programma waarin een variabele <c>value</c> voor een ander doel wordt gebruikt:</p>
+    <pre>
+# hier begint het hoofdprogramma
+value = 17
+fivesquared = square(5)
+print(fivesquared, value)
+</pre>
+    <p>De vraag is wat er in dit scenario zal worden afgedrukt? Er zijn twee mogelijkheden, wanneer we niet weten hoe Python werkt:<ol><li><p>Een mogelijkheid is dat Python herkent dat de twee<c>value</c>-variabelen op de een of andere manier "gescheiden moeten worden". Dus, de aanroep van<c>square</c>zal 25 teruggeven, maar de waarde van<c>value</c>in het hoofdprogramma blijft 17, en we zien als uitvoer afgedrukt worden <c>25 </c><c>17</c>.</p></li><li><p>De andere mogelijkheid is dat bij het uitvoeren van <c>square</c>, het de bestaande waarde van <c>value</c> overschrijft met 25, en we als uitvoer krijgen <c>25 </c><c>25</c>.</p></li></ol></p>
+    <p>Laten we nagaan wat er daadwerkelijk gebeurt!</p>
+    <program interactive="codelens" language="python" label="les-11b-codelens-1">
+      <code>
+def square(x):
+   value = x * x
+   return value
+
+# het hoofdprogramma begint hier 
+value = 17 
+vijf_kwadraat = square(5) 
+print(vijf_kwadraat, value)
+</code>
+    </program>
+    <p>We zien dat het gedrag van Python overeenkomt met de beschrijving in mogelijkheid nr 1. Het zit zo: <em>wanneer je een functie aanroept, kun je geen variabelen wijzigen die buiten de functie zijn gedefinieerd.</em> In plaats daarvan zullen alle toekenningsopdrachten inwerken op een "lokale" variabele die enkel bestaat binnen de huidige functie-oproep. Meer bepaald: wanneer Python begint met een functie uit te voeren, maakt het een nieuw <em>frame</em> aan speciaal voor die uitvoering van die functie. Alle toekenningen die binnen die uitvoering gebeuren, komen terecht in dat frame. Het frame verdwijnt, en alle lokale variabelen gaan onherroepelijk verloren, wanneer de functie-uitvoering eindigt. De <alert>reden</alert> dat Python en de meeste andere talen werken met frames, is dat het daardoor veel gemakkelijker is grote programma's te schrijven met vele functies. In het bijzonder is het daardoor mogelijk een nieuwe functie te schrijven en daarin elke willekeurige variabelenaam te gebruiken (inclusief de gewone zoals <c>result,</c> <c>temp</c> en <c>i</c>) zelfs wanneer zij elders voor andere doelen worden gebruikt.</p>
+    <p>Kijk naar "Step 6 van 8" hierboven. Merk op dat er twee verschillende variabelen zijn met de naam <em>value</em>: één geassocieerd met de huidige uitvoering van functie <c>square</c>, en één daarbuiten (in het "globale" <em>frame</em>).</p>
+    <exercise label="oef-11b-inout">
+      <title>Erbinnen en erbuiten</title>
+      <statement>
+        <p>Wat is de uitvoer van het volgende programma?</p>
+        <pre>
+x = "erbuiten"
+def xReplace(value):
+   x = value
+xReplace("erbinnen")
+print(x)
+</pre>
+      </statement>
+      <choices randomize="yes">
+        <choice>
+          <statement>
+            <p>Het programma geeft een fout.</p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>erbinnen</p>
+          </statement>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>erbuiten</p>
+          </statement>
+          <feedback>
+            <p>Correct! De opdracht <c>x = value</c> verandert alleen de lokale versie van variabele <c>x</c> geassocieerd met de uitvoering van de functie. De globale <c>x</c> verandert niet (en de functie <c>xReplace</c> is dus nutteloos en verandert nooit iets).</p>
+          </feedback>
+        </choice>
+      </choices>
+    </exercise>
+    <p>Een vergelijkbaar concept als een <em>scope</em> is een <em>namespace;</em> een namespace is een soort scope voor een module. Dus als je een module importeert (zoals met bijvoorbeeld <c>import math</c>) overlapt een variabele gedefinieerd door die module (zoals <c>math.pi</c>) niet met een variabele <c>pi</c> in je eigen programma, omdat ze verschillende namespaces hebben. (Als je echter <c>import pi from math</c> gebruikt, zal wel een eigen globale variabele overschreven worden.)</p>
+  </section>
+  <section xml:id="les-11b-s2">
+    <title>Regels voor scopes: globaal en lokaal</title>
+    <p>Er zijn situaties waarin we variabelen van globale en lokale scope door elkaar willen gebruiken. Een voorbeeldje is als je een bepaalde variabele eenmalig een waarde wil geven aan het begin van het programma, maar je wil deze variabele nog wel gebruiken in de rest van je programma.</p>
+    <example>
+      <p>Een globale functie binnen een functie uitlezen</p>
+      <program interactive="activecode" language="python" label="les-11b-vb-2">
+        <code>
+favorietePizza='hawaii'
+def bestelPizzas(n):
+   print("Ik wil graag ", str(n), "pizza's", favorietePizza)
+bestelPizzas(3)
+</code>
+      </program>
+    </example>
+    <p>De lokale scope bevat hier geen variabele genaamd <c>favorietePizza</c>, <em>maar dit leidt niet tot een foutmelding</em>. Wanneer Python een variabele in de lokale scope niet kan vinden wordt gekeken of er in de globale scope wel een variabele met die naam bestaat. In dit geval wordt <c>favorietePizza</c> inderdaad in de globale scope gevonden.</p>
+    <assemblage>
+      <p>In de bovenstaande voorbeelden zijn <c>bestelPizzas</c> en <c>xReplace</c> syntactisch bijna helemaal identiek. Waarom maakt Python een lokale variabele <c>x</c> in <c>xReplace</c>, maar geen nieuwe <c>favorietePizza</c> in <c>bestelPizzas</c>? De regel in Python is als volgt: als je alleen leest uit de variabele wordt er geen nieuwe lokale variabele gemaakt; schrijf je echter ergens in de functie naar de variabele, dan wordt deze variabele in de hele functie als lokaal beschouwd. (Dit is de meest voorkomende oorzaak van de foutmelding <c>UnboundLocalError</c>: zie ook [<url href="http://docs.python.org/py3k/faq/programming.html#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value" visual="docs.python.org/py3k/faq/programming.html#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value">1</url>, <url href="http://docs.python.org/py3k/faq/programming.html#what-are-the-rules-for-local-and-global-variables-in-python" visual="docs.python.org/py3k/faq/programming.html#what-are-the-rules-for-local-and-global-variables-in-python">2</url>] in de officiële Python-documentatie.)</p>
+      <program interactive="activecode" language="python" label="les-11b-console-3">
+        <code>
+x = 1
+def f():
+   print(x)
+   x = 2
+f()
+</code>
+      </program>
+    </assemblage>
+    <p>Functie-argumenten worden <em>altijd</em> als lokale variabelen beschouwd:</p>
+    <program interactive="codelens" language="python" label="les-11b-codelens-4">
+      <code>
+def resetToZero(var):
+ var = 0
+g = 15
+resetToZero(g)
+print(g)
+</code>
+    </program>
+  </section>
+  <section xml:id="les-11b-s3">
+    <title>Het gebruik van <c>global</c></title>
+    <p>Zoals zo vaak werkt bovenstaande aanpak in 99% van de gevallen. Er zijn echter gevallen te bedenken waar je echt de waarde van een globale variabele wilt veranderen binnen een functie. Python stelt je in staat dit te doen door middel van de opdracht<c>global</c>. Hieronder staat een aangepaste versie van het eerdere <c>xReplace</c>-voorbeeld.</p>
+    <program interactive="codelens" language="python" label="les-11b-codelens-5">
+      <code>
+def xReplace(value):
+    global x
+    x = value
+
+x = "outer"
+xReplace("inner") 
+print(x)       # 'inner' now!
+</code>
+    </program>
+    <p>Zoals we eerder besproken vereist <em>lezen</em> van een variabele niet dat je <c>global</c> gebruikt; dit is alleen nodig als je wilt <em>schrijven</em>.</p>
+    <p>Je hebt deze les nu afgerond en kun je door naar de volgende.</p>
+  </section>
+</chapter>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-17">
+  <title>17: Is</title>
+  <introduction>
+    <p>In deze les leggen we meer in detail uit hoe lijsten in Python worden opgeslagen. Het kopiëren en vergelijken van lijsten kan onverwachte gevolgen hebben. We zullen uitleggen hoe Python intern werkt, waardoor je fouten kunt begrijpen en ze kunt vermijden. In het algemeen is het probleem dat meerdere verschillende variabelen kunnen verwijzen naar ( in het Engels "point to" of "refer to") dezelfde lijst. Aan het eind van de les beschrijven we de "<c>is</c>" operator die ons kan vertellen of twee variabelen <em>echt</em> naar dezelfde lijst verwijzen.</p>
+    <p><alert>Voorbeeld</alert></p>
+    <p>Laten we aannemen dat we een programma willen dat een lijst met lengte in inches met de naam <c>oldSize</c> naar een lijst met dezelfde lengte, genaamd <c>newSize</c>, in cm converteert. De meest voor de hand liggende manier is <c>newSize = oldSize</c> te gebruiken om een kopie te maken en de lijstelementen vervolgens één voor één langs te lopen en die omzetten:</p>
+    <pre>
+oldSize = ["letter", 8.5, 11]   # size of paper in inches
+newSize = oldSize               # make a copy
+newSize[1] = newSize[1]*2.54    # convert to cm
+newSize[2] = newSize[2]*2.54    # convert to cm
+</pre>
+    <p>Laten we eens kijken of dit werkt. Wanneer je <c>newSize</c> afdrukt dan zie je, zoals verwacht, <c>["letter", 21.59, 27.94]</c>. Maar er wacht ons een verrassing wanneer we <c>oldSize</c> printen: de waarden van <c>oldSize</c> zijn ook veranderd! Ter illustratie:</p>
+    <example>
+      <p>De tweede regel van de output is niet wat we hadden verwacht!</p>
+      <program interactive="activecode" language="python" label="les-17-vb-1">
+        <code>
+oldSize = ["letter", 8.5, 11]   # size of paper in inches
+newSize = oldSize               # make a copy?
+newSize[1] = newSize[1]*2.54    # convert to cm
+newSize[2] = newSize[2]*2.54    # convert to cm
+print(newSize)                  # as expected, prints ["letter", 21.59, 27.94]
+print(oldSize)                  # no longer holds ["letter", 8.5, 11]...
+</code>
+      </program>
+    </example>
+    <p>We zullen nu gedetailleerd, door middel van diagrammen, uitleg geven over wat er gebeurde. Het voornaamste probleem is dat <c>newSize = oldSize</c> niet echt de hele lijst kopieert: het kopieerde slechts een <em>verwijzing</em> (pijl) naar dezelfde lijst.</p>
+    <p><em>Klik op de schuiftitels om de tabs te openen en te sluiten.</em></p>
+    <remark>
+      <title>Geheugen</title>
+      <p>We zullen een tabel gebruiken om de variabelen en hun waarden in het geheugen van Python weer te geven. Na het uitvoeren van het programma</p>
+      <pre>
+city = "Moose Factory"
+population = 2458
+employer = city
+</pre>
+      <p>wordt in de tabel (met de zwarte rand) getoond hoe het geheugen van Python eruit ziet:  De naam van de eerste variabele is <c>city</c> en zijn waarde is de string <c>"Moose Factory"</c>. De naam van de tweede variabele is <c>population</c> en zijn waarde is het gehele getal <c>2458</c>. De naam van de derde variabele is <c>employer</c> en zijn waarde is de string <c>"Moose Factory"</c>.</p>
+      <image source="images/17-slide1.png" width="69%"/>
+    </remark>
+    <remark>
+      <title>Lijsten in het geheugen</title>
+      <p>Vervolgens laten we zien hoe een <em>lijst</em> er in het geheugen uit ziet. Neem als voorbeeld de programmaregel</p>
+      <pre>
+myList = ["Moose Factory", 2458]
+</pre>
+      <p>Dit zal één variabele aanmaken met de naam <c>myList</c>. Er wordt een lijst aangemaakt, en de waarde van <c>myList</c> is gelijk aan het "wijzen" of "verwijzen" naar die lijst. We representeren de lijst door gebruik te maken van een box, en de waarden van de elementen worden in de box getoond naast hun corresponderende indices. De lijst wordt in het blauw getoond.  De pijl laat zien dat <c>myList</c> verwijst naar deze nieuwe lijst. Het element met index 0 van de lijst is de string <c>"Moose Factory"</c>, en het element met index 1 is het gehele getal <c>2458</c>. Als je bijvoorbeeld <c>print(myList[1])</c> dan zal Python <c>2458</c> uitvoeren.</p>
+      <image source="images/17-slide2.png" width="100%"/>
+    </remark>
+    <remark>
+      <title>Een waarde in een lijst vervangen</title>
+      <p>Nu zullen we, ter illustratie, een extra regel toevoegen aan het vorige voorbeeld. Omdat er een baby is bijgekomen voeren we de volgende extra regels uit:</p>
+      <pre>
+myList = ["Moose Factory", 2458]
+myList[1] = myList[1]+1
+</pre>
+      <p>Python berekent <c>2458+1</c> en dat is gelijk aan <c>2459</c>. Dit wordt de waarde die op index 1 in de lijst staat. Na de update krijgen we het diagram zoals hieronder weergegeven.  (2458 is niet een deel van het geheugen van Python, we laten het zien om de verandering te benadrukken)</p>
+      <image source="images/17-slide3.png" width="100%"/>
+    </remark>
+    <remark>
+      <title><c>oldSize</c> en <c>newSize</c></title>
+      <p>Nu keren we terug naar het centrale voorbeeld. De eerste regel is</p>
+      <pre>
+oldSize = ["letter", 8.5, 11]
+</pre>
+      <p>en Pythons geheugen ziet er, nadat deze regel is uitgevoerd, uit als in het diagram beneden. We hebben een lijst van lengte 3 gemaakt.</p>
+      <image source="images/17-slide4.png" width="100%"/>
+    </remark>
+    <remark>
+      <title>Centrale probleem</title>
+      <p>In het programma is de tweede regel</p>
+      <pre>
+newSize = oldSize
+</pre>
+      <p>en hier komen we tot het belangrijkste punt: in de tweede regel maakt <alert><c>=</c> geen kopie van de lijst!</alert> Het maakte slechts een nieuwe verwijzing naar <alert>dezelfde</alert> lijst. Dit wordt geïllustreerd door de twee verschillende pijlen die naar exact <alert>dezelfde</alert> box verwijzen. Dit verschilt nogal van hoe getallen en strings worden gekopieerd (zoals in de eerste slide). Het diagram laat zien dat we twee variabelen hebben, die naar dezelfde lijst verwijzen.</p>
+      <image source="images/17-slide5.png" width="100%"/>
+    </remark>
+    <remark>
+      <title>Updaten</title>
+      <p>Wanneer vervolgens het programma bij de regel</p>
+      <pre>
+newSize[1] = newSize[1]*2.54
+</pre>
+      <p>komt, gaat Python naar <c>newSize</c>, naar de waarde met index 1 (8.5) en vermenigvuldigt dit met 2.54, en plaatst de waarde terug zoals te zien valt. Omdat <c>oldSize</c> naar dezelfde lijst verwijst wordt ook <c>oldSize</c> aangepast!  (Voor de duidelijkheid: 8.5 maakt geen deel uit van het geheugen van Python, maar we laten het zien om de verandering te benadrukken.)</p>
+      <image source="images/17-slide6.png" width="100%"/>
+    </remark>
+    <remark>
+      <title>Resultaat</title>
+      <p>De volgende regel van het programma lijkt op de vorige,</p>
+      <pre>
+newSize[2] = newSize[2]*2.54
+</pre>
+      <p>waarmee de andere waarde van de lijst wordt aangepast. Nadat deze regel is uitgevoerd ziet het geheugen van Python eruit zoals in het diagram hieronder wordt weergegeven.</p>
+      <image source="images/17-slide7.png" width="100%"/>
+      <p>Of we nu <c>newSize</c> <alert>of</alert> <c>oldSize</c> printen, Python geeft als output <c>["letter", 21.59, 27.94]</c>.</p>
+    </remark>
+    <assemblage>
+      <p>Er is nog een manier om naar dit voorbeeld te kijken. Namelijk door dit voorbeeld te bekijken in de Visualization tool. Merk op dat je in plaats van de pijlen de lijsten een naam krijgen via hun "ID." Elke lijst wordt bewaard op een "adres" dat gelijk is aan de ID; een adres is als een pijl die naar de box wijst met dat ID.</p>
+    </assemblage>
+    <p><alert>Hoe op correcte wijze een lijst in Python te kopiëren</alert></p>
+    <p>Hoewel het soms nuttig is om meerdere verwijzingen te hebben naar dezelfde lijst, is dat hier niet wat we willen.</p>
+    <p>We zullen drie oplossingen bespreken. Ze lijken op elkaar, maar in elke oplossing komt een nieuw aspect van Python aan de orde. Ze zijn dus alle drie de moeite waard om door te werken.</p>
+    <remark>
+      <title>soms nuttig</title>
+      <p>Als we meerdere variabelen willen die naar dezelfde lijst wijzen besparen we geheugen en tijd door niet steeds de lijst te kopiëren. Dat is tijdens deze lessen echter niet zo belangrijk.</p>
+    </remark>
+  </introduction>
+  <section xml:id="les-17-s1">
+    <title>Methode 1, gebruik <c>[:]</c></title>
+    <example>
+      <p>Een kopie maken met <c>[:]</c></p>
+      <program interactive="activecode" language="python" label="les-17-vb-2">
+        <code>
+oldList = ["first", "second", "third"]
+newList = oldList[:]     # maak een kopie
+oldList.reverse()
+print(newList, oldList)
+</code>
+      </program>
+    </example>
+    <p>Hierboven lieten we zien dat <c>newList = oldList[:] </c>wel een echte kopie van de oude lijst maakt. Hoewel de syntax wat vreemd oogt, is het een zusje van iets wat we eerder zagen. In de <xref ref="les-07a" text="custom">les over strings</xref> introduceerden we een manier om uit een string een substring te halen: <c>string[first:tail]</c> geeft als resultaat een substring die begint met de index <c>first</c> en eindigt met index <c>tail-1</c>. We noemden al dat het gebruikt kan worden om een deellijst van een lijst te bepalen. In het bijzonder;</p>
+    <p><ul><li><p>wanneer <c>first</c> wordt weggelaten wordt de standaardwaarde <c>0</c> genomen;</p></li><li><p>wanneer <c>tail</c> wordt weggelaten wordt de standaardwaardewaarde <c>len(..)</c> (de lengte van de lijst/string) genomen.</p></li></ul></p>
+    <p>Wat hier dus eigenlijk gebeurt is dat <c>oldList[:]</c> een nieuwe sublijst maakt die precies dezelfde data bevat als de originele lijst. Dat is natuurlijk in feite een nieuwe kopie.</p>
+  </section>
+  <section xml:id="les-17-s2">
+    <title>Methode 2, gebruik <c>copy.copy()</c></title>
+    <p>Er is een module met de naam copy met meerdere methoden die met kopiëren te maken hebben. De meest eenvoudige is <c>copy.copy(L)</c>: wanneer je dit aanroept op een lijst <c>L</c>, zal de functie een echte kopie van <c>L</c> teruggeven.</p>
+    <example>
+      <p>Een kopie maken met <c>copy.copy</c></p>
+      <program interactive="activecode" language="python" label="les-17-vb-3">
+        <code>
+import copy
+oldList = ["first", "second", "third"]
+newList = copy.copy(oldList)     # maak een kopie
+oldList.reverse()
+print(newList, oldList)
+</code>
+      </program>
+    </example>
+    <p>De <c>copy.copy()</c> functie werkt ook op andersoortige objecten, maar we zullen daar hier niet verder op in gaan.</p>
+  </section>
+  <section xml:id="les-17-s3">
+    <title>Methode 3, gebruik <c>list()</c></title>
+    <p>De laatste manier om een echte kopie te maken is door middel van list() functie. Normaal wordt <c>list()</c> gebruikt om data van een ander type te vertalen naar het <c>lijst</c>-type. (Zo vertaalt <c>list("hello")</c> de string "hello" in een lijst met 5 elementen, waarbij elk element één enkel karakter is.) Maar als je probeert een lijst om te zetten in een lijst, dan maakt het effectief een kopie.</p>
+    <program interactive="activecode" language="python" label="les-17-console-4">
+      <code>
+L = list('hello')
+print(type(L))
+print(L)
+print(L[0])
+print(type(L[0]))
+</code>
+    </program>
+    <example>
+      <p>Een kopie maken met <c>list()</c></p>
+      <program interactive="activecode" language="python" label="les-17-vb-5">
+        <code>
+oldList = ["first", "second", "third"]
+newList = list(oldList)     # maak een kopie
+oldList.reverse()
+print(newList, oldList)
+</code>
+      </program>
+    </example>
+  </section>
+  <section xml:id="les-17-s4">
+    <title>Lijsten als argumenten</title>
+    <p>We merken op dat vanwege de manier waarop lijsten werken, iedere functie die een lijst als argument accepteert, de inhoud van een lijst kan veranderen. (Je kon dat al zien in de <c>replace</c>-oefening.)</p>
+    <exercise label="oef-17-reference">
+      <title>Lijst argument</title>
+      <statement>
+        <p>Welk getal is output van het volgende programma?</p>
+        <pre>
+def func(list):
+    list[0] = list[0] + list[1]
+    list[1] = list[1] + list[0]
+data = [3, 4]
+func(data)
+print(data[0]*data[1])
+</pre>
+        <p>Jouw antwoord: <fillin mode="number" answer="77" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <numcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct! Binnen <c>func</c> veranderen we het element met index 0 in 7, en het element met index 1 in 7+4=11. Dus printen we 7*11.</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+  </section>
+  <section xml:id="les-17-s5">
+    <title>Lijsten vergelijken door middel van <c>is</c></title>
+    <p>Wanneer zijn twee lijsten <c>L1</c> en <c>L2</c> gelijk? We kunnen deze vraag op twee manieren interpreteren:<ul><li><p><em>Dezelfde lijst</em>: Wijzen <c>L1</c> en <c>L2</c> naar exact hetzelfde lijst-object?</p></li><li><p><em>Dezelfde waarden</em>: Is de inhoud van lijst <c>L1</c> gelijk aan de inhoud van lijst <c>L2</c>?</p></li></ul></p>
+    <p>Nu blijkt dat in Python de standaard gelijkheids-operator <c>==</c> <em>Dezelfde waarden </em>betekenis heeft, zoals in het volgende voorbeeld laat zien.</p>
+    <example>
+      <p>De betekenis van <c>==</c></p>
+      <program interactive="activecode" language="python" label="les-17-vb-6">
+        <code>
+L1 = ['text', 11]
+L2 = L1[:]        # make a copy
+print(L1 == L2)   # Same Values?
+</code>
+      </program>
+    </example>
+    <p>Om <em>Dezelfde lijst </em>te testen heeft Python de <c>is</c> operator. We gebruiken deze operator op dezelfde manier als <c>==</c>: de syntax</p>
+    <p><c>«list1» is «list2»</c></p>
+    <p>geeft <c>True</c> wanneer de variabelen naar dezelfde lijst verwijzen, en <c>False</c> wanneer zij naar verschillende lijsten verwijzen (ook al hebben die dezelfde inhoud).</p>
+    <example>
+      <p>De betekenis van <c>is</c></p>
+      <program interactive="activecode" language="python" label="les-17-vb-7">
+        <code>
+L = ['text', 11]
+LAgain = L             # another reference to L
+print(LAgain is L)     # Same Identity? Yes
+LCopy = L[:]           # make a copy
+print(LCopy == LAgain) # Same Values?   Yes, both are ['text', 11]
+print(LCopy is LAgain) # Same Identity? No: LAgain is L, but LCopy is not L
+</code>
+      </program>
+    </example>
+    <exercise label="oef-17-is">
+      <title>True Count</title>
+      <statement>
+        <p>Hoe vaak komt <c>True</c> voor in de output van dit programma? (Teken een diagram om je met tellen te helpen.)</p>
+        <pre>
+list1 = [9, 1, 1]
+list3 = list(list1)
+list2 = list1
+list4 = list3[:]
+list1[0] = 4
+list5 = list1
+print(list1 is list2, list2 is list3, list3 is list4, list4 is list5)
+print(list1 == list2, list2 == list3, list3 == list4, list4 == list5)
+</pre>
+        <p>Jouw antwoord: <fillin mode="number" answer="3" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <numcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct! Het resultaat is True False True False</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+    <assemblage>
+      <p>Je moet niet zonder meer <c>is</c> gebruiken met strings of getallen omdat == al op correcte wijze de gelijkheid test, en het gedrag van <c>is</c> is moeilijk te voorspellen bij strings en getallen.</p>
+      <program interactive="activecode" language="python" label="les-17-console-8">
+        <code>
+# why is "is" tricksy for strings?
+print("foo" is "foo", "foo" is "fo"+"o") # both True, due to string interning
+print("e"*32 is "ee"*16) # False, long strings are not interned
+A = "foo"
+B = "foofoo"
+A *= 2
+print(A == B, A is B) # True False: *= does not re-intern a string
+
+# why is "is" tricksy for numbers?
+print(1+1 is 2) # True, but this behaviour is only for small ints
+print(10**3 is 1000) # False
+print(1.5 is 1.5, 1.5 is 0.5*3) # True, False
+print(float('NaN')==float('NaN'), float('NaN') is float('NaN')) # both False
+x = float('NaN')
+print(x is x, x == x) # True False; one of few examples with 'is'T, ==F
+print(0.0 is 0, 0.0 == 0) # False True
+
+#also, "is" not same as compare id() http://codepad.org/Xb0TaKl9
+</code>
+      </program>
+    </assemblage>
+  </section>
+  <section xml:id="les-17-s6">
+    <title>Geneste lijsten</title>
+    <p>We hebben de meest belangrijke informatie nu wel gegeven, maar er is nog een veelvoorkomende situatie waarvan het waard is die te melden. Een <em>geneste lijst</em> is een lijst binnen een andere lijst. Bijvoorbeeld</p>
+    <p><c>sample = [365.25, ["first", 5]]</c></p>
+    <p>laat een geneste lijst zien. De <em>buitenste lijst,</em> waar <c>sample</c> naar verwijst, heeft twee elementen; het element met index 0 is een decimaal getal en het element op index 1 is de <em>inwendige lijst</em>. De binnenste lijst is <c>["first", 5]</c>. Je kunt dus meer niveaus hebben. Wanneer je geneste lijsten begint te gebruiken, houdt dan voor ogen dat:<ul><li><p>Wanneer we de drie methodes toepassen op <c>sample</c> dan zal de buitenste lijst gekopieerd worden, maar niet de binnenste lijst. Dus <c>copy(sample)[1] is sample[1]</c>, betekent dat copy nog steeds een verwijzing bevat naar een deel van de originele lijst. Dit is niet altijd wat je wilt. Wanneer je een echte kopie wilt maken op alle niveaus, gebruik je <c>copy.deepcopy()</c>.</p></li><li><p>Lijsten testen met <c>==</c> is intuïtief: Python voert <c>==</c> uit op elk element van de lijst. Zo is bijvoorbeeld <c>[[1, 2], 3]==[[1, 2], 3]</c> <c>True</c>, en <c>[[1, 2], 3]==[1, 2, 3]</c> is <c>False</c> want de eerste elementen zijn verschillend (<c>[1, 2] != 1</c>).</p></li></ul></p>
+    <example>
+      <p><c>deepcopy</c> and recursive equality</p>
+      <program interactive="activecode" language="python" label="les-17-vb-9">
+        <code>
+import copy
+sample = [365.25, ["first", 5]]
+clone = copy.copy(sample)
+print(sample, clone)
+print(sample == clone, sample is clone)
+print(sample[1] == clone[1], sample[1] is clone[1])
+deepclone = copy.deepcopy(sample)
+print(deepclone)
+print(sample == deepclone, sample is deepclone)
+print(sample[1] == deepclone[1], sample[1] is deepclone[1])
+</code>
+      </program>
+    </example>
+    <p>Je hebt nu deze les afgerond! Het volgende materiaal is optioneel.</p>
+  </section>
+  <section xml:id="les-17-s7">
+    <title>Tuples: <c>("immutable", "lists")</c></title>
+    <p>We noemden hierboven dat wanneer je een functie aanroept die werkt op een lijst het die lijst kan veranderen. Soms wil je dit onmogelijk maken! Een oplossing in Python is om <em>tuples</em> te maken. Tuples zijn in principe hetzelfde als lijsten, behalve dat ze niet veranderd kunnen worden. We zeggen dat lijsten <em>"veranderbaar"</em> zijn, en tuples <em>"onveranderbaar" </em>. (Strings en getallen zijn ook onveranderbaar.) Dit kan een nuttige manier zijn om programmeerfouten die te maken hebben met het veranderen van lijsten te voorkomen. Tuples zijn qua syntax bijna identiek aan lijsten, behalve dat bij tuples ronde haakjes <c>()</c> worden gebruikt in plaats van rechte haken <c>[]</c>. Je kunt tuples in lists omzetten en vice versa door middel van de functies <c>tuple()</c> en <c>list()</c>.</p>
+    <example>
+      <p>Tubular tuples</p>
+      <program interactive="activecode" language="python" label="les-17-vb-10">
+        <code>
+T = (3, 4, 5)
+print(T)
+print(type(T))           # tuple
+print(T[0])              # the first item in the tuple
+print(list(T))           # converting a tuple to a list
+print(tuple([1, 2, 3]))  # converting a list to a tuple
+T[0] = "three"           # Error! You can't change tuple values
+</code>
+      </program>
+    </example>
+  </section>
+  <section xml:id="les-17-s8">
+    <title>Naar <c>∞</c> en verder: een lijst die zichzelf bevat</title>
+    <p>Het is mogelijk om een lijst te hebben die zichzelf bevat! Maak eenvoudigweg een lijst, en zorg er dan voor dat één van zijn elementen verwijst naar de hele lijst:</p>
+    <example>
+      <p>Een circulaire referentie</p>
+      <program interactive="activecode" language="python" label="les-17-vb-11">
+        <code>
+L = ["zero", "one"]
+L[1] = L
+print(len(L))
+print(L)
+print(L is L[1])
+</code>
+      </program>
+    </example>
+    <p>Merk op dat Pythons output engine slim genoeg is om te herkennen dat de lijst terug naar zichzelf gaat: het drukt af "<c>...</c>", en print niet de inhoud van <c>L</c> opnieuw. Dit natuurlijk om een oneindige lus te voorkomen..</p>
+  </section>
+</chapter>

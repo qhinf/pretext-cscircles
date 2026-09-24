@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Gegenereerd door tools/convert.py ; niet met de hand bewerken. -->
 <pretext xml:lang="nl-NL" xmlns:xi="http://www.w3.org/2001/XInclude">
   <xi:include href="./docinfo.ptx" />
 
@@ -8,6 +9,42 @@
 
     <xi:include href="./frontmatter.ptx" />
 
-    <!-- Lessen: hoofdstukken worden hier toegevoegd -->
+      <xi:include href="./les-00.ptx" />
+      <xi:include href="./les-01.ptx" />
+      <xi:include href="./les-01e.ptx" />
+      <xi:include href="./les-02.ptx" />
+      <xi:include href="./les-02x.ptx" />
+      <xi:include href="./les-03.ptx" />
+      <xi:include href="./les-04.ptx" />
+      <xi:include href="./les-05.ptx" />
+      <xi:include href="./les-06.ptx" />
+      <xi:include href="./les-06d.ptx" />
+      <xi:include href="./les-07.ptx" />
+      <xi:include href="./les-07a.ptx" />
+      <xi:include href="./les-07b.ptx" />
+      <xi:include href="./les-07c.ptx" />
+      <xi:include href="./les-08.ptx" />
+      <xi:include href="./les-09.ptx" />
+      <xi:include href="./les-10.ptx" />
+      <xi:include href="./les-11a.ptx" />
+      <xi:include href="./les-11b.ptx" />
+      <xi:include href="./les-11c.ptx" />
+      <xi:include href="./les-12.ptx" />
+      <xi:include href="./les-13.ptx" />
+      <xi:include href="./les-14.ptx" />
+      <xi:include href="./les-15a.ptx" />
+      <xi:include href="./les-15b.ptx" />
+      <xi:include href="./les-15c.ptx" />
+      <xi:include href="./les-16.ptx" />
+      <xi:include href="./les-17.ptx" />
+      <xi:include href="./les-18.ptx" />
+
+    <backmatter xml:id="backmatter">
+      <title>Bijlagen</title>
+      <xi:include href="./bijlage-spiekbriefje.ptx" />
+      <xi:include href="./bijlage-python-thuis.ptx" />
+      <xi:include href="./bijlage-bronnen.ptx" />
+      <xi:include href="./bijlage-dank.ptx" />
+    </backmatter>
   </book>
 </pretext>

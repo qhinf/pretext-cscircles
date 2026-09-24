@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gegenereerd door tools/convert.py uit archief/ ; niet met de hand bewerken. -->
+<chapter xml:id="les-01">
+  <title>1: Variabelen</title>
+  <section xml:id="les-01-s0">
+    <title>Inleiding</title>
+    <p>Variabelen zijn “opberglocaties” voor gegevens in een programma. Ze zijn een manier om een naam te geven aan gegevens voor later gebruik.</p>
+    <p>Iedere variabele heeft een <em>naam</em>. Een voorbeeld van een naam voor een variabele is <c>mijnGeluksgetal</c>. Om een waarde op te slaan in een variabele, schrijven we een opdracht waarbij we een gelijkteken gebruiken. En wel als volgt:</p>
+    <pre>
+«de naam van de variabele» = «de waarde die je wilt opslaan»
+</pre>
+    <p>(We gebruiken «dubbele hoekhaakjes» in onze lessen, zoals hierboven, om specifieke delen van een expressie aan te duiden.)</p>
+    <p>Bijvoorbeeld, de regel in Python</p>
+    <pre>
+mijnGeluksgetal = 13
+</pre>
+    <p>slaat de waarde 13 op in de variabele <c>mijnGeluksgetal</c>. Vervolgens zal Python, overal waar je de naam <c>mijnGeluksgetal</c> gebruikt, de opgeslagen waarde ophalen.</p>
+    <p>Hieronder een kort voorbeeld waarbij variabelen worden gebruikt. Het bestaat uit meerdere regels met instructies: Python voert de eerste regel uit, dan de tweede regel, en zo voort totdat de laatste regel is uitgevoerd. Druk op de knop <alert>Uitvoeren</alert> om te zien wat er gebeurt.</p>
+    <example>
+      <p>Voorbeeld van hoe je een variabele gebruikt.</p>
+      <program interactive="activecode" language="python" label="les-01-vb-1">
+        <code>
+mijnGeluksgetal = 13
+print(mijnGeluksgetal + 1)
+print(mijnGeluksgetal)
+mijnGeluksgetal = 5 + 2
+print(mijnGeluksgetal)
+</code>
+      </program>
+    </example>
+    <p>Kijk naar de 5 regels van het programma van boven naar beneden, en hoe ze overeenkomen met de uitvoer. Zoals je kunt zien behoudt <c>mijnGeluksgetal</c> zijn waarde <c>13</c> in de eerste twee <c>print</c>-opdrachten; dan verandert zijn waarde in <c>7</c>.</p>
+    <p>We gebruikten hierboven voor het eerst de operator <em>plus</em> (<c>+</c>), waardoor twee getallen worden opgeteld. Evenzo zijn er operatoren voor aftrekken (<c>-</c>), vermenigvuldigen (<c>*</c>), en delen (<c>/</c>). We komen er in een latere les op terug.</p>
+    <p>Je kunt het geheugen van een computer nabootsen met potlood en papier, door de opgeslagen waarden bij te houden in een tabel. Hier volgt een voorbeeld; denk eraan dat <c>*</c> in Python vermenigvuldigen betekent.</p>
+    <example>
+      <p><alert>Doel</alert>: bepaal de eindwaarden van alle variabelen op het eind van het programma.</p>
+      <pre>
+eerste = 2
+tweede = 3
+derde = eerste * tweede
+tweede = derde - eerste
+eerste = eerste + tweede + derde
+derde = tweede * eerste
+</pre>
+      <p><alert>Idee</alert>: We gebruiken een tabel om de waardeveranderingen bij te houden. Scroll naar beneden om het uiteindelijke antwoord te bekijken.</p>
+      <tabular>
+        <row header="yes">
+          <cell>Opdracht</cell>
+          <cell colspan="3">Waarde nadat de opdracht is uitgevoerd</cell>
+        </row>
+        <row header="yes">
+          <cell/>
+          <cell>eerste</cell>
+          <cell>tweede</cell>
+          <cell>derde</cell>
+        </row>
+        <row>
+          <cell><c>eerste = 2</c></cell>
+          <cell><alert>2</alert></cell>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell><c>tweede = 3</c></cell>
+          <cell><c>2</c></cell>
+          <cell><alert>3</alert></cell>
+          <cell/>
+        </row>
+        <row>
+          <cell><c>derde = eerste * tweede</c></cell>
+          <cell><c>2</c></cell>
+          <cell><c>3</c></cell>
+          <cell><alert>6</alert></cell>
+        </row>
+        <row>
+          <cell><c>tweede = derde - eerste</c></cell>
+          <cell><c>2</c></cell>
+          <cell><delete>3</delete> <alert>4</alert></cell>
+          <cell><c>6</c></cell>
+        </row>
+        <row>
+          <cell><c>eerste = eerste + tweede + derde</c></cell>
+          <cell><delete>2</delete> <alert>12</alert></cell>
+          <cell><c>4</c></cell>
+          <cell><c>6</c></cell>
+        </row>
+        <row>
+          <cell><c>derde = tweede * eerste</c></cell>
+          <cell><c>12</c></cell>
+          <cell><c>4</c></cell>
+          <cell><delete>6</delete> <alert>48</alert></cell>
+        </row>
+      </tabular>
+      <p>Dus aan het einde van het programma is de waarde van <c>eerste</c> gelijk aan <c>12</c>, de waarde van <c>tweede</c> gelijk aan <c>4</c>, en de waarde van <c>derde</c> gelijk aan <c>48</c>.</p>
+    </example>
+    <assemblage>
+      <p>Probeer de Python-visualisatietool om dit soort programma's stap voor stap te laten uitvoeren. We bevelen het ten zeerste aan wanneer je niet helemaal begrijpt hoe Python werkt, of wanneer je vast zit bij het foutvrij maken van je programma! Je vindt deze tool ook via de link Visualiseren bovenaan elke pagina.</p>
+    </assemblage>
+    <p>Hier volgt een oefening met kort antwoord over variabelen.</p>
+    <exercise label="oef-1-plusminus">
+      <title>Het gaat om <c>x</c></title>
+      <statement>
+        <p>Wat is de waarde van <c>x</c> nadat de volgende opdrachten zijn uitgevoerd?</p>
+        <pre>
+x = 10
+x = x + x
+x = x - 5
+</pre>
+        <p>Jouw antwoord: <fillin mode="number" answer="15" width="12"/></p>
+      </statement>
+      <evaluation>
+        <evaluate>
+          <test>
+            <numcmp use-answer="yes"/>
+            <feedback>
+              <p>Correct!</p>
+            </feedback>
+          </test>
+        </evaluate>
+      </evaluation>
+    </exercise>
+  </section>
+  <section xml:id="les-01-s1">
+    <title>Twee Vaak Voorkomende Fouten</title>
+    <p>Wanneer je in Python vraagt naar een variabele die niet vooraf is gedefinieerd, krijg je een foutmelding.</p>
+    <example>
+      <title>Een niet gedefinieerde variabele</title>
+      <program interactive="activecode" language="python" label="les-01-vb-2">
+        <code>
+print(trouble)
+</code>
+      </program>
+    </example>
+    <p>Zoals je kunt zien krijgen we een foutmelding: <c>NameError: name 'trouble' is not defined</c>.</p>
+    <p>Soms krijg je deze foutmelding ten gevolge van een tikfout: indien je een variabele definieert  <c>adres=32</c>, en dan probeert <c>print(aadres)</c>, zie je een vergelijkbare foutmelding.</p>
+    <p>Een andere vaak voorkomende fout heeft te maken met het per ongeluk verwisselen van de twee zijden van een <c>=</c>-opdracht (een <em>toekenningsopdracht</em>).</p>
+    <example>
+      <title><c>SyntaxError: can't assign to literal</c></title>
+      <program interactive="activecode" language="python" label="les-01-vb-3">
+        <code>
+x = 4
+4 = x
+</code>
+      </program>
+    </example>
+    <p>De eerste regel is in orde maar de tweede regel veroorzaakt een foutmelding: Python interpreteert de tweede regel <c>4 = x</c> als een poging om de waarde van <c>4</c> te veranderen, maar je kunt alleen maar de waarde van variabelen veranderen, en <c>4</c> is geen variabele.</p>
+    <p>In de wiskunde zijn <c>A = B</c> en <c>B = A</c> weliswaar equivalente <em>vergelijkingen</em>, maar in programmeertalen zijn het verschillende <em>toekenningsopdrachten</em>: de eerste verandert de waarde van variable <c>A</c> (en enkel die van <c>A</c>), en de tweede verandert de waarde van variable <c>B</c> (en enkel die van <c>B</c>).</p>
+  </section>
+  <section xml:id="les-01-s2">
+    <title>Oefening</title>
+    <p>Dit is een opwarming, je eerste oefening waarin je variabelen gebruikt.</p>
+    <exercise label="oef-1-heads">
+      <title>Hoofden, Schouders, Knieën en Tenen</title>
+      <statement>
+        <p>Schrijf een <em>codefragment</em> (een kort stukje van een Python-programma) dat de hoofden, schouders, knieën, en tenen op een feestje telt. Het nakijkprogramma maakt automatisch een variabele <c>mensen</c> voor je aan, die het aantal mensen op het feestje bijhoudt. Jouw code moet vier variabelen definiëren, één genaamd <c>hoofden</c>, één genaamd <c>schouders</c>, één genaamd <c>knieen</c>, en één genaamd <c>tenen</c>, gelijk aan het totaal aantal hoofden, schouders, knieën, en tenen op het feestje. Hiervoor moet je dus gebruik maken van de bestaande variabele <c>mensen</c>. Je programma hoeft geen uitvoer af te drukken.</p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-1-heads-code">
+        <preamble visible="no">
+mensen = 5
+</preamble>
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 1.heads (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'hoofden = mensen\nschouders = 2 * mensen\nknieen = 2 * mensen\ntenen = 10 * mensen'
+_GEVALLEN = [{'voorcode': 'mensen = 5', 'aanroep': '(hoofden, schouders, knieen, tenen)'}, {'voorcode': 'mensen = 0', 'aanroep': '(hoofden, schouders, knieen, tenen)'}, {'voorcode': 'mensen = 1', 'aanroep': '(hoofden, schouders, knieen, tenen)'}, {'voorcode': 'mensen = 37', 'aanroep': '(hoofden, schouders, knieen, tenen)'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <p>Bijvoorbeeld, de eerste regel van je programma kan zijn</p>
+        <pre>
+hoofden = 1*mensen
+</pre>
+        <p>omdat het aantal hoofden gelijk is aan het aantal mensen.</p>
+      </hint>
+    </exercise>
+  </section>
+  <section xml:id="les-01-s3">
+    <title>Zet de regels in de juiste volgorde</title>
+    <p>Het volgende onderdeel van deze les is een nieuw type programmeeroefening, waarbij je geen programma hoeft in te typen. We geven je de regels van een correct programma, maar die staan nog in een onjuiste volgorde. Jij moet de regels in een correcte volgorde zetten.</p>
+    <exercise label="oef-1-bereken-de-snelheid" language="python">
+      <title>Bereken de Snelheid</title>
+      <statement>
+        <p>Je hebt deelgenomen aan een wielrenwedstrijd die zowel bergop als bergaf ging. Het nakijkprogramma zal vier variabelen voor je definiëren: <c>bergopAfstand</c> en <c>bergafAfstand</c> geven de afstand (in km) van beide delen van de wedstrijd, en <c>bergopTijd</c> en <c>bergafTijd</c> geven de tijd (in minuten) die je nodig had om elk deel van de race te voltooien. Schrijf een programma dat je gemiddelde snelheid afdrukt (in km/min) voor de totale wedstrijd. <em>Versleep met je muis de regels naar de juiste plek. </em></p>
+      </statement>
+      <blocks>
+        <block name="r0">
+          <cline>totaleAfstand = bergopAfstand + bergafAfstand</cline>
+        </block>
+        <block name="r3">
+          <cline>totaleTijd = bergopTijd + bergafTijd</cline>
+        </block>
+        <block name="r2" depends="r0 r3">
+          <cline>gemiddeldeSnelheid = totaleAfstand / totaleTijd</cline>
+        </block>
+        <block name="r1" depends="r2">
+          <cline>print(gemiddeldeSnelheid)</cline>
+        </block>
+      </blocks>
+      <hint>
+        <p>Merk op dat in het programma drie nieuwe variabelen worden gedefinieerd. Zorg ervoor dat de regels zo worden geordend dat elke variabele is gedefinieerd voordat ze wordt gebruikt.</p>
+      </hint>
+    </exercise>
+  </section>
+  <section xml:id="les-01-s4">
+    <title>Variabelen verwisselen</title>
+    <p>Hier volgt de laatste opgave van deze les.</p>
+    <exercise label="oef-1-swap">
+      <title>Variabelen omwisselen</title>
+      <statement>
+        <p>Schrijf een programma dat de waarden van twee variabelen <alert>omwisselt</alert>. Twee variabelen <c>x</c> en <c>y</c> zijn vooraf gedefinieerd, en bevatten elk een getal. Na uitvoering van het programma moet de oude waarde van <c>x</c> in de variabele <c>y</c> te vinden zijn en de oude waarde van <c>y</c> in de variabele <c>x</c>. Het programma hoeft geen uitvoer te geven.  <em>De meeste eenvoudige oplossing is kort, maar moeilijk te vinden. Klik zo nodig op de aanwijzingen.</em></p>
+      </statement>
+      <program interactive="activecode" language="python" label="oef-1-swap-code">
+        <preamble visible="no">
+x = 10
+y = 99
+</preamble>
+        <code>
+
+</code>
+        <tests>
+# Verborgen tests voor 1.swap (gegenereerd door tools/harnas.py)
+_OPLOSSING = 'xOrigineel = x\nx = y\ny = xOrigineel'
+_GEVALLEN = [{'voorcode': 'x = 10\ny = 99', 'aanroep': '(x, y)'}, {'voorcode': 'x = -3\ny = 7', 'aanroep': '(x, y)'}, {'voorcode': 'x = 5\ny = 5', 'aanroep': '(x, y)'}, {'voorcode': 'x = 0\ny = 123456', 'aanroep': '(x, y)'}]
+_VERGELIJK = 'exact'
+_TOLERANTIE = 1e-06
+_HERGEBRUIK = False
+_VERBODEN = []
+_VERPLICHT = []
+_MAXLENGTE = 0
+_MAXWIJZIG = 0
+_ORIGINEEL = ''
+
+import re as _re
+from unittest.gui import TestCaseGui
+
+
+class _TeWeinigInvoer(Exception):
+    pass
+
+
+def _voer_uit(_bron, _geval, _student=False):
+    _regels = [str(_r) for _r in _geval.get("invoer", [])]
+    _uit = []
+
+    def _print(*args, **kw):
+        _sep = kw.get("sep", " ")
+        _end = kw.get("end", "\n")
+        if _sep is None:
+            _sep = " "
+        if _end is None:
+            _end = "\n"
+        _uit.append(_sep.join([str(_a) for _a in args]) + _end)
+
+    def _input(prompt=""):
+        if len(_regels) == 0:
+            raise _TeWeinigInvoer("het programma vraagt meer invoer (input) dan er is")
+        return _regels.pop(0)
+
+    _g = {"__name__": "__main__", "print": _print, "input": _input}
+    _fout = None
+    _waarde = None
+    if _student and _HERGEBRUIK:
+        # Het programma van de leerling is net al uitgevoerd; gebruik die variabelen.
+        try:
+            _waarde = eval(_geval["aanroep"], globals())
+        except Exception as _e:
+            _fout = type(_e).__name__ + ": " + str(_e)
+        return "", _waarde, _fout
+    try:
+        if _geval.get("voorcode"):
+            exec(_geval["voorcode"], _g)
+        exec(_bron, _g)
+        if _geval.get("aanroep"):
+            _waarde = eval(_geval["aanroep"], _g)
+    except Exception as _e:
+        _fout = type(_e).__name__ + ": " + str(_e)
+    return "".join(_uit), _waarde, _fout
+
+
+def _normaal(_s):
+    # Spaties aan het eind van een regel tellen niet mee, en het (onzichtbare) DEL-teken ook niet.
+    _r = [_x.replace(chr(127), "").rstrip() for _x in _s.split("\n")]
+    while len(_r) &gt; 0 and _r[-1] == "":
+        _r.pop()
+    return "\n".join(_r)
+
+
+def _getal(_s):
+    try:
+        return float(_s)
+    except Exception:
+        return None
+
+
+def _stukken(_s):
+    # Splits in getallen en overige tekens, zodat bv. "-13.333C" -&gt; ["-13.333", "C"].
+    return _re.findall(r"[-+]?(?:[0-9]+[.]?[0-9]*|[.][0-9]+)(?:[eE][-+]?[0-9]+)?|[^\s0-9.+-]+|\S", _s)
+
+
+def _gelijk(_a, _b):
+    if _VERGELIJK == "woorden":
+        return _a.split() == _b.split()
+    if _VERGELIJK == "getallen":
+        _wa = _stukken(_a)
+        _wb = _stukken(_b)
+        if len(_wa) != len(_wb):
+            return False
+        for _i in range(len(_wa)):
+            _x = _getal(_wa[_i])
+            _y = _getal(_wb[_i])
+            if _x is not None and _y is not None:
+                if abs(_x - _y) &gt; _TOLERANTIE * max(1.0, abs(_y)):
+                    return False
+            elif _wa[_i] != _wb[_i]:
+                return False
+        return True
+    return _normaal(_a) == _normaal(_b)
+
+
+def _afstand(_a, _b):
+    """Bewerkingsafstand (Levenshtein) tussen twee strings."""
+    _vorige = list(range(len(_b) + 1))
+    for _i in range(len(_a)):
+        _huidig = [_i + 1]
+        for _j in range(len(_b)):
+            _kosten = 0 if _a[_i] == _b[_j] else 1
+            _huidig.append(min(_vorige[_j + 1] + 1, _huidig[_j] + 1, _vorige[_j] + _kosten))
+        _vorige = _huidig
+    return _vorige[-1]
+
+
+def _zelfde(_a, _b):
+    """Vergelijk returnwaarden; bij vergelijk="getallen" mogen kommagetallen iets afwijken."""
+    if _VERGELIJK == "getallen" and type(_a) in (int, float) and type(_b) in (int, float) \
+            and type(_a) != bool and type(_b) != bool:
+        return abs(_a - _b) &lt;= _TOLERANTIE * max(1.0, abs(_b))
+    if type(_a) in (list, tuple) and type(_b) == type(_a):
+        if len(_a) != len(_b):
+            return False
+        for _i in range(len(_a)):
+            if not _zelfde(_a[_i], _b[_i]):
+                return False
+        return True
+    return type(_a) == type(_b) and _a == _b
+
+
+def _html(_s):
+    return str(_s).replace("&amp;", "&amp;amp;").replace("&lt;", "&amp;lt;").replace("&gt;", "&amp;gt;")
+
+
+def _blok(_s):
+    if _s == "":
+        return "&lt;i&gt;(geen uitvoer)&lt;/i&gt;"
+    return "&lt;pre style='text-align:left;margin:2px 0'&gt;" + _html(_s) + "&lt;/pre&gt;"
+
+
+class _Toets(TestCaseGui):
+    def test_1_programma(self):
+        _bron = self.getEditorText()
+        for _tekst, _melding in _VERPLICHT:
+            self.assertTrue(_tekst in _bron, _melding)
+        for _tekst, _melding in _VERBODEN:
+            self.assertFalse(_tekst in _bron, _melding)
+        if _MAXLENGTE:
+            _lengte = len(_bron.rstrip())
+            self.assertTrue(_lengte &lt;= _MAXLENGTE, "Je code is %d tekens lang; het mag hoogstens %d zijn."
+                            % (_lengte, _MAXLENGTE))
+        if _MAXWIJZIG:
+            _d = _afstand(_normaal(_ORIGINEEL), _normaal(_bron))
+            self.assertTrue(_d &lt;= _MAXWIJZIG, "Je hebt %d teken(s) veranderd; het mogen er hoogstens %d zijn."
+                            % (_d, _MAXWIJZIG))
+        _nr = 0
+        for _geval in _GEVALLEN:
+            _nr += 1
+            _verwacht, _vwaarde, _vfout = _voer_uit(_OPLOSSING, _geval)
+            _uitvoer, _waarde, _fout = _voer_uit(_bron, _geval, True)
+            _info = "&lt;b&gt;Test %d&lt;/b&gt;" % _nr
+            if _geval.get("voorcode"):
+                _info += "&lt;br&gt;vooraf: &lt;code&gt;" + _html("; ".join(_geval["voorcode"].strip().split("\n"))) + "&lt;/code&gt;"
+            if _geval.get("invoer"):
+                _info += "&lt;br&gt;invoer:" + _blok("\n".join([str(_r) for _r in _geval["invoer"]]))
+            if _geval.get("aanroep"):
+                _info += "&lt;br&gt;aanroep: &lt;code&gt;" + _html(_geval["aanroep"]) + "&lt;/code&gt;"
+            if _fout is not None and _vfout is None:
+                self.appendResult(False, _fout, "", _info + "&lt;br&gt;fout: &lt;code&gt;" + _html(_fout) + "&lt;/code&gt;")
+                continue
+            _ok = _gelijk(_uitvoer, _verwacht)
+            if _geval.get("aanroep"):
+                _ok = _ok and _zelfde(_waarde, _vwaarde)
+                _jij = _waarde
+                _moet = _vwaarde
+                if _normaal(_verwacht) != "" or _normaal(_uitvoer) != "":
+                    _jij = _normaal(_uitvoer) + " / " + repr(_waarde)
+                    _moet = _normaal(_verwacht) + " / " + repr(_vwaarde)
+            else:
+                _jij = _normaal(_uitvoer)
+                _moet = _normaal(_verwacht)
+            if not _ok:
+                if _geval.get("aanroep"):
+                    _info += "&lt;br&gt;verwachte returnwaarde: &lt;code&gt;" + _html(repr(_vwaarde)) + \
+                             "&lt;/code&gt;&lt;br&gt;jouw returnwaarde: &lt;code&gt;" + _html(repr(_waarde)) + "&lt;/code&gt;"
+                if not _gelijk(_uitvoer, _verwacht) or _normaal(_verwacht) != "":
+                    _info += "&lt;br&gt;verwachte uitvoer:" + _blok(_normaal(_verwacht)) + \
+                             "jouw uitvoer:" + _blok(_normaal(_uitvoer))
+            self.appendResult(_ok, _jij, _moet, _info)
+
+
+_Toets().main()
+
+</tests>
+      </program>
+      <hint>
+        <title>Aanwijzing 1</title>
+        <p>Je hebt geen rekenkundige operatoren nodig (<c>+-*/</c>) om de opgave op te lossen. Je hebt slechts variabelen en de <c>=</c>-operator nodig. Je kunt nog meer variabelen definiëren wanneer je dat wilt</p>
+      </hint>
+      <hint>
+        <title>Aanwijzing 2</title>
+        <p>We hebben twee doelen: de originele waarde van <c>y</c> moet in <c>x</c> staan en de originele waarde van <c>x</c> moet in <c>y</c> staan. Wanneer we het eerste doel bereikt zouden hebben dus <c>x</c> naar <c>y</c> kopiëren), dan konden we eenvoudig</p>
+        <pre>
+x = y
+</pre>
+        <p>gebruiken. Maar hoe kunnen we beiden doelen bereiken?</p>
+      </hint>
+      <hint>
+        <title>Aanwijzing 3</title>
+        <p>Het volgende programma ziet er veelbelovend uit:</p>
+        <pre>
+x = y
+y = x
+</pre>
+        <p>Maar er is een klein probleem. Nemen we als voorbeeld aan dat, <c>x</c> 10 zou zijn en dat <c>y</c> 99 zou zijn. Wanneer we bovenstaand tweeregelig programma zouden gebruiken, zou na de eerste regel de waarde van beide variabelen <c>x</c> en <c>y</c> 99 zijn. De tweede regel heeft dan geen effect. <em>Je kunt beide regels hieronder intypen en zelf nagaan wat er gebeurt.</em> Hoe kunnen we de originele waarde van <c>x</c> ergens opslaan , om daarna <c>y</c> over te zetten?</p>
+      </hint>
+      <hint>
+        <title>Aanwijzing 4</title>
+        <p>Je eerste regel moet er uit zien als <c>xOrigineel = x</c>, zodat de originele waarde van <c>x</c> behouden blijft. Dan kun je <c>x = y</c> gebruiken. Tenslotte moet je nog <c>y</c> voorzien van de originele waarde van <c>x</c>.</p>
+      </hint>
+      <hint>
+        <title>Aanwijzing 5</title>
+        <p><url href="http://en.wikipedia.org/wiki/Swap_%28computer_science%29" visual="en.wikipedia.org/wiki/Swap_%28computer_science%29">Hier vind je een artikel uit Wikipedia</url> over dit thema in het engels. Daarbij worden ook oplossingen met getallen getoond, die niet toepasbaar zijn op teksten (of andere complexe constructoren).</p>
+      </hint>
+    </exercise>
+    <p>Wanneer je deze oefening correct hebt opgelost, kun je beginnen aan de volgende les. Klik hieronder op <alert>Volgende</alert>.</p>
+  </section>
+</chapter>

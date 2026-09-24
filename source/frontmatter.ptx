@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<frontmatter xml:id="frontmatter">
-  <titlepage>
+<frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
+  <bibinfo>
     <author>
-      <personname>Computer Science Circles (CEMC, University of Waterloo)</personname>
+      <personname>Computer Science Circles</personname>
+      <institution>Centre for Education in Mathematics and Computing, University of Waterloo</institution>
     </author>
     <date><today /></date>
-  </titlepage>
-  <colophon>
+    <website>
+      <url href="https://cscircles.cemc.uwaterloo.ca/nl/">cscircles.cemc.uwaterloo.ca/nl</url>
+    </website>
     <copyright>
-      <year>2010–2026</year>
+      <year>2010<ndash />2026</year>
       <holder>Centre for Education in Mathematics and Computing, University of Waterloo</holder>
-      <shortlicense>Oorspronkelijke inhoud van cscircles.cemc.uwaterloo.ca; omgezet naar PreTeXt.</shortlicense>
+      <shortlicense>Computer Science Circles is een gratis dienst van het CEMC van de University of Waterloo. Deze PreTeXt-versie is een omzetting van de Nederlandse editie zoals die in maart 2026 in het Internet Archive stond.</shortlicense>
     </copyright>
+  </bibinfo>
+
+  <titlepage>
+    <titlepage-items />
+  </titlepage>
+
+  <colophon xml:id="front-colophon">
+    <colophon-items />
   </colophon>
+
+  <preface xml:id="over-deze-uitgave">
+    <title>Over deze uitgave</title>
+    <p>Dit boek bevat de lessen van de Nederlandse editie van <url href="https://cscircles.cemc.uwaterloo.ca/nl/" visual="cscircles.cemc.uwaterloo.ca/nl">Computer Science Circles</url> (CS Circles), een gratis cursus programmeren in Python van het Centre for Education in Mathematics and Computing (CEMC) van de University of Waterloo. Toen de website offline ging, zijn de lessen uit het <url href="https://web.archive.org/web/20260316180938/https://cscircles.cemc.uwaterloo.ca/nl/" visual="web.archive.org">Internet Archive</url> gehaald en omgezet naar <url href="https://pretextbook.org" visual="pretextbook.org">PreTeXt</url>, zodat ze op <url href="https://runestone.academy" visual="runestone.academy">Runestone</url> gebruikt kunnen worden.</p>
+    <p>De tekst van de lessen is zo veel mogelijk ongewijzigd overgenomen. Daardoor verwijst hij soms naar knoppen van de oude website. Zo werken die in deze versie:</p>
+    <p><ul>
+      <li><p><alert>Uitvoeren</alert> heet hier <alert>Run</alert>. Programma's die <c>input()</c> gebruiken vragen de invoer in een invoerveld onder het programma.</p></li>
+      <li><p><alert>Visualiseren</alert> (de <em>Python-visualisatietool</em>, ook wel <em>Online Python Tutor</em>) vind je onder de knop <alert>Show CodeLens</alert> bij elk programma. Daarmee kun je een programma stap voor stap uitvoeren.</p></li>
+      <li><p>Bij een <alert>programmeeroefening</alert> wordt je programma na <alert>Run</alert> automatisch getest met een aantal testgevallen. Onder het programma verschijnt een tabel met het resultaat van elke test. Deze tests zijn voor deze uitgave opnieuw geschreven en zijn dus niet precies dezelfde als die van CS Circles.</p></li>
+      <li><p>Bij een <alert>volgorde-oefening</alert> sleep je de regels naar de juiste plek en controleer je je antwoord met <alert>Check</alert>.</p></li>
+      <li><p>Je voortgang wordt alleen bewaard als je bent ingelogd op een Runestone-server.</p></li>
+    </ul></p>
+  </preface>
 </frontmatter>

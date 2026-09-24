@@ -1,0 +1,580 @@
+<!DOCTYPE html> 
+<!--[if IE 6]>
+<html id="ie6" lang="nl-NL">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="nl-NL">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="nl-NL">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="nl-NL">
+<!--<![endif]-->
+<head> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>07B: Wiskunde | Computer Science Circles</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/pybox2011childTheme/style.css" />
+<!--[if lt IE 9]>
+<script src="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cscircles.cemc.uwaterloo.ca\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='dashicons-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/dashicons.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-jquery-ui-dialog-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/jquery-ui-dialog.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='admin-bar-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/admin-bar.min.css?ver=5.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code>code{font-family:Menlo,Consolas,monaco,monospace;color:#1e1e1e;padding:.8em 1em;border:1px solid #ddd;border-radius:4px}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-group:where(.has-background){padding:1.25em 2.375em}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto;opacity:.4}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue: #1982d1;--wp--preset--color--dark-gray: #373737;--wp--preset--color--medium-gray: #666;--wp--preset--color--light-gray: #e2e2e2;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.6' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyeleven-block-style-css'  href='https://cscircles.cemc.uwaterloo.ca/wp-content/themes/twentyeleven/blocks.css?ver=20190102' type='text/css' media='all' />
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://cscircles.cemc.uwaterloo.ca/wp-json/" /><link rel="alternate" type="application/json" href="https://cscircles.cemc.uwaterloo.ca/wp-json/wp/v2/pages/6151" /><meta name="generator" content="WordPress 5.9.3" />
+<link rel="canonical" href="https://cscircles.cemc.uwaterloo.ca/7b-math-nl/" />
+<link rel='shortlink' href='https://cscircles.cemc.uwaterloo.ca/?p=6151' />
+<link rel="alternate" type="application/json+oembed" href="https://cscircles.cemc.uwaterloo.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcscircles.cemc.uwaterloo.ca%2F7b-math-nl%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://cscircles.cemc.uwaterloo.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcscircles.cemc.uwaterloo.ca%2F7b-math-nl%2F&#038;format=xml" />
+<script type='text/javascript'>
+var translationArray = {"Click to try again.":"Klik om het nog eens te proberen.","Could not grade program because communication to the server was not possible. Ajax information: ":"Je programma kon niet beoordeeld worden omdat communicatie met de server niet mogelijk was. Ajax-informatie: ","Displaying {from} to {to} of {total} items":"In beeld: {from} tot en met {to} van {total} items","Enter input":"Tik invoer in","Enter test input":"Voer testinvoer in","Enter test statements":"Voer testopdrachten in ","Error: could not connect to database.":"Fout: kan geen verbinding maken met de database.","Go back to grading":"Ga terug naar nakijkprogramma","Hide history":"Geschiedenis verbergen","Hide input box":"Verberg het invoer-veld","History":"Geschiedenis","Incorrect, try again.":"Niet correct, probeer het nog een keer.","Marking all messages from this student about this problem as answered.":"Alle berichten van deze student over dit probleem worden gemarkeerd als beantwoord.","More actions...":"Meer acties...","Page":"Pagina","Please enter a non-empty message.":"Tik een bericht in.","Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page).":"Selecteer een geldige ontvanger voor het bericht. Als een leerkracht of vriend je bijstaat, selecteer hen dan als goeroe op je Profielpagina, die je vindt via het gebruikersmenu in de rechterbovenhoek van elke pagina.","Rich editor":"Uitgebreide editor","Run program":"Uitvoeren","Run test":"Test uitvoeren","Running...":"Bezig met uitvoeren...","Simple editor":"Eenvoudige editor","The code box is empty. It should instead contain your best partial solution so far.":"De code-invoer is leeg. Deze zou je beste deeloplossing tot nu toe moeten bevatten.","The database connected but found no data.":"Verbonden met database maar geen data gevonden","Unable to process 'send message' request. You might have lost your internet connection.":"Het verzoek 'stuur bericht' kan niet uitgevoerd worden. Wellicht is de internetverbinding verbroken.","Warning: unable to talk to server. Could not set 'completed' status for this problem.":"Let op: niet in staat om met de server te communiceren. De opgave kan nu niet op 'afgehandeld' gezet worden.","You have completed this problem at least once.":"Je hebt deze opgave tenminste \u00e9\u00e9n keer afgerond.","Your message was sent.":"Je bericht is verzonden","end of main program":"einde van het hoofdprogramma","out of":"van","start of tests":"begin van het testen","timed out!":"duurde te lang!"};var SUBMITURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-submit-code.php';
+var SETCOMPLETEDURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-notify-complete.php';
+var CONSOLEURL = 'https://cscircles.cemc.uwaterloo.ca/console-nl/';
+var FILESURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/';
+var HISTORYURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/db-problem-history.php';
+var VISUALIZEURL = 'https://cscircles.cemc.uwaterloo.ca/visualize/';
+var MESSAGEURL = 'https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/action-send-message.php';
+var MAILURL = 'https://cscircles.cemc.uwaterloo.ca/mail-nl/';
+var DEFAULTTIMEOUTMS = '6000';
+var PB_LANG4 = 'nl_NL';
+</script>
+<link type="text/css" rel="stylesheet" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/pybox.css?24" />
+<script type="text/javascript" src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/pybox.js?49"></script>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/codemirror-specific.css'>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/codemirror-extras.css'>
+<link rel='stylesheet' type='text/css' href='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/customizations-codemirror/textmate.css'>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/lib/codemirror.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/mode/python/python.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/CodeMirror3/addon/display/autorefresh.js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/flexigrid/js/flexigrid.js'></script>
+<link type="text/css" rel="stylesheet" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/flexigrid/css/flexigrid.css" />
+<link rel="shortcut icon" href="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/favicon.ico"/><style type="text/css">
+/* <![CDATA[ */
+img.latex { vertical-align: middle; border: none; }
+/* ]]> */
+</style>
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-math/" hreflang="en" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-fr/" hreflang="fr" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-de/" hreflang="de" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-tr-math/" hreflang="tr" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-math-nl/" hreflang="nl" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/zh-7b/" hreflang="zh" />
+<link rel="alternate" href="https://cscircles.cemc.uwaterloo.ca/7b-pl/" hreflang="pl" />
+<style type="text/css" media="print">#wpadminbar { display:none; }</style>
+	</head>
+
+<body class="page-template-default page page-id-6151 admin-bar no-customize-support wp-embed-responsive singular one-column content">
+<div id="page" class="hfeed">
+	  <div id="bumper"><span>[Python for Students and Teachers]</span></div>
+
+	<div style="width: 100%; background: black;  height:40px;">
+  <a href="http://www.uwaterloo.ca"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/wordmark-uw.gif" style="margin: 0px;"/></a>
+<a href="http://cemc.uwaterloo.ca"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/wordmark-cemc.png" style="margin: 0px; position: absolute; right: 0px;"></a>
+	  </div>
+<!--<div style='background-color: yellow'><center><b>This site was recently migrated. Email any questions to <tt><a href="mailto:daveagp@gmail.com">daveagp@gmail.com</a></tt>.</b></center></div>-->
+<header id="branding" role="banner">
+<div class="toppictureholder"><a href="https://cscircles.cemc.uwaterloo.ca/ack/"><img src="https://cscircles.cemc.uwaterloo.ca/wp-content/themes/pybox2011childTheme/images/header.jpg" width="1000" height="150" /></a>
+</div>
+
+							  			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Hoofdmenu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content" title="Spring naar de primaire inhoud">Spring naar de primaire inhoud</a></div>
+				<div class="skip-link"><a class="assistive-text" href="#secondary" title="Spring naar de secundaire inhoud">Spring naar de secundaire inhoud</a></div>
+								<div class="menu-dutch-menu-container"><ul id="menu-dutch-menu" class="menu"><li id="menu-item-8369" class="menu-item-for-my-progress menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8369"><a href="https://cscircles.cemc.uwaterloo.ca/my-progress-nl/">Mijn voortgang</a>
+<ul class="sub-menu">
+	<li id="menu-item-8368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8368"><a href="https://cscircles.cemc.uwaterloo.ca/mail-nl/">Mail</a></li>
+</ul>
+</li>
+<li id="menu-item-8367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8367"><a href="https://cscircles.cemc.uwaterloo.ca/using-this-website-nl/">Deze website</a></li>
+<li id="menu-item-8364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8364"><a href="https://cscircles.cemc.uwaterloo.ca/console-nl/">Console</a></li>
+<li id="menu-item-8372" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8372"><a href="http://cscircles.cemc.uwaterloo.ca/visualize">Visualiseren</a></li>
+<li id="menu-item-8370" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8370"><a href="https://cscircles.cemc.uwaterloo.ca/run-at-home-nl/">Python thuis</a></li>
+<li id="menu-item-8363" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8363"><a href="https://cscircles.cemc.uwaterloo.ca/resources-nl/">Bronnen</a></li>
+<li id="menu-item-8371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8371"><a href="https://cscircles.cemc.uwaterloo.ca/cheatsheet-nl/">Spiekbriefje</a></li>
+<li id="menu-item-8365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8365"><a href="https://cscircles.cemc.uwaterloo.ca/contact-nl/">Contact-nl</a></li>
+<li id="menu-item-8366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8366"><a href="https://cscircles.cemc.uwaterloo.ca/thanks-nl/">Dank</a></li>
+<li id="menu-item-8475" class="menu-item-for-lesson-zero menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-8475"><a href="https://cscircles.cemc.uwaterloo.ca/nl/">0: Hallo!</a></li>
+<li id="menu-item-8335" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8335"><a href="https://cscircles.cemc.uwaterloo.ca/1-variables-nl/">01: Variabelen</a>
+<ul class="sub-menu">
+	<li id="menu-item-8336" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8336"><a href="https://cscircles.cemc.uwaterloo.ca/1e-errors-nl/">01E: Errors</a></li>
+</ul>
+</li>
+<li id="menu-item-8337" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8337"><a href="https://cscircles.cemc.uwaterloo.ca/2-functions-nl/">02: Functies</a>
+<ul class="sub-menu">
+	<li id="menu-item-8338" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8338"><a href="https://cscircles.cemc.uwaterloo.ca/2x-extra-practice-nl/">02X: Extra Oefening</a></li>
+</ul>
+</li>
+<li id="menu-item-8339" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8339"><a href="https://cscircles.cemc.uwaterloo.ca/3-comments-and-quotes-nl/">03: Commentaar en aanhalingstekens</a></li>
+<li id="menu-item-8340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8340"><a href="https://cscircles.cemc.uwaterloo.ca/4-types-nl/">04: Types</a></li>
+<li id="menu-item-8341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8341"><a href="https://cscircles.cemc.uwaterloo.ca/5-input-nl/">05: Invoer</a></li>
+<li id="menu-item-8342" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8342"><a href="https://cscircles.cemc.uwaterloo.ca/06-if/">06: If</a>
+<ul class="sub-menu">
+	<li id="menu-item-8343" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8343"><a href="https://cscircles.cemc.uwaterloo.ca/6d-nl/">06D: Design, Debugging en Donuts</a></li>
+</ul>
+</li>
+<li id="menu-item-8344" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-8344"><a href="https://cscircles.cemc.uwaterloo.ca/7-rich-editor-nl/">07: Editor met veel extra's (rich editor)</a>
+<ul class="sub-menu">
+	<li id="menu-item-8345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8345"><a href="https://cscircles.cemc.uwaterloo.ca/7a-strings-nl/">07A: Strings</a></li>
+	<li id="menu-item-8346" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-6151 current_page_item menu-item-8346"><a href="https://cscircles.cemc.uwaterloo.ca/7b-math-nl/" aria-current="page">07B: Wiskunde</a></li>
+	<li id="menu-item-8347" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8347"><a href="https://cscircles.cemc.uwaterloo.ca/7c-loops-nl/">07C: Lussen</a></li>
+</ul>
+</li>
+<li id="menu-item-8348" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8348"><a href="https://cscircles.cemc.uwaterloo.ca/8-remix-nl/">08: Van alles wat</a></li>
+<li id="menu-item-8349" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8349"><a href="https://cscircles.cemc.uwaterloo.ca/9-else-and-or-not-nl/">09: Else, And, Or, Not</a></li>
+<li id="menu-item-8350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8350"><a href="https://cscircles.cemc.uwaterloo.ca/10-def-nl/">10: Functies</a></li>
+<li id="menu-item-8373" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8373"><a>11</a>
+<ul class="sub-menu">
+	<li id="menu-item-8351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8351"><a href="https://cscircles.cemc.uwaterloo.ca/11a-lower-case-nl/">11A: Kleine letters</a></li>
+	<li id="menu-item-8352" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8352"><a href="https://cscircles.cemc.uwaterloo.ca/11b-variable-scope-nl/">11B: De scope van een variabele</a></li>
+	<li id="menu-item-8353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8353"><a href="https://cscircles.cemc.uwaterloo.ca/11c-geometry-nl/">11C: Meetkunde</a></li>
+</ul>
+</li>
+<li id="menu-item-8354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8354"><a href="https://cscircles.cemc.uwaterloo.ca/12-tips-nl/">12: Tips</a></li>
+<li id="menu-item-8355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8355"><a href="https://cscircles.cemc.uwaterloo.ca/13-lists-arrays-nl/">13: Lijsten (Arrays)</a></li>
+<li id="menu-item-8356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8356"><a href="https://cscircles.cemc.uwaterloo.ca/14-methods-nl/">14: Methoden</a></li>
+<li id="menu-item-8374" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8374"><a>15</a>
+<ul class="sub-menu">
+	<li id="menu-item-8357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8357"><a href="https://cscircles.cemc.uwaterloo.ca/15a-termination-determination-nl/">15A: Komt er een einde aan?</a></li>
+	<li id="menu-item-8358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8358"><a href="https://cscircles.cemc.uwaterloo.ca/15b-python-pushups-nl/">15B: Python push ups</a></li>
+	<li id="menu-item-8359" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8359"><a href="https://cscircles.cemc.uwaterloo.ca/15c-nl/">15C: Caesar's JVTIVK JRCRU IVTZGV (NL)</a></li>
+</ul>
+</li>
+<li id="menu-item-8360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8360"><a href="https://cscircles.cemc.uwaterloo.ca/16-recursion-nl/">16: Recursie</a></li>
+<li id="menu-item-8361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8361"><a href="https://cscircles.cemc.uwaterloo.ca/17-is-nl/">17: Is</a></li>
+<li id="menu-item-8362" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8362"><a href="https://cscircles.cemc.uwaterloo.ca/18-efficiency-nl/">18: Efficiëntie</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					
+<article id="post-6151" class="post-6151 page type-page status-publish hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">07B: Wiskunde</h1>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p><em>Les 7 heeft drie delen A, B, C die in een willekurige volgorde kunnen worden doorgenomen.</em><br />
+Tot zover hebben we in Python gerekend met de operatoren <code>+</code>,  <code>-</code>, <code>*</code>, <code>/</code> en de functies <code>max</code> en <code>min</code>. In deze les zullen we kennis maken met meer operatoren en functies en zullen we leren hoe we meer complexe berekeningen kunnen uitvoeren.</p>
+<h2>Operatoren uit de wiskunde</h2>
+<p>We heben reeds kenis gemaakt met de operatoren voor optellen (<code>a + b</code>), aftrekken (<code>a - b</code>), vermenigvuldigen (<code>a * b</code>) en delen (<code>a / b</code>). We zullen nu drie extra operatoren leren kennen.</p>
+<ul>
+<li>De <strong>tot-de-macht</strong>-operator <code>a ** b</code> berekent <code>a<sup>b</sup></code> (<code>a</code> vermenigvuldigd met zichzelf <code>b</code> keer). Bijvoorbeeld, <code>2 ** 3</code> is <code>8</code> (2×2×2).</li>
+<li>De <strong>geheeltallige deling</strong>-operator <code>a // b</code> berekent het "quotiënt" van <code>a</code> gedeeld door <code>b</code> waarbij de rest wordt weggelaten. Bijvoorbeeld, <code>14 // 3</code> heeft als uitkomst <code>4</code>, waarbij dus 2 wordt weggelaten.</li>
+<li>De <strong>modulus</strong>-operator <code>a % b</code> berekent de rest bij <code>a</code> gedeeld door <code>b</code>. Bijvoorbeeld, <code>14 % 3</code> heeft als uitkomst <code>2</code>.</li>
+</ul>
+<p><form class="pbform" action="#" id="pbform0" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox0'>
+<div class="heading"><span class="title">Voorbeeld</span></div>De tot-de-macht-, geheeltallige deling-, en modulus-operatoren<div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 84px;'><textarea wrap='off' name='usercode0' id='usercode0'  cols=10 rows=3 readonly='readonly'  style = 'height : 84px;'  class='pyboxCode RO'>
+print(2 ** 3)
+print(14 // 3)
+print(14 % 3)</textarea></div>
+<div id='pbhistory0' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit0' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(0)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(0,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse0" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="0"/>
+<input type="hidden" name="hash" value="a3511b91883033660b56dabaf0837468"/>
+<div id='pbresults0' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit0").value = "Uitvoeren";document.getElementById("inputInUse0").value = "N";</script>
+</p>
+<p><form class="pbform" action="#" id="pbform1" method="POST">
+<div class='pybox modeNeutral ' id='pybox1'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Rekenen met eieren</span></div>Eierdoosjes bevatten elk precies 12 eieren. Schrijf een programma dat een geheel aantal eieren inleest van<code>input()</code>, en dan twee getallen afdrukt: hoeveel eierdoosjes er kunnen worden gevuld, en hoeveel eieren er over blijven. Bijvoorbeeld: bij <code>27</code> eieren wordt afgedrukt </p>
+<pre>2<br/>3</pre> want met <code>27</code> eieren kun je <code>2</code> doosjes vullen en blijven er <code>3</code> eieren over.<a class="hintlink"  id="hintlink2">Hint</a>  <div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode1' id='usercode1'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory1' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput1">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit1' value=' '/></td>
+<td><input type='button' name='switch' id="switch1" value="Input Switch" onclick="pbInputSwitch(1,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(1)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(1,'N')" ></td>
+</tr></table><select id='pbSelect1' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(1,'7b.eggs')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(1);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse1" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="1"/>
+<input type="hidden" name="hash" value="ef07c41ec653e325a33dc35baa3a1daf"/>
+<div id='pbresults1' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(1);});pbInputSwitch(1,"N");</script>
+</p>
+<p>De modulus-operator wordt voor een reeks van taken gebruikt. Het kan gebruikt worden om vragen te beantwoorden zoals deze:</p>
+<ul>
+<li>Als het nu 10 uur is, wat is de tijd over 100 uur? (vraagt om modulus 12)</li>
+<li>Is het jaar 2032 een schrikkeljaar? (<a href="http://nl.wikipedia.org/wiki/Schrikkeljaar">Dit vraagt om modulus 4, 100, en 400</a>)</li>
+</ul>
+<p>De check of een jaar een schrikkeljaar is komt neer op het testen van deelbaarheid; in de volgende oefening vragen we je een programma te schrijven dat gaat over deelbaarheid in het algemeen.</p>
+<p><form class="pbform" action="#" id="pbform3" method="POST">
+<div class='pybox modeNeutral ' id='pybox3'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Deelbaarheid</span></div>Schrijf een programma dat twee positieve getallen <code>a</code> en <code>b</code> inleest op gescheiden regels. Wanneer <code>a</code> deelbaar is door <code>b</code>, druk dan de boodschap "deelbaar" af. Druk anders de boodschap, "niet deelbaar" af. Een voorbeeld: wanneer de invoer is </p>
+<pre>14<br/>3</pre> dan dient het programma af te drukken "niet deelbaar". <a class="hintlink"  id="hintlink4">Hint</a><div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode3' id='usercode3'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory3' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput3">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit3' value=' '/></td>
+<td><input type='button' name='switch' id="switch3" value="Input Switch" onclick="pbInputSwitch(3,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(3)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(3,'N')" ></td>
+</tr></table><select id='pbSelect3' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(3,'7b.divisible')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(3);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse3" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="3"/>
+<input type="hidden" name="hash" value="c2b2991595d2d754765d6c2564d2a243"/>
+<div id='pbresults3' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(3);});pbInputSwitch(3,"N");</script>
+</p>
+<h2>Functies uit de wiskunde</h2>
+<p>Python kent vrijwel alle wiskundige functies die op een wetenschappelijke rekenmachine te vinden zijn.</p>
+<ul>
+<li><code>sqrt(x)</code> berekent de wortel van een getal <code>x</code>.</li>
+<li><code>exp(x)</code> en<code>log(x)</code> zijn de exponentiële functie en die van de natuurlijke logaritme.</li>
+<li><code>sin(x)</code>, <code>cos(x)</code>, <code>tan(x)</code> maar ook andere trigonometrische functies zijn aanwezig.</li>
+<li><code>pi</code>, de bekende constante uit de wiskunde <code>3.1415...</code>,  is ook aanwezig.</li>
+</ul>
+<p><table class='pywarn'><tr><td class='pywarnleft'><img src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/warning.png'/></td><td class='pywarnright'><span> Wanneer je trigonometrische functies uit Python gebruikt, dan moet de hoek <code>x</code> in <a href="https://nl.wikipedia.org/wiki/Radiaal_(wiskunde)">radialen</a> worden weergegeven, niet in graden. </span></td></table></p>
+<p>Python kent zoveel functies dat ze zijn ondergebracht in groepen die <em>modules</em> worden genoemd. Bovenstaande functies behoren tot de module <code>math</code> (wiskunde). Voordat je een functie uit een module kunt gebruiken, moet je eerst de module <em>importeren</em> zoals in onderstaand voorbeeld te zien is. Om een functie uit een reeds geïmporteerde module te gebruiken moet je de naam van een module intypen, gevolgd door een punt en dan gevolgd door de naam van de functie.</p>
+<p><form class="pbform" action="#" id="pbform5" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox5'>
+<div class="heading"><span class="title">Voorbeeld</span></div>Functies gebruiken uit de module math (wiskunde)<div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 136px;'><textarea wrap='off' name='usercode5' id='usercode5'  cols=10 rows=5 readonly='readonly'  style = 'height : 136px;'  class='pyboxCode RO'>
+import math
+print(math.pi)
+e = math.exp(1)
+print(e)
+print(math.sqrt(3), math.tan(math.pi / 3))</textarea></div>
+<div id='pbhistory5' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit5' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(5)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(5,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse5" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="5"/>
+<input type="hidden" name="hash" value="f6885f61429ba7ceee96a03033a06e45"/>
+<div id='pbresults5' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit5").value = "Uitvoeren";document.getElementById("inputInUse5").value = "N";</script>
+</p>
+<p><form class="pbform" action="#" id="pbform6" method="POST">
+<div class='pybox modeNeutral ' id='pybox6'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Pizza Cirkels</span></div>Je vrienden hebben hun vierkante pizza's opgegeten en bestellen nu een ronde pizza. Schrijf een programma dat de oppervlakte berekent van deze ronde pizza. De invoer is een kommagetal, laten we het <em>r</em> noemen, dat de straal in cm weergeeft. De uitvoer moet de oppervlakte weergeven in cm<sup>2</sup>, berekend door gebruik te maken van de formule <em>A=pi*r<sup>2</sup></em>. Gebruik daarbij <code>pi</code> uit de module <code>math</code> in plaats van <code>3.1415...</code><div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode6' id='usercode6'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory6' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput6">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit6' value=' '/></td>
+<td><input type='button' name='switch' id="switch6" value="Input Switch" onclick="pbInputSwitch(6,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(6)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(6,'N')" ></td>
+</tr></table><select id='pbSelect6' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(6,'7b.pizza')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(6);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse6" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="6"/>
+<input type="hidden" name="hash" value="bb4d5ad0d5dc76fd8701e40070ebde8e"/>
+<div id='pbresults6' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(6);});pbInputSwitch(6,"N");</script>
+</p>
+<p><form class="pbform" action="#" id="pbform7" method="POST">
+<div class='pybox modeNeutral ' id='pybox7'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Meetkundig gemiddelde</span></div>Het <em>meetkundig gemiddelde</em> van twee getallen <code>a</code> en <code>b</code> is het getal  <img src='https://s0.wp.com/latex.php?latex=%5Csqrt%7Bab%7D&#038;bg=T&#038;fg=000000&#038;s=2' alt='\sqrt{ab}' title='\sqrt{ab}' class='latex' />  Schrijf een programma dat twee positieve kommagetallen inleest, en als uitvoer het meetkundig gemiddelde ervan produceert. <br/> <em>Bijvoorbeeld: Wanneer de invoer is:</em> </p>
+<pre>5.0<br/>20.0</pre> dan dient de uitvoer <code>10.0</code> te zijn.<div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode7' id='usercode7'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory7' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput7">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit7' value=' '/></td>
+<td><input type='button' name='switch' id="switch7" value="Input Switch" onclick="pbInputSwitch(7,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(7)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(7,'N')" ></td>
+</tr></table><select id='pbSelect7' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(7,'7b.geometricmean')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(7);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse7" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="7"/>
+<input type="hidden" name="hash" value="ce6e2078f8d359c0511b45c292ab3188"/>
+<div id='pbresults7' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(7);});pbInputSwitch(7,"N");</script>
+</p>
+<h2>Een expressie uitrekenen</h2>
+<p>Zoals je kon zien in de vorige oefening, kun je wiskundige expressies samenstellen door bewerkingen te combineren. Python evalueert de bewerkingen in dezelfde volgorde als in de wiskunde:</p>
+<p><strong>H</strong>aakjes eerst, dan de <strong>E</strong>xponenten, gevolgd door <strong>D</strong>elen en <strong>V</strong>ermenigvuldigen en tenslotte <strong>O</strong>ptellen en <strong>A</strong>ftrekken,</p>
+<p>die we kunnen onthouden door de afkorting "HEDVOA". Geheeltallig delen en modulus behoren tot de categorie "Delen en Vermenigvuldigen". Bijvoorbeeld, de expressie</p>
+<pre>3 * (1 + 2) ** 2 % 4</pre>wordt als volgt berekend: eerst (1+2 = 3), dan de exponent (3 ** 2 = 9) , dan de vermenigvuldiging (3 * 9 = 27), en tenslotte de modulus (rest bij deling door) waarmee het eindresultaat wordt: 27 % 4 = <code>3</code>.</p>
+<div class='pybox modeNeutral' id='pybox8'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Oefening met Kort Antwoord: </span><span class='title'>Volgorde van de bewerkingen</span></div>Bereken de uitkomst van de volgende Python-expressie. Denk hierbij aan de volgorde van bewerkingen. </p>
+<pre>6 - 52 // 5 ** 2</pre><label for="pyShortAnswer8">Jouw antwoord (voer een getal in): </label><input type="text" onkeypress="{if (event.keyCode==13) pbShortCheck(8)}" id="pyShortAnswer8"><div class="pyboxbuttons"><input type="hidden" name="type" value="number"/><input type="hidden" name="correct" value="4"/><input type="hidden" name="slug" value="7b.bedmas"/><input type="hidden" name="lang" value="nl_NL"/><input type='submit' style='margin:5px;' value='Controleer het antwoord' onClick = 'pbShortCheck(8)'/></div><div class="pbresults" id="pyShortResults8"></div><div class="epilogue">Correct!</div></div>
+<p><em>Geheeltallig delen met negatieve getallen</em>: De uitdrukkingen <code>a // b</code> en <code>int(a / b)</code> zijn gelijk  wanneer <code>a</code> en <code>b</code> positief zijn. Maar wanneer <code>a</code> negatief is zal <code>a // b</code>  "afgerond worden in meer negatieve richting" terwijl <code>int(a / b)</code>  "afgerond zal worden richting 0" (voor negatieve getallen is dat dus in positieve richting).<br />
+<form class="pbform" action="#" id="pbform9" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox9'>
+<div class="heading"><span class="title">Voorbeeld</span></div> Geheeltallig delen met negatieve getallen <div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 58px;'><textarea wrap='off' name='usercode9' id='usercode9'  cols=10 rows=2 readonly='readonly'  style = 'height : 58px;'  class='pyboxCode RO'>
+print((-10) // 3, int((-10) / 3)) # verschillend
+print((-12) // 2, int((-12) / 2)) # gelijk, omdat -12 deelbaar is door 2</textarea></div>
+<div id='pbhistory9' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit9' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(9)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(9,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse9" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="9"/>
+<input type="hidden" name="hash" value="7aaafa628d7ce7b2025aa6b5a141066b"/>
+<div id='pbresults9' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit9").value = "Uitvoeren";document.getElementById("inputInUse9").value = "N";</script>
+</p>
+<h2>Gehele getallen en kommagetallen</h2>
+<p>Het resultaat van een wiskundige expressie is een getal. Zoals we <a title="4: Types" href="/4-types/">eerder</a> zagen, is elk getal opgeslagen als één van de twee mogelijke types: <code>int</code> of <code>float</code>. Het type <code>int</code> stelt gehele getallen voor, zowel positieve als negatieve, die willekeurig groot kunnen zijn.</p>
+<p><table class='pywarn'><tr><td class='pywarnleft'><img src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/warning.png'/></td><td class='pywarnright'><span> Python accepteert geen getallen die geschreven zijn in de vorm <code>1 000 000</code> of <code>1.000.000</code> of <code>1,000,000.</code> Tik in plaats daarvan <code>1000000</code>. </span></td></table></p>
+<p>Het type <code>float</code> stelt kommagetallen voor. Zoals een rekenmachine <code>1/3</code> opslaat als de benadering <code>0.33333333</code>, zal ook Python kommagetallen benaderend opslaan.</p>
+<p><table class='pywarn'><tr><td class='pywarnleft'><img src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/warning.png'/></td><td class='pywarnright'><span> Omdat Python benaderingen van kommagetallen gebruikt, zullen bepaalde vergelijkingen die wiskundig juist zijn, niet waar blijken te zijn in Python.  <form class="pbform" action="#" id="pbform10" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox10'>
+<div class="heading"><span class="title">Voorbeeld</span></div><div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 110px;'><textarea wrap='off' name='usercode10' id='usercode10'  cols=10 rows=4 readonly='readonly'  style = 'height : 110px;'  class='pyboxCode RO'>
+import math
+s = math.sqrt(2) * math.sqrt(2)
+print(s == 2)
+print(s)</textarea></div>
+<div id='pbhistory10' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit10' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(10)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(10,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse10" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="10"/>
+<input type="hidden" name="hash" value="b416006b57a6ea47b55211769d6b5292"/>
+<div id='pbresults10' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit10").value = "Uitvoeren";document.getElementById("inputInUse10").value = "N";</script>
+  <form class="pbform" action="#" id="pbform11" method="POST">
+<div class='pybox modeNeutral  facultative' id='pybox11'>
+<div class="heading"><span class="title">Voorbeeld</span></div><div class='pyboxTextwrap pyboxCodewrap RO '  style='height: 84px;'><textarea wrap='off' name='usercode11' id='usercode11'  cols=10 rows=3 readonly='readonly'  style = 'height : 84px;'  class='pyboxCode RO'>
+s = 0.1 + 0.1 + 0.1
+print('s equals 0.3?', s == 0.3)
+print('s =', s)</textarea></div>
+<div id='pbhistory11' class='flexcontain' style='display:none;'></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit11' value=' '/></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(11)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(11,'N')" ></td>
+</tr></table></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse11" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="11"/>
+<input type="hidden" name="hash" value="152b3da4460191b4c80831387738e623"/>
+<div id='pbresults11' class='pbresults'></div>
+</div>
+</form>
+<script type='text/javascript'>document.getElementById("submit11").value = "Uitvoeren";document.getElementById("inputInUse11").value = "N";</script>
+  Daarom is het belangrijk om enige tolerantie toe te staan voor deze benaderingen wanneer we getallen van het type <code>float</code> vergelijken. In de interne grader die bij deze website gebruikt wordt, bijvoorbeeld, wordt een <code>float</code>-uitvoer als correct beschouwd wanneer ze <a class="hintlink"  id="hintlink12"><em>bij benadering</em></a> gelijk is aan het verwachte antwoord. </span></td></table></p>
+<p>We beëindigen deze les met een paar oefeningen.</p>
+<p><form class="pbform" action="#" id="pbform13" method="POST">
+<div class='pybox modeNeutral ' id='pybox13'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Overhoring</span></div>Als "overhoring" krijg je drie gehele getallen en je wordt gevraagd om de eerste twee getallen bij elkaar op te tellen en het resultaat met het derde getal te vermenigvuldigen. Schrijf een programma dat de drie getallen inleest en het juiste antwoord afdrukt. <a class="hintlink"  id="hintlink14">Hint</a><div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode13' id='usercode13'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory13' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput13">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit13' value=' '/></td>
+<td><input type='button' name='switch' id="switch13" value="Input Switch" onclick="pbInputSwitch(13,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(13)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(13,'N')" ></td>
+</tr></table><select id='pbSelect13' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(13,'7b.skill')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(13);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse13" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="13"/>
+<input type="hidden" name="hash" value="f1cdaf01a16dde11423bd4aa59bc3fc1"/>
+<div id='pbresults13' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(13);});pbInputSwitch(13,"N");</script>
+</p>
+<p><form class="pbform" action="#" id="pbform15" method="POST">
+<div class='pybox modeNeutral ' id='pybox15'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Voet vertalen in cm</span></div>Voor dit programma is de invoer een kommagetal dat een hoogte weergeeft in voet. Schrijf een programma dat het equivalent in centimeters weergeeft. Gebruik daarbij dat 1 voet = 30,48 cm. Zo is bijvoorbeeld bij een invoer van <code>0.5</code>, de gewenste uitvoer gelijk aan <code>15.24</code>.<div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode15' id='usercode15'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory15' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput15">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit15' value=' '/></td>
+<td><input type='button' name='switch' id="switch15" value="Input Switch" onclick="pbInputSwitch(15,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(15)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(15,'N')" ></td>
+</tr></table><select id='pbSelect15' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(15,'7b.convert')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(15);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse15" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="15"/>
+<input type="hidden" name="hash" value="d986350fdc5934bfab4e4ef48dea9c6f"/>
+<div id='pbresults15' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(15);});pbInputSwitch(15,"N");</script>
+</p>
+<p><form class="pbform" action="#" id="pbform16" method="POST">
+<div class='pybox modeNeutral ' id='pybox16'>
+<img title='Je hebt deze opgave nog niet afgerond.' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/icon.png' class='pycheck'/><div class="heading"><span class='type'>Programmeeroefening: </span><span class='title'>Zwaartekracht</span></div>Een pakje wordt vanuit een vliegtuig op een hoogte van 11000 meter naar beneden gegooid met een snelheid van <em>v</em> m/s. Terwijl het valt wordt de afstand naar de grond gegeven door de formule -4.9<em>t</em><sup>2</sup> - <em>vt</em> + 11000, waarbij <em>t</em> de tijd is in seconden vanaf het moment van vallen. Schrijf een programma dat als uitvoer de tijd geeft die nodig is om de grond te bereiken. De invoer bij je programma is het positieve kommagetal <em>v</em>. De gevraagde tijd wordt gegeven door de formule:  <img src='https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7Bt%3D%5Cfrac%7Bv-%5Csqrt%7Bv%5E2-4%28-4.9%29%2811000%29%7D%7D%7B2%28-4.9%29%7D%7D&#038;bg=T&#038;fg=000000&#038;s=2' alt='\displaystyle{t=\frac{v-\sqrt{v^2-4(-4.9)(11000)}}{2(-4.9)}}' title='\displaystyle{t=\frac{v-\sqrt{v^2-4(-4.9)(11000)}}{2(-4.9)}}' class='latex' />  <div class="helpOuter" style="display: none;"><div class="helpInner"><div style="text-align: center">Je moet een account aanmaken en inloggen om een vraag te kunnen stellen.</div></div></div><div class='pyboxTextwrap pyboxCodewrap RW resizy'  style='height: 526px;'><textarea wrap='off' name='usercode16' id='usercode16'  cols=10 rows=20   class='pyboxCode RW'>
+# verwijder dit commentaar en type hier je code
+</textarea></div>
+<div id='pbhistory16' class='flexcontain' style='display:none;'></div>
+<div name="pyinput" id="pyinput16">Tik de invoer voor je programma hieronder in.<div class="pyboxTextwrap resizy" style="height: 102px;" ><textarea wrap="off" name="userinput" class="pyboxInput" cols=10 rows=4></textarea></div></div>
+<div class='pyboxbuttons'><table><tr>
+<td><input type='submit' name='submit' id='submit16' value=' '/></td>
+<td><input type='button' name='switch' id="switch16" value="Input Switch" onclick="pbInputSwitch(16,'N')" ></td>
+<td><input type='button' name='consolecopy' value="Openen in de console" onclick="pbConsoleCopy(16)" ></td>
+<td><input type='button' name='visualize' value="Visualiseer" onclick="pbVisualize(16,'N')" ></td>
+</tr></table><select id='pbSelect16' class='selectmore'><option name='more'>Meer acties...</option>
+<option name='history' data-pbonclick="historyClick(16,'7b.gravity')" >Geschiedenis</option>
+<option name='help' data-pbonclick="helpClick(16);" >Help</option>
+</select></div>
+<input type="hidden" name="lang" value="nl_NL"/><input type="hidden" id="inputInUse16" name="inputInUse" value="Y"/>
+<input type="hidden" name="pyId" value="16"/>
+<input type="hidden" name="hash" value="09c54cff0254ee31db8220a78a84a3fe"/>
+<div id='pbresults16' class='pbresults avoidline'></div>
+</div>
+</form>
+<script type='text/javascript'>jQuery(function(){pbToggleCodeMirror(16);});pbInputSwitch(16,"N");</script>
+</p>
+<p>Gefeliciteerd! Nadat je deze oefeningen hebt afgerond kun je verder met een volgende les.</p>
+			</div><!-- .entry-content -->
+	<footer class="entry-meta">
+			</footer><!-- .entry-meta -->
+</article><!-- #post-6151 -->
+
+					
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+   
+</div><!-- #main -->
+<footer id="colophon" role="contentinfo">
+
+    
+<div class="locator"><table class="locator"><tr><td class="locator"><a style="font-size:90%" class="open-same-window locator locator-l"  title="07A: Strings" href="https://cscircles.cemc.uwaterloo.ca/7a-strings-nl/"><span class='buttn'>07A: Strings</span></a><a style="font-size:100%" class="open-same-window locator locator-c"  title="07B: Wiskunde (ga naar de top van de huidge pagina)" onclick="scrollToTop()"><span class='buttn'>07B: Wiskunde</span></a><a style="font-size:100%" class="open-same-window locator locator-r"  title="07C: Lussen" href="https://cscircles.cemc.uwaterloo.ca/7c-loops-nl/"><span class='buttn'><span class='nextlesson'>Volgende</span> 07C: Lussen</span></a><a style="font-size:90%" class="open-same-window locator locator-r"  title="08: Van alles wat" href="https://cscircles.cemc.uwaterloo.ca/8-remix-nl/"><span class='buttn'>08: Van alles wat</span></a></td></tr></table></div>
+  <div id="site-generator">
+  <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
+  <a href='http://cemc.uwaterloo.ca/copyright.html'>
+<img src='/wp-content/plugins/pybox/files/cc.png' style='height:0.8em; vertical-align: baseline; top: 0px' />
+  2010&ndash;2026.</a> Computer Science Circles is a free service of the <a href="http://www.cemc.uwaterloo.ca/">Centre for Education in Mathematics and Computing</a> at the <a href="http://www.uwaterloo.ca">University of Waterloo</a>. <br> Total number of exercises completed by all users: <b>3907822</b>
+   <div id="departmentaddress">
+  CEMC |
+  Nederlandse Informatica Olympiade |
+  Winthontlaan 200 |
+  3526 KV  UTRECHT |
+  E-mail: <a href="mailto:info@informaticaolympiade.nl">info@informaticaolympiade.nl</a> |
+  <a href="https://cscircles.cemc.uwaterloo.ca/contact-nl/">contact</a>
+   </div>
+
+  </div> 
+
+ </footer><!-- #colophon -->
+</div><!-- #page -->
+
+
+<div id="hintbox2" class="hintbox "><div id="hintboxlink2" class="hintboxlink"></div>Gebruik de geheeltalige deling en de modulus-operator.</div><div id="hintbox4" class="hintbox "><div id="hintboxlink4" class="hintboxlink"></div>Indien <code>a</code> deelbaar is door <code>b</code>, dan genereert de modulus-operator een welbepaald getal.</div><div id="hintbox12" class="hintbox "><div id="hintboxlink12" class="hintboxlink"></div>Preciezer, als het correcte antwoord <em>A</em> is,  accepteren we elk antwoord in het volgende bereik (0.1% absolute of relatieve fout):
+
+<em>A</em> ± 0.001
+
+<em>A</em> ± abs(<em>A</em>) * 0.001
+
+</div><div id="hintbox14" class="hintbox "><div id="hintboxlink14" class="hintboxlink"></div>Zet haakjes <code>()</code> rond dat deel van de expressie dat als eerste moet worden uitgerekend</div><span id="pylangswitcher"><li><a href="https://cscircles.cemc.uwaterloo.ca/7b-math/">en</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/7b-fr/">fr</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/7b-de/">de</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/?page_id=8251">lt</a></li><li><a href="https://cscircles.cemc.uwaterloo.ca/zh-7b/">zh</a></li></span><script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/mouse.min.js?ver=1.13.1' id='jquery-ui-mouse-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/resizable.min.js?ver=1.13.1' id='jquery-ui-resizable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/draggable.min.js?ver=1.13.1' id='jquery-ui-draggable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/controlgroup.min.js?ver=1.13.1' id='jquery-ui-controlgroup-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/checkboxradio.min.js?ver=1.13.1' id='jquery-ui-checkboxradio-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/button.min.js?ver=1.13.1' id='jquery-ui-button-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/dialog.min.js?ver=1.13.1' id='jquery-ui-dialog-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/ui/sortable.min.js?ver=1.13.1' id='jquery-ui-sortable-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/jquery/jquery.ui.touch-punch.js?ver=0.2.2' id='jquery-touch-punch-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/hoverintent-js.min.js?ver=2.2.1' id='hoverintent-js-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/admin-bar.min.js?ver=5.9.3' id='admin-bar-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.9' id='regenerator-runtime-js'></script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/cscircles.cemc.uwaterloo.ca\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.5.6' id='contact-form-7-js'></script>
+		<div id="wpadminbar" class="nojq nojs">
+							<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1">Spring naar toolbar</a>
+						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
+				<ul id='wp-admin-bar-root-default' class="ab-top-menu"><li id='wp-admin-bar-site-name'><a class='ab-item' href='https://cscircles.cemc.uwaterloo.ca/nl/'>Computer Science Circles</a></li></ul><ul id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li id='wp-admin-bar-new-or-login' class="new-or-login"><a class='ab-item' href='https://cscircles.cemc.uwaterloo.ca/wp-login.php?redirect_to=%2F7b-math-nl%2F'><p>Account aanmaken / aanmelden</p><p>om je voortgang op te slaan</p></a></li><li id='wp-admin-bar-search' class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="https://cscircles.cemc.uwaterloo.ca/" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">Zoeken</label><input type="submit" class="adminbar-button" value="Zoeken" /></form></div></li><li id='wp-admin-bar-totop'><div class="ab-item ab-empty-item"><img onclick="scrollToTop()" title="scroll naar de top" class="icon" src="https://cscircles.cemc.uwaterloo.ca/wp-content/plugins/pybox/files/up.png"/></div></li></ul>			</div>
+					</div>
+
+		
+</body>
+</html>

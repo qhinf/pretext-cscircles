@@ -1,0 +1,15 @@
+10-area-triangle.png /wp-content/lesson_files/img/10/area-triangle.png
+10-peri-rect.png /wp-content/lesson_files/img/10/peri-rect.png
+11c-distance2d.png ../wp-content/lesson_files/img/11C/distance2d.png
+11c-hypotenuse.png ../wp-content/lesson_files/img/11C/hypotenuse.png
+17-slide1.png ../wp-content/lesson_files/img/17/slide1.png
+17-slide2.png ../wp-content/lesson_files/img/17/slide2.png
+17-slide3.png ../wp-content/lesson_files/img/17/slide3.png
+17-slide4.png ../wp-content/lesson_files/img/17/slide4.png
+17-slide5.png ../wp-content/lesson_files/img/17/slide5.png
+17-slide6.png ../wp-content/lesson_files/img/17/slide6.png
+17-slide7.png ../wp-content/lesson_files/img/17/slide7.png
+2-one-road.png /wp-content/lesson_files/img/2/one-road.png
+2-two-roads.png /wp-content/lesson_files/img/2/two-roads.png
+3460673214_0292a66ffa_n.jpg http://farm4.staticflickr.com/3540/3460673214_0292a66ffa_n.jpg
+5358233785_13e36e1d76.jpg http://farm6.staticflickr.com/5203/5358233785_13e36e1d76.jpg
