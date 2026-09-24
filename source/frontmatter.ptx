@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frontmatter xml:id="frontmatter">
+  <titlepage>
+    <author>
+      <personname>Computer Science Circles (CEMC, University of Waterloo)</personname>
+    </author>
+    <date><today /></date>
+  </titlepage>
+  <colophon>
+    <copyright>
+      <year>2010–2026</year>
+      <holder>Centre for Education in Mathematics and Computing, University of Waterloo</holder>
+      <shortlicense>Oorspronkelijke inhoud van cscircles.cemc.uwaterloo.ca; omgezet naar PreTeXt.</shortlicense>
+    </copyright>
+  </colophon>
+</frontmatter>

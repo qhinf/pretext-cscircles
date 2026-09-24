@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<docinfo xmlns:xi="http://www.w3.org/2001/XInclude">
+  <document-id>cscirclesnl</document-id>
+  <blurb shelf="Python">Nederlandse editie van Computer Science Circles: een introductie in programmeren met Python.</blurb>
+  <directories external="../assets" />
+</docinfo>
