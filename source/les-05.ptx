@@ -43,6 +43,7 @@ Echo
 Echo
 </pre>
       <p>Corrigeer de voorbeeldoplossing. (Of wis de hele voorbeeldoplossing en begin opnieuw.)</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-5-echo-code">
       <code>

@@ -31,7 +31,7 @@
     <p><ul>
       <li><p><alert>Uitvoeren</alert> heet hier <alert>Run</alert>. Programma's die <c>input()</c> gebruiken vragen de invoer in een invoerveld onder het programma.</p></li>
       <li><p><alert>Visualiseren</alert> (de <em>Python-visualisatietool</em>, ook wel <em>Online Python Tutor</em>) vind je onder de knop <alert>Show CodeLens</alert> bij elk programma. Daarmee kun je een programma stap voor stap uitvoeren.</p></li>
-      <li><p>Bij een <alert>programmeeroefening</alert> wordt je programma na <alert>Run</alert> automatisch getest met een aantal testgevallen. Onder het programma verschijnt een tabel met het resultaat van elke test. Deze tests zijn voor deze uitgave opnieuw geschreven en zijn dus niet precies dezelfde als die van CS Circles.</p></li>
+      <li><p>Bij een <alert>programmeeroefening</alert> wordt je programma na <alert>Run</alert> automatisch getest met een aantal testgevallen. Onder het programma verschijnt een tabel met het resultaat van elke test. Leest het programma invoer met <c>input()</c>, dan vraagt het bij <alert>Run</alert> eerst om invoer, zodat je het zelf kunt uitproberen; de tests gebruiken daarna hun eigen invoer. Deze tests zijn voor deze uitgave opnieuw geschreven en zijn dus niet precies dezelfde als die van CS Circles.</p></li>
       <li><p>Bij een <alert>volgorde-oefening</alert> sleep je de regels naar de juiste plek en controleer je je antwoord met <alert>Check</alert>.</p></li>
       <li><p>Je voortgang wordt alleen bewaard als je bent ingelogd op een Runestone-server.</p></li>
     </ul></p>

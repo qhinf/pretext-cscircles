@@ -285,6 +285,7 @@ for i in range(0, 5):
 **
 ***
 </pre>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7c-triangle-code">
         <code>
@@ -526,6 +527,7 @@ for n in range(10, 16):
 4
 9
 </pre>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7c-squares-code">
         <code>
@@ -731,6 +733,7 @@ _Toets().main()
       <title>Skipping</title>
       <statement>
         <p>Voeg extra regels toe aan het voorbeeld "Een lus door invoerregels" van hierboven (we hebben het programma al voor je gekopieerd) door een extra eis toe te voegen: iedere regel die gelijk is aan <c>SKIP</c> moet niet worden afgedrukt en moet ook niet tot gevolg hebben dat de teller wordt opgehoogd. Voer het programma uit om een voorbeeld te bekijken.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7c-skip-code">
         <code>
@@ -948,6 +951,7 @@ _Toets().main()
 5 times 2 equals 10
 10 times 1 equals 10
 </pre>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7c-factorize-code">
         <code>

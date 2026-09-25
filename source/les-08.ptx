@@ -7,6 +7,7 @@
     <title>Python-optelprogramma</title>
     <statement>
       <p>Schrijf een programma dat één regel als invoer heeft van de vorm <c>«getal1»+«getal2»</c>, waarbij <c>«getal1»</c> en <c>«getal2»</c> positieve gehele getallen zijn, en als uitvoer de som van deze getallen geeft. Bijvoorbeeld: bij invoer <c>5+12</c> dient de uitvoer <c>17</c> te zijn.</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-8-adder-code">
       <code>
@@ -221,6 +222,7 @@ for position in range(0, len(S)):
     <title>Tellen van substrings</title>
     <statement>
       <p>Zoals in les 7A aan de orde is geweest, is een substring een opeenvolgende rij karakters binnen een andere string. Dezelfde substring kan meerdere keren optreden in dezelfde string: zo heeft bijvoorbeeld "katakana" twee keer de substring "ka", en "trans-atlantische banaan" heeft 4 keer de substring "an". Schrijf een programma dat twee regels invoer heeft, waarbij we de eerste de <c>naald</c> noemen en de tweede de <c>hooiberg</c>. Print het aantal keren dat <c>naald</c> als substring voorkomt in <c>hooiberg</c>.</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-8-substrings-code">
       <code>
@@ -424,6 +426,7 @@ _Toets().main()
     <title>Kijk naar de slinger</title>
     <statement>
       <p>Uit de natuurkunde: voor een slinger met lengte L en uitwijkingshoek A, wordt de horizontale verplaatsing X(T) op tijdstip T gegeven door de formule X(T) = L × cos(A × cos(T × √9.8/L)) - L × cos(A) Schrijf een programma dat twee regels invoer neemt: de eerste voor L en de tweede voor A. De uitvoer dient te bestaan uit 10 getallen, X(0), X(1), X(2), ..., X(9). Bijvoorbeeld: als de eerste regel invoer <c>53.1</c> is en de tweede regel invoer is <c>0.8</c>, dan is de eerste regel van de uitvoer <c>0.0</c> en de tweede regel van de uitvoer is 53.1*cos(0.8*cos(1*√9.8/53.1)) - 53.1*cos(0.8) ≈ <c>2.6689</c>.</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-8-pendulum-code">
       <code>
@@ -643,6 +646,7 @@ EINDE
 .....het.....
 ...midden!...
 </pre>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-8-centering-code">
       <code>
@@ -858,6 +862,7 @@ _Toets().main()
 13
 </pre>
       <p>is de correcte uitvoer <c>00:12</c>. Hints:</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-8-ending-code">
       <code>
