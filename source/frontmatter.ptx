@@ -12,7 +12,7 @@
     <copyright>
       <year>2010<ndash />2026</year>
       <holder>Centre for Education in Mathematics and Computing, University of Waterloo</holder>
-      <shortlicense>Computer Science Circles is een gratis dienst van het CEMC van de University of Waterloo. Deze PreTeXt-versie is een omzetting van de Nederlandse editie zoals die in maart 2026 in het Internet Archive stond.</shortlicense>
+      <shortlicense>Dit werk valt onder de licentie <url href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl" visual="creativecommons.org/licenses/by-nc-sa/4.0">Creative Commons Naamsvermelding-NietCommercieel-GelijkDelen 4.0 Internationaal</url> (CC BY-NC-SA 4.0). Het is een bewerking van de Nederlandse editie van Computer Science Circles, een gratis dienst van het CEMC van de University of Waterloo, zoals die in maart 2026 in het Internet Archive stond. De lesinhoud van CS Circles is uitgegeven onder <url href="https://creativecommons.org/licenses/by-nc-sa/3.0/" visual="creativecommons.org/licenses/by-nc-sa/3.0">CC BY-NC-SA 3.0</url>; het overige materiaal van het CEMC onder <url href="https://creativecommons.org/licenses/by-nc/4.0/" visual="creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</url>.</shortlicense>
     </copyright>
   </bibinfo>
 
@@ -26,7 +26,7 @@
 
   <preface xml:id="over-deze-uitgave">
     <title>Over deze uitgave</title>
-    <p>Dit boek bevat de lessen van de Nederlandse editie van <url href="https://cscircles.cemc.uwaterloo.ca/nl/" visual="cscircles.cemc.uwaterloo.ca/nl">Computer Science Circles</url> (CS Circles), een gratis cursus programmeren in Python van het Centre for Education in Mathematics and Computing (CEMC) van de University of Waterloo. Toen de website offline ging, zijn de lessen uit het <url href="https://web.archive.org/web/20260316180938/https://cscircles.cemc.uwaterloo.ca/nl/" visual="web.archive.org">Internet Archive</url> gehaald en omgezet naar <url href="https://pretextbook.org" visual="pretextbook.org">PreTeXt</url>, zodat ze op <url href="https://runestone.academy" visual="runestone.academy">Runestone</url> gebruikt kunnen worden.</p>
+    <p>Dit boek bevat de lessen van de Nederlandse editie van <url href="https://cscircles.cemc.uwaterloo.ca/nl/" visual="cscircles.cemc.uwaterloo.ca/nl">Computer Science Circles</url> (CS Circles), een gratis cursus programmeren in Python van het Centre for Education in Mathematics and Computing (CEMC) van de University of Waterloo. Toen de website offline ging, zijn de lessen uit het <url href="https://web.archive.org/web/20260316180938/https://cscircles.cemc.uwaterloo.ca/nl/" visual="web.archive.org">Internet Archive</url> gehaald en omgezet naar <url href="https://pretextbook.org" visual="pretextbook.org">PreTeXt</url>, zodat ze op <url href="https://runestone.academy" visual="runestone.academy">Runestone</url> gebruikt kunnen worden. Net als het origineel mag je deze versie vrij gebruiken, delen en aanpassen voor niet-commerciële doeleinden, onder de licentie <url href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl" visual="creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</url>.</p>
     <p>De tekst van de lessen is zo veel mogelijk ongewijzigd overgenomen. Daardoor verwijst hij soms naar knoppen van de oude website. Zo werken die in deze versie:</p>
     <p><ul>
       <li><p><alert>Uitvoeren</alert> heet hier <alert>Run</alert>. Programma's die <c>input()</c> gebruiken vragen de invoer in een invoerveld onder het programma.</p></li>

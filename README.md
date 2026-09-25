@@ -85,7 +85,17 @@ oplossingen worden afgekeurd.
 
 ## Licentie
 
-De lesinhoud is © 2010–2026 Centre for Education in Mathematics and Computing, University of
-Waterloo. De website vermeldde geen open licentie voor de lesteksten (de code in
-cemc/cscircles-wp-content is GPLv3). Vraag toestemming aan het CEMC voordat je deze versie
-openbaar publiceert.
+Deze versie valt onder [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+(zie [LICENSE.md](LICENSE.md)). Het is een bewerking van Computer Science Circles
+© 2010–2026 Centre for Education in Mathematics and Computing, University of Waterloo:
+
+* de lesinhoud van CS Circles is uitgegeven onder
+  [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+  (volgens de [pagina voor auteurs](https://web.archive.org/web/20260208095951/https://cscircles.cemc.uwaterloo.ca/authoring/));
+* het materiaal van het CEMC valt onder
+  [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+  (volgens [cemc.uwaterloo.ca/copyright.html](http://cemc.uwaterloo.ca/copyright.html), waar het
+  CC-logo onderaan elke pagina van CS Circles naar verwees).
+
+CC BY-NC-SA 3.0 staat bewerkingen toe onder een latere versie van dezelfde licentie, en CC BY-NC 4.0
+staat bewerkingen onder elke licentie toe; CC BY-NC-SA 4.0 is dus met beide verenigbaar.
