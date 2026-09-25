@@ -30,6 +30,33 @@ pretext view web
 Voor de CodeLens-programma's heeft `pretext build` toegang nodig tot de tracer-server van Runestone
 (`http://tracer.runestone.academy:5000`).
 
+## Hosten op Runestone
+
+Het `document-id` van het boek is `cscirclesnl` (zie `source/docinfo.ptx`). De target `runestone`
+gebruikt `publication/runestone.ptx` (met `<platform host="runestone"/>`) en bouwt naar
+`published/cscirclesnl/`, waar een Runestone-server het boek verwacht.
+
+**Runestone Academy** (runestone.academy): open een issue op
+<https://github.com/RunestoneInteractive/rs/issues> met de URL van deze GitHub-repository en vraag
+of het boek toegevoegd kan worden. Runestone kloont de repository (standaardbranch), en daarna
+bouw en publiceer je nieuwe versies zelf via <https://author.runestone.academy>. Controleer vooraf
+of de `shelf` van de `blurb` in `source/docinfo.ptx` overeenkomt met een bestaande categorie in de
+[bibliotheek](https://runestone.academy/ns/books/index). Omdat de naam van de repository
+(`pretext-cscircles`) verschilt van het `document-id`, moet in de author interface *Path to existing
+repo* op de naam van de repository gezet worden.
+
+**Een eigen Runestone-server** (zie de [documentatie van Runestone](https://github.com/RunestoneInteractive/rs/tree/main/docs/source)):
+kloon deze repository in `$BOOK_PATH` **in een map met de naam `cscirclesnl`**, en dan:
+
+```
+git clone <deze repository> $BOOK_PATH/cscirclesnl
+rsmanage addbookauthor                     # document-id: cscirclesnl
+rsmanage build --ptx cscirclesnl           # of: docker compose run rsmanage rsmanage build --ptx cscirclesnl
+rsmanage library forclass --show           # beschikbaar maken voor cursussen
+```
+
+Maak daarna in de webinterface een cursus aan met `cscirclesnl` als basiscursus.
+
 ## Opbouw van de repository
 
 | Pad | Inhoud |

@@ -521,7 +521,9 @@ class Page:
             return
         m = re.search(r"youtube(?:-nocookie)?\.com/embed/([A-Za-z0-9_-]+)", src)
         if m:
-            ET.SubElement(parent, "video", {"youtube": m.group(1), "width": "80%"})
+            self.example_count += 1
+            ET.SubElement(parent, "video", {"youtube": m.group(1), "width": "80%",
+                                            "label": "%s-video-%d" % (self.chapter_id, self.example_count)})
             return
         warn("%s: onbekende iframe %s" % (self.name, src))
 

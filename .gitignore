@@ -4,3 +4,4 @@ logs/
 .cache/
 .error_schema.log
 __pycache__/
+published/

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project ptx-version="2">
   <targets>
+    <!-- Statische HTML, bv. voor GitHub Pages (antwoorden worden niet bewaard). -->
     <target name="web" format="html" />
-    <target name="runestone" format="html" platform="runestone" />
+    <!-- Voor een Runestone-server; de uitvoer moet in published/<document-id> staan. -->
+    <target name="runestone" format="html" publication="runestone.ptx" output-dir="../published/cscirclesnl" />
   </targets>
 </project>

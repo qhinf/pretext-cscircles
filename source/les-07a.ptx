@@ -992,7 +992,7 @@ _Toets().main()
       <title>The Name Game</title>
       <statement>
         <p><alert>The Name Game</alert> (het namenspel) laat je een liedje maken bij een naam van iemand. Luister naar het liedje en probeer een idee te krijgen hoe het werkt:</p>
-        <video youtube="NeF7jqf0GU4" width="80%"/>
+        <video youtube="NeF7jqf0GU4" width="80%" label="les-07a-video-9"/>
         <p>Je programma moet de naam van een persoon als invoer krijgen, "pearl" bijvoorbeeld, en drukt het liedje af, bv.</p>
         <pre>
 pearl, pearl, bo-bearl

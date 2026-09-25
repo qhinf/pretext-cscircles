@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publication>
+  <common>
+    <!-- Eén pagina per les, net als op CS Circles. -->
+    <chunking level="1" />
+    <tableofcontents level="1" />
+  </common>
+
+  <source>
+    <directories generated="../generated-assets" />
+  </source>
+
+  <numbering>
+    <!-- De lessen hebben hun eigen nummers (1, 1E, 2X, 7A, ...) in de titel. -->
+    <divisions level="0" />
+  </numbering>
+
+  <html>
+    <!-- Runestone-server: voortgang en scores worden op de server bewaard. -->
+    <platform host="runestone" />
+    <!-- Voorbeelden staan meteen open; uitklapbare aanwijzingen (remark) zijn ingeklapt, zoals op CS Circles. -->
+    <knowl example="no" remark="yes" exercise-inline="no" />
+    <calculator model="none" activecode="python" />
+    <tableofcontents focused="yes" />
+  </html>
+</publication>

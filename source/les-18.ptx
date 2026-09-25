@@ -11,7 +11,7 @@
     <p>en het vierde element is 1+2=3, vervolgens krijgen we 2+3=5, enzovoort:</p>
     <p><c>1, 1, 2, 3, 5, 8, 13, ...</c></p>
     <p>De Rij van Fibonacci werd aanvankelijk gebruikt om de populatie van konijnen te beschrijven, en het heeft ook fantastische relaties met de architectuur van planten. Hier is een deel van een videoserie over de Rij van Fibonacci:</p>
-    <video youtube="ahXIMUkSXX0" width="80%"/>
+    <video youtube="ahXIMUkSXX0" width="80%" label="les-18-video-1"/>
     <p>De definitie van de de Rij van Fibonacci leent zich natuurlijk voor een recursieve functie. In de volgende oefening wordt een functie <c>Fibonacci(n)</c> gedefinieerd die het <c>n</c>de element levert uit de rij hierboven (te beginnen met <c>n=1</c>).</p>
     <exercise label="oef-18-nibofacci" language="python">
       <title>Nibofacci</title>
@@ -75,7 +75,7 @@
     <p>Door te testen op alle mogelijke delers, komen we tot het volgende programma.</p>
     <example>
       <p>Test om na te gaan of een paar getallen priem zijn</p>
-      <program interactive="activecode" language="python" label="les-18-vb-1">
+      <program interactive="activecode" language="python" label="les-18-vb-2">
         <code>
 def isItPrime(N):
   for D in range(2, N):                        # test D from 2 to N-1
@@ -103,7 +103,7 @@ def isItPrime(N):
     <p>Mooi! Laten we dan nu dit nieuwe idee in Python implementeren. De gemakkelijkste weg is om de oude benadering aan te passen is om een test toe te voegen in de <c>for</c> loop: als <c>D &gt; sqrt(N)</c> (of gelijk daaraan, <c>D*D &gt; N</c>), kunnen we uit de loop stappen en stoppen met testen.</p>
     <example>
       <p>Snellere priem test</p>
-      <program interactive="activecode" language="python" label="les-18-vb-2">
+      <program interactive="activecode" language="python" label="les-18-vb-3">
         <code>
 def isItPrime(N): # same as before
   for D in range(2, N):
