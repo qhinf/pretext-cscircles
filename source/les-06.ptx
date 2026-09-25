@@ -53,6 +53,7 @@ print('Jij bent', leeftijd, 'jaar')
       <title>Twee varianten</title>
       <statement>
         <p>Schrijf een programma dat een geheel getal van de invoer inleest: <c>pannenkoeken = int(input())</c>. Wanneer <c>pannenkoeken</c> meer is dan 3, print dan <c>Yum!</c>. En als pannenkoeken niet meer is dan 3, print dan <c>Still hungry!</c>.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-6-ihop-code">
         <code>
@@ -417,6 +418,7 @@ s == n*n #moet = zijn
         <title>What's Your Sign?</title>
         <statement>
           <p>Schrijf een programma dat een getal inleest en daarna als uitvoer één van de volgende woorden tot uitvoer heeft: <c>Positief</c>, <c>Negatief</c>, of <c>Nul</c>. Dit al naar gelang het ingelezen getal positief, negatief of nul is.</p>
+          <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
         </statement>
         <program interactive="activecode" language="python" label="oef-6-sign-code">
           <code>

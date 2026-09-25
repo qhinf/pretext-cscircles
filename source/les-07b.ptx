@@ -28,6 +28,7 @@ print(14 % 3)
 3
 </pre>
         <p>want met <c>27</c> eieren kun je <c>2</c> doosjes vullen en blijven er <c>3</c> eieren over.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-eggs-code">
         <code>
@@ -240,6 +241,7 @@ _Toets().main()
 3
 </pre>
         <p>dan dient het programma af te drukken "niet deelbaar".</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-divisible-code">
         <code>
@@ -466,6 +468,7 @@ print(math.sqrt(3), math.tan(math.pi / 3))
       <title>Pizza Cirkels</title>
       <statement>
         <p>Je vrienden hebben hun vierkante pizza's opgegeten en bestellen nu een ronde pizza. Schrijf een programma dat de oppervlakte berekent van deze ronde pizza. De invoer is een kommagetal, laten we het <em>r</em> noemen, dat de straal in cm weergeeft. De uitvoer moet de oppervlakte weergeven in cm<m>^{\text{2}}</m>, berekend door gebruik te maken van de formule <em>A=pi*r<m>^{\text{2}}</m></em>. Gebruik daarbij <c>pi</c> uit de module <c>math</c> in plaats van <c>3.1415...</c></p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-pizza-code">
         <code>
@@ -673,6 +676,7 @@ _Toets().main()
 20.0
 </pre>
         <p>dan dient de uitvoer <c>10.0</c> te zijn.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-geometricmean-code">
         <code>
@@ -943,6 +947,7 @@ print('s =', s)
       <title>Overhoring</title>
       <statement>
         <p>Als "overhoring" krijg je drie gehele getallen en je wordt gevraagd om de eerste twee getallen bij elkaar op te tellen en het resultaat met het derde getal te vermenigvuldigen. Schrijf een programma dat de drie getallen inleest en het juiste antwoord afdrukt.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-skill-code">
         <code>
@@ -1148,6 +1153,7 @@ _Toets().main()
       <title>Voet vertalen in cm</title>
       <statement>
         <p>Voor dit programma is de invoer een kommagetal dat een hoogte weergeeft in voet. Schrijf een programma dat het equivalent in centimeters weergeeft. Gebruik daarbij dat 1 voet = 30,48 cm. Zo is bijvoorbeeld bij een invoer van <c>0.5</c>, de gewenste uitvoer gelijk aan <c>15.24</c>.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-convert-code">
         <code>
@@ -1350,6 +1356,7 @@ _Toets().main()
       <title>Zwaartekracht</title>
       <statement>
         <p>Een pakje wordt vanuit een vliegtuig op een hoogte van 11000 meter naar beneden gegooid met een snelheid van <em>v</em> m/s. Terwijl het valt wordt de afstand naar de grond gegeven door de formule -4.9<em>t</em><m>^{\text{2}}</m> - <em>vt</em> + 11000, waarbij <em>t</em> de tijd is in seconden vanaf het moment van vallen. Schrijf een programma dat als uitvoer de tijd geeft die nodig is om de grond te bereiken. De invoer bij je programma is het positieve kommagetal <em>v</em>. De gevraagde tijd wordt gegeven door de formule: <m>\displaystyle{t=\frac{v-\sqrt{v^2-4(-4.9)(11000)}}{2(-4.9)}}</m></p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7b-gravity-code">
         <code>

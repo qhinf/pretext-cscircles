@@ -674,9 +674,17 @@ class Page:
     def coding_exercise(self, box, parent, title_el):
         slug = slug_of(box)
         ex = self.begin_exercise(parent, slug, title_el, "code")
-        self.statement_from(box, ex)
+        st = self.statement_from(box, ex)
         code = code_of(box)
         spec = toetsen.get(slug)
+        if spec and leest_invoer(spec):
+            # Runestone voert het programma eerst gewoon uit (met een invoerveld) en test het daarna;
+            # leg dat uit, anders is het verwarrend dat er om invoer gevraagd wordt.
+            p = ET.SubElement(st, "p")
+            em = ET.SubElement(p, "em")
+            em.text = ("Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je "
+                       "programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de "
+                       "testgevallen; de resultaten staan in de tabel onder het programma.")
         prog = ET.SubElement(ex, "program", {"interactive": "activecode", "language": "python",
                                             "label": slug_to_label(slug) + "-code"})
         if spec and spec.get("tijdslimiet"):
@@ -860,6 +868,12 @@ class Page:
 # --------------------------------------------------------------------------
 # Hulpfuncties
 # --------------------------------------------------------------------------
+
+def leest_invoer(spec):
+    """Leest het programma zelf invoer (en niet alleen een functie die in de tests wordt aangeroepen)?"""
+    gevallen = spec.get("gevallen") or []
+    return any(g.get("invoer") for g in gevallen) and not any(g.get("aanroep") for g in gevallen)
+
 
 def image_width(path):
     """Breedte in pixels van een PNG- of JPEG-bestand (zonder extra bibliotheken)."""

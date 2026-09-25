@@ -8,6 +8,7 @@
     <title>Veertig graden onder nul</title>
     <statement>
       <p>In deze oefening dien je een temperatuur-vertaalprogramma te schrijven dat graden Fahrenheit vertaalt in graden Celsius en omgekeerd. Je hebt de volgende twee formules nodig die de temperatuur <em>f</em> in Fahrenheit omzet in de temperatuur <em>c</em> in Celsius: <m>\displaystyle{f = c \times \frac{9}{5} + 32}</m> <m>\displaystyle{c = (f - 32)\times\frac{5}{9}.}</m> De input is een string met daarin een decimaal getal onmiddellijk gevolgd door de letter F of C, zoals bij "<c>13.2C</c>". Je moet de input vertalen in de andere temperatuurschaal en de omgezette temperatuur afdrukken in het zelfde format. Als bijvoorbeeld de invoer "<c>8F</c>" is dan moet de uitvoer (ongeveer) "<c>-13.333C</c>" zijn, en als de invoer "<c>12.5C</c>" is dan moet de uitvoer "<c>54.5F</c>" zijn.</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-15b-degrees-code">
       <code>
@@ -424,6 +425,7 @@ Line up fast or be the last
 line
 </pre>
       <p>omdat het woord "line" twee keer voorkomt, en geen ander woord vaker voorkomt.</p>
+      <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
     </statement>
     <program interactive="activecode" language="python" label="oef-15b-poem-code">
       <code>

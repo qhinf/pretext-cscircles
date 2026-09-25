@@ -105,6 +105,7 @@ print('chump'[0:4])
       <title>Een string inkorten</title>
       <statement>
         <p>Schrijf een programma dat een string inleest met behulp van <c>input()</c>, en als uitvoer dezelfde string geeft maar dan zonder het eerste en laatste karakter. (Je mag aannemen dat de invoerstring tenminste een lengte heeft van twee karakters.) Zo zal bijvoorbeeld bij invoer <c>Python</c> een correct programma <c>ytho</c> afdrukken.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7a-firstlast-code">
         <code>
@@ -322,6 +323,7 @@ print(len(result))
       <title>Heads and Tails</title>
       <statement>
         <p>Schrijf een programma dat een string inleest met behulp van <c>input()</c>, en als uitvoer dezelfde string geeft maar waarbij het eerste en het laatste karakter zijn <alert>omgewisseld</alert>. (Je mag aannemen dat de string tenminste lengte 2 heeft. Zo zal bijvoorbeeld bij invoer <c>kaart</c> een correct programma <c>taark</c> afdrukken. Hint: gebruik hierbij de oplossing van je vorige programma als deel van het antwoord.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7a-swap-code">
         <code>
@@ -581,6 +583,7 @@ print(chr(35), chr(43), chr(100))
       <title>De volgende letter</title>
       <statement>
         <p>Schrijf een programma dat een karakter als invoer neemt (een string met lengte 1), waarbij we aannemen dat het een hoofletter is; en de uitvoer is de volgende letter uit het alfabet. Maar als de input 'Z' is, dan moet de output 'A' zijn. (Je zult daarbij een <c>if</c>-opdracht nodig hebben. Voor nog een aanwijzing .)</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7a-lowercase-code">
         <code>
@@ -790,6 +793,7 @@ _Toets().main()
       <title>Potjeslatijn</title>
       <statement>
         <p><alert>Potjeslatijn</alert> is een onzin-taal. Om een woord vanuit het Engels om te zetten naar potjeslatijn, verplaats je de eerste letter naar het einde en je voegt er daarna "ay" aan toe. Zo wordt in het potjeslatijn bijvoorbeeld, <em>monkey</em> <em>onkeymay</em>, en wordt <em>word</em> <em>ordway</em>. Schrijf een programma dat een enkelvoudig woord als invoer neemt en het woord vervolgens omzet naar het potjeslatijn. (In werkelijkheid heeft potjeslatijn complexere regels, maar die laten we achterwege voor wat deze oefening betreft.)</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7a-piglatin-code">
         <code>
@@ -1001,6 +1005,7 @@ fee-fi-mo-mearl
 pearl!
 </pre>
         <p>Merk op dat de naam drie keer terugkomt; en de naam komt verder nog drie keer voor waarbij de eerste letter vervangen wordt door b, f, of m. (In werkelijkheid heeft het liedje complexere regels, maar die laten we achterwege in verband met het doel van deze oefening.)</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-7a-namegame-code">
         <code>

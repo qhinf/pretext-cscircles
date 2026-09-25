@@ -48,6 +48,7 @@ else:
       <title>Absolute waarde</title>
       <statement>
         <p>De <em>absolute waarde</em> van een getal is als volgt gedefinieerd. Voor een getal <em>x</em> dat positief of 0 is, is de absolute waarde van <em>x</em> gelijk aan <em>x</em>. Wanneer <em>x</em> een negatief getal is, dan is de absolute waarde van <em>x</em> gelijk aan <em>-x</em>, of in andere woorden hetzelfde als <em>x</em> maar zonder het minteken. Zo is de absolute waarde van <c>5</c> gelijk aan <c>5</c>, en is de absolute waarde van <c>-10</c> gelijk aan <c>--10</c> oftewel <c>10</c>. Schrijf een programma dat een geheel getal als invoer inleest en dat de abolute waarde ervan afdrukt en gebruik daarbij <c>if</c> en <c>else</c>.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-9-abs-code">
         <code>
@@ -274,6 +275,7 @@ else:               # de laatste twee regels kunnen voorkomen maar dat hoeft nie
       <title>First, Second, Third</title>
       <statement>
         <p>De Engelstalige woorden 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th worden <em>rangtelwoorden</em> genoemd. Schrijf een programma dat een geheel getal <em>x</em> tussen 1 en 9 als invoer inleest. Het programma dient het bij <em>x</em> behorende (Engelse) rangtelwoord af te drukken.   <alert>Hint</alert>: je hoeft geen 9 aparte gevallen te onderscheiden; 4 is genoeg.</p>
+        <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
       </statement>
       <program interactive="activecode" language="python" label="oef-9-ordinal-code">
         <code>
@@ -509,6 +511,7 @@ else:
         <title>26 Letters</title>
         <statement>
           <p>Schrijf een programma dat het tegenovergestelde doet van het voorbeeld hierboven: het krijgt als invoer een letter en geeft als uitvoer het corresponderende getal (tussen 1 en 26). Je programma mag alleen maar <em>hoofdletters</em> accepteren. Als foutmelding moet je programma <c>niet toegestaan</c> afdrukken wanneer de invoer geen hoofdletter is.</p>
+          <p><em>Als je op Run klikt, vraagt je programma eerst om invoer: typ zelf iets in om je programma uit te proberen. Daarna wordt het automatisch getest met de invoer van de testgevallen; de resultaten staan in de tabel onder het programma.</em></p>
         </statement>
         <program interactive="activecode" language="python" label="oef-9-numberify-code">
           <code>
