@@ -71,7 +71,7 @@ Maak daarna in de webinterface een cursus aan met `cscirclesnl` als basiscursus.
 | `tools/harnas.py` | maakt de verborgen tests uit `tools/toetsen/` |
 | `tools/check_toetsen.py` | controleert alle tests in Runestones Skulpt (via node) |
 | `tools/validate.py` | controleert de PreTeXt tegen het schema |
-| `tools/fetch_archive.py` | haalt de pagina's opnieuw op uit de Wayback Machine |
+| `tools/fetch_archive.py` | haalt de pagina's op uit de Wayback Machine (Nederlands naar `archief/`, Engels naar `archief/en/`) |
 
 Wijzigingen in de lessen maak je dus in `tools/` (of in `archief/`) en daarna:
 
